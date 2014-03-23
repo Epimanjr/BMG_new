@@ -29,24 +29,24 @@ public class BmgMenuBar extends JMenuBar {
 
     JButton buttonIndex = new JButton(new ImageIcon("index_small.png"));
     JMenu menuExercises = new JMenu("Exercises");
-    JMenuItem itemGenerate = new JMenuItem("Generate");
-    JMenuItem itemPractice = new JMenuItem("Practice");
-    JMenuItem itemSolve = new JMenuItem("Solve");
-    JMenuItem itemImport = new JMenuItem("Import");
-    JMenuItem itemExport = new JMenuItem("Export");
-    JMenuItem itemEdit = new JMenuItem("Edit");
+    JMenuItem itemGenerate = new JMenuItem("Générer");
+    JMenuItem itemPractice = new JMenuItem("Pratiquer");
+    JMenuItem itemSolve = new JMenuItem("Résoudre");
+    JMenuItem itemImport = new JMenuItem("Importer");
+    JMenuItem itemExport = new JMenuItem("Exporter");
+    JMenuItem itemEdit = new JMenuItem("Éditer");
 
-    JMenu menuAccount = new JMenu("Account");
-    JMenuItem itemSignIn = new JMenuItem("Sign in");
-    JMenuItem itemSignUp = new JMenuItem("Sign up now !");
+    JMenu menuAccount = new JMenu("Compte");
+    JMenuItem itemSignIn = new JMenuItem("Se connecter");
+    JMenuItem itemSignUp = new JMenuItem("S'enregistrer");
 
-    JMenu menuSettings = new JMenu("Settings");
-    JMenuItem itemBaseSettings = new JMenuItem("Base Settings");
-    JMenuItem itemConnexionTest = new JMenuItem("Connexion Test");
+    JMenu menuSettings = new JMenu("Configuration");
+    JMenuItem itemBaseSettings = new JMenuItem("Base de données");
+    JMenuItem itemConnexionTest = new JMenuItem("Tester la connexion");
 
     JMenu menuHelp = new JMenu("?");
-    JMenuItem itemHelp = new JMenuItem("Help");
-    JMenuItem itemAbout = new JMenuItem("About us");
+    JMenuItem itemHelp = new JMenuItem("Aide");
+    JMenuItem itemAbout = new JMenuItem("À propos");
 
     BmgFrame fen;
    // String s = "Not connected yet";

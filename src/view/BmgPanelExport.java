@@ -27,7 +27,7 @@ import model.Exercise;
 public class BmgPanelExport extends JPanel {
 
     String filename = "";
-    JLabel labelRes = new JLabel("No file selected.");
+    JLabel labelRes = new JLabel("Aucun fichier sélectionné.");
     JButton buttonOk = new JButton("GO");
     JButton boutonExportPDF;
     BmgFrame fen;
@@ -43,11 +43,11 @@ public class BmgPanelExport extends JPanel {
         //Label at first
         JPanel panFirst = new JPanel();
         panFirst.setPreferredSize(new Dimension(fen.width, fen.height / nb));
-        final BmgLabel label = new BmgLabel("Ready to become brilliant ? Practice !", color);
+        final BmgLabel label = new BmgLabel("Prêt à devenir brillant ? Pratiquez !", color);
         panFirst.add(label);
 
         //Button choose file
-        JButton choosefile = new JButton("Browser..");
+        JButton choosefile = new JButton("Rechercher..");
 
         choosefile.addActionListener(new ActionListener() {
 
@@ -70,7 +70,7 @@ public class BmgPanelExport extends JPanel {
                 }
                 filename = monFichier;
                 if (filename.equals("")) {
-                    labelRes.setText("No file selected.");
+                    labelRes.setText("Aucun fichier sélectionné.");
                 } else {
                     String[] monFichierSplit = monFichier.split("/");
                     String trueFileName = monFichierSplit[monFichierSplit.length - 1];

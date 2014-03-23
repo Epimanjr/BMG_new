@@ -45,7 +45,7 @@ public final class BmgFrame extends JFrame {
 
     BmgCreatePanel bcp;
 
-    static String labelConnection = ">Not connected yet";
+    static String labelConnection = "Hors-ligne";
 
     User currentUser = null;
 

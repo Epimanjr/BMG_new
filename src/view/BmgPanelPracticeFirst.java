@@ -27,7 +27,7 @@ import model.Exercise;
 public class BmgPanelPracticeFirst extends JPanel {
 
     String filename = "";
-    JLabel labelRes = new JLabel("No file selected.");
+    JLabel labelRes = new JLabel("Aucun fichier sélectionné.");
     JButton buttonOk = new JButton("GO");
 
     Exercise ex = null;
@@ -40,11 +40,11 @@ public class BmgPanelPracticeFirst extends JPanel {
         //Label at first
         JPanel panFirst = new JPanel();
         panFirst.setPreferredSize(new Dimension(fen.width, fen.height / nb));
-        final BmgLabel label = new BmgLabel("Ready to become brilliant ? Practice !", color);
+        final BmgLabel label = new BmgLabel("Prêt à devenir brillant ? Pratiquez !", color);
         panFirst.add(label);
 
         //Button choose file
-        JButton choosefile = new JButton("Browser..");
+        JButton choosefile = new JButton("Rechercher..");
 
         choosefile.addActionListener(new ActionListener() {
 
@@ -67,7 +67,7 @@ public class BmgPanelPracticeFirst extends JPanel {
                 }
                 filename = monFichier;
                 if (filename.equals("")) {
-                    labelRes.setText("No file selected.");
+                    labelRes.setText("Aucun fichier sélectionné.");
                 } else {
                     String[] monFichierSplit = monFichier.split("/");
                     String trueFileName = monFichierSplit[monFichierSplit.length - 1];
@@ -120,7 +120,7 @@ public class BmgPanelPracticeFirst extends JPanel {
         panSouth.add(labelRes);
 
         //Button GO
-        buttonOk = new JButton("Let's Practice");
+        buttonOk = new JButton("Commencer");
         //Listener
         buttonOk.addActionListener(new ActionListener() {
 

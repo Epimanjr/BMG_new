@@ -89,7 +89,7 @@ public class BmgPanelPractice {
             practice.updateSuccess();
 
             //Affichage
-            panCenter.add(new BmgLabel("<br/><br/>C'est fini"
+            panCenter.add(new BmgLabel("<br/><br/>C'est fini !"
                     + "<br/><br/>Score : " + practice.getSuccess() + "%"
                     + "<br/><br/>Mauvaise(s) réponse(s) : " + practice.getWrong_answersString()
                     + "<br/><br/>Temps d'execution : " + practice.getExecution_time() + "sec"
@@ -141,7 +141,7 @@ public class BmgPanelPractice {
             panCenter.add(panCenter1);
 
             //Next
-            JButton next = new JButton("Next");
+            JButton next = new JButton("Suivant");
             //Listener
             next.addActionListener(new ActionListener() {
 

@@ -348,11 +348,11 @@ public class BmgCreatePanel {
 
         //Labels
         JLabel[] labels = {
-            new JLabel("Firstname : "),
-            new JLabel("Lastname : "),
-            new JLabel("School's name : "),
+            new JLabel("Prénom : "),
+            new JLabel("Nom : "),
+            new JLabel("École : "),
             new JLabel("Email : "),
-            new JLabel("Password : "),};
+            new JLabel("Mot de passe : "),};
 
         //Fill in some blank with parameters
         jtfs[2].setText(email);
@@ -455,9 +455,9 @@ public class BmgCreatePanel {
         JLabel[] labels = {
             new JLabel("Pilote : "),
             new JLabel("Driver : "),
-            new JLabel("Database name : "),
+            new JLabel("Nom de la base : "),
             new JLabel("Login : "),
-            new JLabel("Password : "),
+            new JLabel("Mot de passe : "),
             new JLabel("Url : ")
         };
 
@@ -557,7 +557,7 @@ public class BmgCreatePanel {
 
         // Panel haut
         JPanel panHaut = new JPanel();
-        panHaut.add(new BmgLabel("Here you can (not yet) generate exercises : ", "red"));
+        panHaut.add(new BmgLabel("Générer des exercises aléatoires : ", "red"));
 
         // Panel center
         JPanel panCenter = new JPanel();

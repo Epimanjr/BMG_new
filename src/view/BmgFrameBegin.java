@@ -59,9 +59,9 @@ public class BmgFrameBegin {
             final JTextField saisiePseudo = new JTextField(15);
             final JPasswordField saisiePass = new JPasswordField(15);
 
-            panHaut.add(new JLabel("Pseudo : "));
+            panHaut.add(new JLabel("Email : "));
             panHaut.add(saisiePseudo);
-            panHaut.add(new JLabel("Password : "));
+            panHaut.add(new JLabel("Mot de passe : "));
             panHaut.add(saisiePass);
 
             //PanelSouth, which contains button and listeners.
@@ -69,9 +69,9 @@ public class BmgFrameBegin {
             panSouth.setLayout(new GridLayout(3, 1));
 
             //Buttons
-            BmgButton buttonSignin = new BmgButton("Sign in", 300, 40, Color.yellow);
-            BmgButton buttonSignup = new BmgButton("Sign up", 300, 40, Color.yellow);
-            BmgButton buttonLater = new BmgButton("No thank's, later", 300, 40, Color.yellow);
+            BmgButton buttonSignin = new BmgButton("Se connecter", 300, 40, Color.yellow);
+            BmgButton buttonSignup = new BmgButton("S'enregistrer ", 300, 40, Color.yellow);
+            BmgButton buttonLater = new BmgButton("Mode hors-ligne", 300, 40, Color.yellow);
 
             buttonSignin.addActionListener(new ActionListener() {
 
@@ -136,7 +136,7 @@ public class BmgFrameBegin {
 
             //Dialog settings
             dialog.setContentPane(pan);
-            dialog.setTitle("Would you want to connect ?");
+            dialog.setTitle("Voulez-vous vous connecter ?");
             dialog.setContentPane(pan);
             dialog.setLocation(300, 300);
             dialog.setPreferredSize(new Dimension(400, 300));
@@ -146,7 +146,7 @@ public class BmgFrameBegin {
             //Wrong connection
             JOptionPane jop = new JOptionPane();
 
-            String[] choix = {"Setting database now", "No thank's, maybe later"};
+            String[] choix = {"Configurer la base de données maintenant", "Non merci, plus tard"};
 
             //Just show small dialog whith 2 buttons.
             int rang = JOptionPane.showOptionDialog(null,

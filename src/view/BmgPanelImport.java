@@ -116,7 +116,7 @@ public class BmgPanelImport extends JPanel {
         labelRes.setPreferredSize(new Dimension(400,300));
         
         // Button import
-        JButton bimport = new JButton("Import");
+        JButton bimport = new JButton("Importer");
         
         // Add Listener
         bimport.addActionListener(new ActionListener() {

@@ -42,10 +42,13 @@ public class BmgPanelImport extends JPanel {
         this.fen = fen;
 
         //Initialisation exercices
-        listeExercices = Exercise.findAll(fen.bs);
+        if (fen.bs.testerConnexion()) {
+            listeExercices = Exercise.findAll(fen.bs);
+
+        }
         //System.out.println("ex:"+listeExercices);
         //listeExercices = new ArrayList<>();
-        
+
         this.setLayout(new BorderLayout());
 
         this.setPanel();
@@ -56,6 +59,9 @@ public class BmgPanelImport extends JPanel {
         panHaut = new JPanel();
 
         // Récupération du tableau d'exercices
+        if(listeExercices == null) {
+            listeExercices = new ArrayList<>();
+        }
         final String[] tabExercices = convertToTableau();
 
         // Création du menu déroulant
@@ -78,7 +84,7 @@ public class BmgPanelImport extends JPanel {
                 // Affichage
                 String trueFileName = tabExercices[index];
                 String style = "style=\"color: blue; font-size: 12px;\"";
-                
+
                 //Label with summary
                 //labelRes = new JLabel("");
                 labelRes.setText("<html><p style=\"color: green;font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
@@ -87,16 +93,16 @@ public class BmgPanelImport extends JPanel {
                         + "<p><span " + style + ">Difficulty : </span>" + exercise.getDifficulty() + "<br/></p>"
                         + "<p><span " + style + ">Number of questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                         + "</html>");
-                
+
                 exercise.save();
-                
+
             }
         });
 
         // Ajout
         panHaut.add(jcb);
         panHaut.add(bok);
-        
+
         this.add(panHaut, BorderLayout.NORTH);
     }
 
@@ -110,29 +116,28 @@ public class BmgPanelImport extends JPanel {
     private void setPanelCenter() {
         // Initialisation
         panCenter = new JPanel();
-        
+
         // résumé
         labelRes = new JLabel("");
-        labelRes.setPreferredSize(new Dimension(400,300));
-        
+        labelRes.setPreferredSize(new Dimension(400, 300));
+
         // Button import
         JButton bimport = new JButton("Importer");
-        
+
         // Add Listener
         bimport.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String style = "style=\"color: red;font-size: 15px\"";
-                labelRes.setText("<html><p "+style+">OK</p></html>");
+                labelRes.setText("<html><p " + style + ">OK</p></html>");
             }
         });
-        
-        
+
         // Ajout
         panCenter.add(labelRes);
         panCenter.add(bimport);
-        
+
         this.add(panCenter, BorderLayout.CENTER);
     }
 

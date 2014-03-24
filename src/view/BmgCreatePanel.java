@@ -343,7 +343,13 @@ public class BmgCreatePanel {
             new JTextField(15),};
 
         //String[] listSchool = School.;
-        final JComboBox<String> jcb = new JComboBox<String>(listSchool);
+        String[] listSchoolOffline = {"Autre"};
+        final JComboBox<String> jcb;
+        if (listSchool != null) {
+            jcb = new JComboBox<String>(listSchool);
+        } else {
+            jcb = new JComboBox<String>(listSchoolOffline);
+        }
         final JPasswordField jpf = new JPasswordField(15);
 
         //Labels

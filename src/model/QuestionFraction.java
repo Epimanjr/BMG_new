@@ -3,13 +3,14 @@ package model;
 import exceptions.EncodeException;
 import exceptions.DecodeException;
 import database.BaseSetting;
+import interfaces.iDbManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
-public class QuestionFraction extends Question {
+public class QuestionFraction extends Question implements iDbManager {
 
     // ----- ATTRIBUTES -----
     // Inherited

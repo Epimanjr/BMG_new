@@ -3,9 +3,10 @@ package model;
 import database.BaseSetting;
 import exceptions.DecodeException;
 import exceptions.EncodeException;
+import interfaces.iDbManager;
 import java.util.ArrayList;
 
-public class QuestionCustom<SolutionType> extends Question {
+public class QuestionCustom<SolutionType> extends Question implements iDbManager {
 
     // ----- ATTRIBUTES -----
     

@@ -3,11 +3,12 @@ package model;
 import database.BaseSetting;
 import exceptions.EncodeException;
 import exceptions.DecodeException;
+import interfaces.iDbManager;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 
-public class QuestionPower extends Question {
+public class QuestionPower extends Question implements iDbManager {
     
     // ----- ATTRIBUTES -----
     // Inherited
@@ -398,6 +399,16 @@ public class QuestionPower extends Question {
     @Override
     public boolean insert(BaseSetting bs) 
     {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean update(BaseSetting bs) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean delete(BaseSetting bs) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

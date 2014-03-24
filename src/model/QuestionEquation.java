@@ -3,9 +3,10 @@ package model;
 import exceptions.EncodeException;
 import exceptions.DecodeException;
 import database.BaseSetting;
+import interfaces.iDbManager;
 import java.util.*;
 
-public class QuestionEquation extends Question {
+public class QuestionEquation extends Question implements iDbManager {
 
     // ----- ATTRIBUTES -----
     // Inherited

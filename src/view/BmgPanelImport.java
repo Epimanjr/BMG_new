@@ -43,7 +43,7 @@ public class BmgPanelImport extends JPanel {
 
         //Initialisation exercices
         listeExercices = Exercise.findAll(fen.bs);
-        System.out.println("ex:"+listeExercices);
+        //System.out.println("ex:"+listeExercices);
         //listeExercices = new ArrayList<>();
         
         this.setLayout(new BorderLayout());

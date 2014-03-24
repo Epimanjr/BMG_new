@@ -78,19 +78,19 @@ public class BmgPanelPracticeFirst extends JPanel {
                         file = new FileReader(filename);
                         BufferedReader br = new BufferedReader(file);
 
-                        System.out.println(br.toString());
+                        //System.out.println(br.toString());
 
                     } catch (FileNotFoundException ex) {
                         Logger.getLogger(BmgPanelPracticeFirst.class.getName()).log(Level.SEVERE, null, ex);
                     }
 
-                    System.out.println(filename);
+                    //System.out.println(filename);
 
                     final Exercise exercise = Exercise.load(filename);
                     ex = exercise;
 
                     if (exercise == null) {
-                        System.out.println("EXERCISE NULL");
+                        //System.out.println("EXERCISE NULL");
                     }
 
                     String style = "style=\"color: blue; font-size: 12px;\"";

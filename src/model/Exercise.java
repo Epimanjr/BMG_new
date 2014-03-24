@@ -308,7 +308,6 @@ public class Exercise implements iDbManager {
         Iterator<Question> it_questions = this.questions.iterator();
         while (it_questions.hasNext()) {
             QuestionCalculation q = (QuestionCalculation) it_questions.next();
-            System.out.println(q);
             System.out.print("Your answer? ");
             double answer = sc.nextDouble();
             if (answer == q.solve()) {
@@ -321,7 +320,6 @@ public class Exercise implements iDbManager {
         }
         Epractice.updateSuccess();
         Epractice.setExecution_time((new Date().getSeconds()) - Epractice.getExecution_date().getSeconds());
-        System.out.println("Finish in " + Epractice.getExecution_time() + " seconds !\nScore:" + Epractice.getSuccess() + "% (" + Epractice.getExecution_date() + ")");
     }
 
     /**
@@ -340,10 +338,6 @@ public class Exercise implements iDbManager {
      * Update the attribute ready
      */
     public void update_ready() {
-        System.out.println("w:"+this.wording);
-        System.out.println("q:"+this.questions);
-        System.out.println("t:"+this.type);
-        System.out.println("d:"+this.difficulty);
         if ((this.wording != null) && (!this.questions.isEmpty())
                 && (this.type != null) && (this.difficulty >= 0)) {
             this.ready = true;
@@ -528,7 +522,6 @@ public class Exercise implements iDbManager {
     public String encode() throws EncodeException {
         String res;
         this.update_ready();
-        System.out.println(this.isReady());
         if (this.isReady()) {
             res = "#Exercise<" + id + "><" + title + "><" + type + "><" + difficulty + ">\n";
             res = res + wording.encode() + "\n";
@@ -555,7 +548,6 @@ public class Exercise implements iDbManager {
      */
     public static Exercise decode(String encodedExercise) throws DecodeException {
         Exercise res;
-        System.out.println(encodedExercise.substring(0, 10));
         if (encodedExercise.substring(0, 10).compareTo("#Exercise<") == 0) {
             res = new Exercise();
             int i = 11;
@@ -596,7 +588,6 @@ public class Exercise implements iDbManager {
                         while (encodedExercise.length() != i) {
                             if (encodedExercise.charAt(i) == '#') {
                                 encodedExercise = encodedExercise.substring(i);
-                                System.out.println(encodedExercise);
                                 i = 0;
                                 while (encodedExercise.charAt(i) != '<') {
                                     i++;
@@ -604,23 +595,18 @@ public class Exercise implements iDbManager {
                                 String qtype = encodedExercise.substring(beginning, i);
                                 if (qtype.compareTo("#QuestionCalculaion") == 0) {
                                     QuestionCalculation qc = QuestionCalculation.decode(encodedExercise);
-                                    System.out.println(qc);
                                     res.addQuestion(qc);
                                 } else if (qtype.compareTo("#QuestionFraction") == 0) {
                                     QuestionFraction qf = QuestionFraction.decode(encodedExercise);
-                                    System.out.println(qf);
                                     res.addQuestion(qf);
                                 } else if (qtype.compareTo("#QuestionEquation") == 0) {
                                     QuestionEquation qe = QuestionEquation.decode(encodedExercise);
-                                    System.out.println(qe);
                                     res.addQuestion(qe);
                                 } else if (qtype.compareTo("#QuestionPower") == 0) {
                                     QuestionPower qp = QuestionPower.decode(encodedExercise);
-                                    System.out.println(qp);
                                     res.addQuestion(qp);
                                 } else if (qtype.compareTo("#Wording") == 0) {
                                     Wording w = Wording.decode(encodedExercise);
-                                    System.out.println(w);
                                     res.setWording(w);
                                 }
                                 i = 0;
@@ -790,9 +776,8 @@ public class Exercise implements iDbManager {
 //            Iterator it = questions.iterator();
 //            
 //            while (it.hasNext())
-            System.out.println("DEBUT AFFICHAGE LISTE");
-            System.out.println(questions.toString());
-            System.out.println("FIN AFFICHAGE LISTE");
+
+            
 
             for (Question q : questions) {
                 //(Question)(it.next()).insert(bs);
@@ -813,7 +798,7 @@ public class Exercise implements iDbManager {
             }
 
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
+
             sqle.printStackTrace();
         }
 
@@ -849,7 +834,6 @@ public class Exercise implements iDbManager {
                 p_statement.executeUpdate();
             }
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -868,7 +852,6 @@ public class Exercise implements iDbManager {
                 p_statement.executeUpdate();
             }
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -905,7 +888,6 @@ public class Exercise implements iDbManager {
             }
 
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -936,7 +918,6 @@ public class Exercise implements iDbManager {
             }
 
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -956,7 +937,6 @@ public class Exercise implements iDbManager {
             int i = 0;
             
             while (rs.next()) {
-                System.out.println(i++);
                 int ide = rs.getInt("id_e");
                 int idw = rs.getInt("id_w");
                 String titlee = rs.getString("title_e");
@@ -969,13 +949,10 @@ public class Exercise implements iDbManager {
                 }
                 Wording wordinge = Wording.findById(idw, bs);
                 ArrayList<Question> alq = Exercise.findById_AllQuestions(ide, bs);
-                System.out.println("\n\nDEBUT AFFICHAGE ARRAYLIST QUESTIONS\n\n" + alq + "\n\nFIN AFFICHAGE ARRAYLIST QUESTIONS\n\n");
                 Exercise e = new Exercise(ide, titlee, wordinge, alq, typee, diffe, readye_b);             
-                System.out.println("\n\nDEBUT AFFICHAGE ARRAYLIST EXERCISES\n\n" + ale + "\n\nFIN AFFICHAGE ARRAYLIST EXERCISES\n\n");
                 ale.add(e);
             }
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 

@@ -77,12 +77,12 @@ public class BmgCreatePanel {
         //Panel Exercises
         JPanel panExercises = new JPanel();
         panExercises.setPreferredSize(new Dimension(width - 100, ((height - 100) / 2)));
-        panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Training with exercises !</p></html>"));
+        panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Exercices !</p></html>"));
         panExercises.setLayout(new GridLayout(5, 2));
 
         //Button Generate in panel Exercises.
-        panExercises.add(new BmgLabel("Automatically generate exercises : ", colortext));
-        BmgButton bgenerate = new BmgButton("Generate");
+        panExercises.add(new BmgLabel("Générer des exercices aléatoires : ", colortext));
+        BmgButton bgenerate = new BmgButton("Générer");
         //listener
         bgenerate.addActionListener(new ActionListener() {
 
@@ -94,8 +94,8 @@ public class BmgCreatePanel {
         panExercises.add(bgenerate);
 
         //Button Practice in panel Exercises.
-        panExercises.add(new BmgLabel("Let's practice here : ", colortext));
-        BmgButton bpractice = new BmgButton("Practice");
+        panExercises.add(new BmgLabel("Pratiquer vos exercices : ", colortext));
+        BmgButton bpractice = new BmgButton("Pratiquer");
         //listener
         bpractice.addActionListener(new ActionListener() {
 
@@ -107,8 +107,8 @@ public class BmgCreatePanel {
         panExercises.add(bpractice);
         
          //Button Import in panel Exercises.
-        panExercises.add(new BmgLabel("Importez les exercices en lignes : ", colortext));
-        BmgButton bimport = new BmgButton("Import");
+        panExercises.add(new BmgLabel("Importer les exercices en ligne : ", colortext));
+        BmgButton bimport = new BmgButton("Importer");
         //listener
         bimport.addActionListener(new ActionListener() {
 
@@ -120,8 +120,8 @@ public class BmgCreatePanel {
         panExercises.add(bimport);
         
         //Button Export in panel Exercises.
-        panExercises.add(new BmgLabel("Exportez en ligne ou en PDF : ", colortext));
-        BmgButton bexport = new BmgButton("Export");
+        panExercises.add(new BmgLabel("Exporter en ligne ou en PDF : ", colortext));
+        BmgButton bexport = new BmgButton("Exporter");
         //listener
         bexport.addActionListener(new ActionListener() {
 
@@ -134,7 +134,7 @@ public class BmgCreatePanel {
         
         //Button Solve in panel Exercises.
         panExercises.add(new BmgLabel("Résoudre les exercices : ", colortext));
-        BmgButton bsolve = new BmgButton("Solve");
+        BmgButton bsolve = new BmgButton("Résoudre");
         //listener
         bsolve.addActionListener(new ActionListener() {
 
@@ -149,14 +149,14 @@ public class BmgCreatePanel {
         //Panel Account
         JPanel panAccount = new JPanel();
         panAccount.setPreferredSize(new Dimension(width - 100, ((height - 100) / nb)));
-        panAccount.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Account setting !</p></html>"));
+        panAccount.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Compte utilisateur</p></html>"));
         panAccount.setLayout(new GridLayout(2, 2));
 
         //Add label
-        panAccount.add(new BmgLabel("Sign in here : ", colortext));
+        panAccount.add(new BmgLabel("Se connecter à votre compte : ", colortext));
 
         //Button Sign in in panel Account
-        BmgButton bsignin = new BmgButton("Sign in");
+        BmgButton bsignin = new BmgButton("Se connecter");
         bsignin.addActionListener(new ActionListener() {
 
             @Override
@@ -167,8 +167,8 @@ public class BmgCreatePanel {
         panAccount.add(bsignin);
 
         //Button Sign up in panel Account
-        panAccount.add(new BmgLabel("You should create an account if you don't have ", colortext));
-        BmgButton bsignup = new BmgButton("Sign up now !");
+        panAccount.add(new BmgLabel("Créer un compte : ", colortext));
+        BmgButton bsignup = new BmgButton("S'enregistrer");
         bsignup.addActionListener(new ActionListener() {
 
             @Override
@@ -181,14 +181,14 @@ public class BmgCreatePanel {
         //Panel Database Settings
         JPanel panSettings = new JPanel();
         panSettings.setPreferredSize(new Dimension(width - 100, ((height - 100) / nb)));
-        panSettings.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Database setting !</p></html>"));
+        panSettings.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Configuration</p></html>"));
         panSettings.setLayout(new GridLayout(2, 2));
 
         //Add label
-        panSettings.add(new BmgLabel("Change database settings : ", colortext));
+        panSettings.add(new BmgLabel("Configurer la base de données : ", colortext));
 
         //Button Setting in panel Database Settings
-        BmgButton bsettings = new BmgButton("Settings");
+        BmgButton bsettings = new BmgButton("Configurer");
         bsettings.addActionListener(new ActionListener() {
 
             @Override
@@ -199,8 +199,8 @@ public class BmgCreatePanel {
         panSettings.add(bsettings);
 
         //Add label and button test in panel Database settings
-        panSettings.add(new BmgLabel("Test your database connexion : ", colortext));
-        BmgButton btest = new BmgButton("-->Test");
+        panSettings.add(new BmgLabel("Tester la connexion à votre base : ", colortext));
+        BmgButton btest = new BmgButton("Tester");
         btest.addActionListener(new ActionListener() {
 
             @Override
@@ -235,7 +235,7 @@ public class BmgCreatePanel {
         //Create this panel here
         JPanel pan = new JPanel();
 
-        BmgLabel label = new BmgLabel("You have an account ? Sign in now ", labelcolor);
+        BmgLabel label = new BmgLabel("Connectez-vous à votre compte : ", labelcolor);
         label.setPreferredSize(new Dimension(width - 100, (height - 100) / (nb)));
         pan.add(label, BorderLayout.NORTH);
 
@@ -250,8 +250,8 @@ public class BmgCreatePanel {
         //Labels
 
         JLabel[] labels = {
-            new JLabel("Email address : "),
-            new JLabel("Password : "),};
+            new JLabel("Addresse e-mail : "),
+            new JLabel("Mot de passe : "),};
 
         //Add text field and label into panels.
         panCenter.add(labels[0]);
@@ -264,7 +264,7 @@ public class BmgCreatePanel {
         panSouth.setLayout(new BorderLayout());
 
         //Button sign in
-        BmgButton buttonSignin = new BmgButton("Sign in now !");
+        BmgButton buttonSignin = new BmgButton("S'enregistrer");
         buttonSignin.addActionListener(new ActionListener() {
 
             @Override
@@ -327,7 +327,7 @@ public class BmgCreatePanel {
         //Create panel
         JPanel pan = new JPanel();
 
-        BmgLabel label = new BmgLabel("Sign up now, for free of course : ", labelcolor);
+        BmgLabel label = new BmgLabel("S'enregistrer : ", labelcolor);
         label.setPreferredSize(new Dimension(width - 100, (height - 100) / (2 * nb)));
         pan.add(label, BorderLayout.NORTH);
 
@@ -374,7 +374,7 @@ public class BmgCreatePanel {
         JPanel panSouth = new JPanel();
         panSouth.setLayout(new BorderLayout());
 
-        BmgButton buttonSignup = new BmgButton("Sign up now !");
+        BmgButton buttonSignup = new BmgButton("S'enregistrer");
         buttonSignup.addActionListener(new ActionListener() {
 
             @Override
@@ -469,22 +469,22 @@ public class BmgCreatePanel {
         }
 
         //Button and label, to register
-        JButton buttonConfirm = new JButton("Register information");
-        final BmgLabel labelRes = new BmgLabel("Waiting ...", "green");
+        JButton buttonConfirm = new JButton("Confirmer ces informations");
+        final BmgLabel labelRes = new BmgLabel("En attente ...", "green");
         buttonConfirm.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
                 BaseInformation baseInformation = new BaseInformation(jtfs[0].getText(), jtfs[1].getText(), jtfs[2].getText(), jtfs[3].getText(), jtfs[4].getText(), jtfs[5].getText());
                 JOptionPane jop = new JOptionPane();
-                JOptionPane.showMessageDialog(null, "Registration success !", "Database Connexion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Configuration enregistrée !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 bs.setInfo();
             }
         });
 
         //Button and label, to test
-        JButton buttonTest = new JButton("Connexion test");
-        final BmgLabel labelTest = new BmgLabel("Waiting ...", "red");
+        JButton buttonTest = new JButton("Tester la connexion");
+        final BmgLabel labelTest = new BmgLabel("En attente ...", "red");
         buttonTest.addActionListener(new ActionListener() {
 
             @Override
@@ -535,10 +535,10 @@ public class BmgCreatePanel {
 
         if (bs.testerConnexion()) {
             //Success
-            JOptionPane.showMessageDialog(null, "Success !", "Database Connexion", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
         } else {
             //Error
-            JOptionPane.showMessageDialog(null, "Error !", "Database Connexion", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Erreur !", "Information", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -709,7 +709,7 @@ public class BmgCreatePanel {
                         e.generate(slide.getValue(), operateurs);
                         e.save();
                         
-                        labFin.set("Success !");
+                        labFin.set("OK !");
                         labFin.setVisible(true);
                     }
 
@@ -792,21 +792,21 @@ public class BmgCreatePanel {
             JOptionPane jop = new JOptionPane();
 
             if (User.setConnected(bs, email, password)) {
-                JOptionPane.showMessageDialog(null, "Sign in success !", "Sign up information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
 
                 //Edit label menu bar
-                fen.panMenu.setLabel(">Connected as " + email);
+                fen.panMenu.setLabel("Connecté (" + email + ")");
 
                 //Edit instance User
                 fen.setPanel(BmgFrame.panMain);
             } else {
-                JOptionPane.showMessageDialog(null, "Error, false !", "Sign up information", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect !", "Information", JOptionPane.ERROR_MESSAGE);
 
             }
 
         } catch (AccessDeniedException ex) {
             //Logger.getLogger(BmgCreatePanel.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null, "Access denied !", "Sign up information", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Accès refusé !", "Information", JOptionPane.ERROR_MESSAGE);
 
         }
     }
@@ -832,17 +832,17 @@ public class BmgCreatePanel {
             String password = new String(c);
             if (User.signUp(bs, 1, saisies[0].getText(), saisies[1].getText(), listSchool[jcb.getSelectedIndex()], saisies[2].getText(), password)) {
                 //Sign up success !
-                JOptionPane.showMessageDialog(null, "Sign up success !", "Sign up information", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
 
             } else {
                 //Error ! don't know why
-                JOptionPane.showMessageDialog(null, "Error when sign up !", "Sign up information", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Erreur lors de l'inscritpion !", "Information", JOptionPane.ERROR_MESSAGE);
 
             }
 
         } catch (AlreadyExistsException ex) {
             //Exception, raise when account already exist
-            JOptionPane.showMessageDialog(null, "Error ! Account already exist !", "Sign up information", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Ce compte existe déjà !", "Information", JOptionPane.ERROR_MESSAGE);
 
         }
     }

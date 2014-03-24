@@ -171,8 +171,6 @@ public class Practice {
     }
 
     public String getWrong_answersString() {
-        System.out.println("r:" + this.right_answers);
-        System.out.println("w:" + this.wrong_answers);
         String wanswers = "";
         Iterator it = this.wrong_answers.iterator();
         while (it.hasNext()) {
@@ -180,7 +178,6 @@ public class Practice {
             if (it.hasNext()) {
                 wanswers = wanswers + ", ";
             } else {
-                System.out.println("kiki");
             }
         }
         return wanswers;
@@ -229,7 +226,6 @@ public class Practice {
 
             }
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -255,7 +251,6 @@ public class Practice {
                 p_statement.executeUpdate();
             }
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -273,7 +268,6 @@ public class Practice {
                 p_statement.executeUpdate();
             }
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -305,7 +299,6 @@ public class Practice {
             }
 
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 
@@ -339,7 +332,6 @@ public class Practice {
             }
 
         } catch (SQLException sqle) {
-            System.out.println("ERREUR");
             sqle.printStackTrace();
         }
 

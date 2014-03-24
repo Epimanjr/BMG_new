@@ -70,7 +70,7 @@ public class BmgMenuBar extends JMenuBar {
     
     public void setLabel() {
         String s = fen.getLabelConnection();
-        this.slabel = "<html><p style=\"margin-left: 250px;\">" + s + "</p></html>";
+        this.slabel = "<html><p style=\"margin-left: 50px;\">" + s + "</p></html>";
         this.labelConnexion = new JLabel(slabel);
         this.labelConnexion.repaint();
         

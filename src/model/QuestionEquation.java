@@ -363,7 +363,6 @@ public class QuestionEquation extends Question implements iDbManager {
                     res[0] = (-b - Math.sqrt(delta)) / (2.0 * a);
                     res[1] = (-b + Math.sqrt(delta)) / (2.0 * a);
                 }
-                //System.out.println(a + " " + b + " " + c + " " + delta);
             }
         }
         return res;

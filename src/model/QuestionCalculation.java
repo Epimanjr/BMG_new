@@ -234,7 +234,6 @@ public class QuestionCalculation extends Question implements iDbManager {
                         operands_array[i + 1] = (double) operands_array[i + 1]
                                 * (-1.0);
                     }
-                    // System.out.println("res*: "+operands_array[i+1]);
                 } else {
                     operands_array[i + 1] = (double) (operands_array[i])
                             / (double) (operands_array[i + 1]);
@@ -242,7 +241,6 @@ public class QuestionCalculation extends Question implements iDbManager {
                         operands_array[i + 1] = (double) operands_array[i + 1]
                                 * (-1.0);
                     }
-                    // System.out.println("res/: "+operands_array[i+1]);
                 }
                 if (i > 0) {
                     operators_array[i] = '+';
@@ -256,11 +254,9 @@ public class QuestionCalculation extends Question implements iDbManager {
                 if (operator == '+') {
                     operands_array[i + 1] = (double) (operands_array[i])
                             + (double) (operands_array[i + 1]);
-                    // System.out.println("res+: "+operands_array[i+1]);
                 } else {
                     operands_array[i + 1] = (double) (operands_array[i])
                             - (double) (operands_array[i + 1]);
-                    // System.out.println("res-: "+operands_array[i+1]);
                 }
                 operands_array[i] = 0.0;
             }
@@ -527,7 +523,6 @@ public class QuestionCalculation extends Question implements iDbManager {
 	}  
 	catch (SQLException sqle) 
 	{
-	    System.out.println("ERREUR");
 	    sqle.printStackTrace();
 	}
     catch (EncodeException ee)
@@ -560,7 +555,6 @@ public class QuestionCalculation extends Question implements iDbManager {
 	}  
 	catch (SQLException sqle) 
 	{
-	    System.out.println("ERREUR");
 	    sqle.printStackTrace();
 	}
     catch (EncodeException ee)
@@ -588,7 +582,6 @@ public class QuestionCalculation extends Question implements iDbManager {
 	}  
 	catch (SQLException sqle) 
 	{
-	    System.out.println("ERREUR");
 	    sqle.printStackTrace();
 	}
 	
@@ -627,7 +620,6 @@ public class QuestionCalculation extends Question implements iDbManager {
 	}  
 	catch (SQLException sqle) 
 	{
-	    System.out.println("ERREUR");
 	    sqle.printStackTrace();
 	}
 	

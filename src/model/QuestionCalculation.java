@@ -277,7 +277,7 @@ public class QuestionCalculation extends Question implements iDbManager {
     @Override
     public String getText() {
         String res = "";
-        res = res + this.text + "\n";
+        res = res + this.text + " ";
         Iterator<Integer> it_operands = this.operands.iterator();
         Iterator<Character> it_operators = this.operators.iterator();
         res = res + it_operands.next();

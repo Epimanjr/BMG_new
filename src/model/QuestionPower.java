@@ -197,6 +197,19 @@ public class QuestionPower extends Question {
         return res;
     }
     
+    public String getText() {
+        String res = "";
+        res = res + this.text + " ";
+        Iterator<Integer> it_powers = this.powers.iterator();
+        Iterator<Character> it_operators = this.operators.iterator();
+        res = res + "(" + operand + "^" + it_powers.next() + ")";
+        while (it_operators.hasNext()) {
+            res = res + it_operators.next() + "(" + operand + "^" + it_powers.next() + ")";
+        }
+        // res = res + "\n-----------------------";
+        return res;
+    }
+    
     /**
      * Display a question of power calculation
      */

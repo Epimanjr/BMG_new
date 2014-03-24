@@ -110,6 +110,43 @@ public class QuestionEquation extends Question {
         }
     }
 
+    public void generate(ArrayList<Character> QCoperators) {
+        Character[] possible_operators = new Character[QCoperators.size()];
+        possible_operators = QCoperators.toArray(possible_operators);
+        char needed_operators[] = {'+', '-'};
+        this.length = (int) (Math.random() * 10) + 2;
+        System.out.println("	Random length: " + this.length);
+        boolean order0;
+        int ukn;
+        for (int i = 0; i < this.length; i++) {
+            this.operands.add((int) (Math.random() * 20) + 1);
+            if (i == 0) {
+                this.unknowns.add(1);
+                order0 = false;
+            } else {
+                if (Math.random() < 0.45) {
+                    ukn = (int) (Math.random() * (1 + 1));
+                    order0 = false;
+                } else {
+                    ukn = 0;
+                    order0 = true;
+                }
+                this.unknowns.add(ukn);
+            }
+            if (i < this.length - 1) {
+                if (i < this.length - 2) {
+                    if (!order0) {
+                        this.operators.add(needed_operators[(int) (Math.random() * 2)]);
+                    } else {
+                        this.operators.add(possible_operators[(int) (Math.random() * QCoperators.size())]);
+                    }
+                } else {
+                    this.operators.add('=');
+                }
+            }
+        }
+    }
+    
     /**
      * Generate a random question with an equation
      */
@@ -331,6 +368,36 @@ public class QuestionEquation extends Question {
         return res;
     }
 
+    public String getText() {
+        String res = "";
+        res = res + this.text + " ";
+        Iterator<Integer> it_operands = this.operands.iterator();
+        Iterator<Character> it_operators = this.operators.iterator();
+        Iterator<Integer> it_unknowns = this.unknowns.iterator();
+        res = res + it_operands.next();
+        while (it_operands.hasNext()) {
+            int u = it_unknowns.next();
+            if (u == 1) {
+                res = res + "x ";
+            } else if (u == 2) {
+                res = res + "x² ";
+            } else {
+                res = res + " ";
+            }
+            res = res + it_operators.next() + " ";
+            res = res + it_operands.next();
+        }
+        int u = it_unknowns.next();
+        if (u == 1) {
+            res = res + "x ";
+        } else if (u == 2) {
+            res = res + "x² ";
+        } else {
+            res = res + " ";
+        }
+        return res;
+    }
+    
     /**
      * Display a question with an equation
      */

@@ -205,6 +205,12 @@ public class Exercise implements iDbManager {
                     qe.generate();
                     this.addQuestion(qe);
                 }
+            } else if (type.compareTo("power") == 0) {
+                for (int i = 0; i < 10; i++) {
+                    QuestionPower qp = new QuestionPower();
+                    qp.generate();
+                    this.addQuestion(qp);
+                }
             }
         }
     }
@@ -232,6 +238,12 @@ public class Exercise implements iDbManager {
                     qe.generate();
                     this.addQuestion(qe);
                 }
+            } else if (type.compareTo("power") == 0) {
+                for (int i = 0; i < numberOfQuestions; i++) {
+                    QuestionPower qp = new QuestionPower();
+                    qp.generate();
+                    this.addQuestion(qp);
+                }
             }
         }
     }
@@ -252,6 +264,18 @@ public class Exercise implements iDbManager {
                     QuestionFraction qf = new QuestionFraction();
                     qf.generate(Eoperators);
                     this.addQuestion(qf);
+                }
+            } else if (type.compareTo("equation") == 0) {
+                for (int i = 0; i < numberOfQuestions; i++) {
+                    QuestionEquation qe = new QuestionEquation();
+                    qe.generate(Eoperators);
+                    this.addQuestion(qe);
+                }
+            } else if (type.compareTo("power") == 0) {
+                for (int i = 0; i < numberOfQuestions; i++) {
+                    QuestionPower qp = new QuestionPower();
+                    qp.generate(Eoperators);
+                    this.addQuestion(qp);
                 }
             }
         }
@@ -316,6 +340,10 @@ public class Exercise implements iDbManager {
      * Update the attribute ready
      */
     public void update_ready() {
+        System.out.println("w:"+this.wording);
+        System.out.println("q:"+this.questions);
+        System.out.println("t:"+this.type);
+        System.out.println("d:"+this.difficulty);
         if ((this.wording != null) && (!this.questions.isEmpty())
                 && (this.type != null) && (this.difficulty >= 0)) {
             this.ready = true;
@@ -622,7 +650,7 @@ public class Exercise implements iDbManager {
      * Encode the Exercise and save it in a file called : ex<ID>.bmg
      */
     public void save() {
-        try (BufferedWriter file = new BufferedWriter(new FileWriter("ex" + id + ".bmg"))) {
+        try (BufferedWriter file = new BufferedWriter(new FileWriter("ex-" + title + id + ".bmg"))) {
             file.write(this.encode());
         } catch (FileNotFoundException fnfe) {
             System.out.println("ERROR : file can not be found");

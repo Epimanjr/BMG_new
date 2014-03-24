@@ -249,6 +249,20 @@ public class QuestionFraction extends Question {
         return res;
     }
 
+    public String getText() {
+        String res = "";
+        res = res + this.text + " ";
+        Iterator<Integer> it_numerators = this.numerators.iterator();
+        Iterator<Integer> it_denominators = this.denominators.iterator();
+        Iterator<Character> it_operators = this.operators.iterator();
+        res = res + "(" + it_numerators.next() + "/" + it_denominators.next() + ")";
+        while (it_numerators.hasNext()) {
+            res = res + it_operators.next() + "(" + it_numerators.next() + "/" + it_denominators.next() + ")";
+        }
+        // res = res + "\n-----------------------";
+        return res;
+    }
+    
     /**
      * Display a question of calculation
      */

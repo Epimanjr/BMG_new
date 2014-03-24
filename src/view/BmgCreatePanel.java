@@ -105,8 +105,8 @@ public class BmgCreatePanel {
             }
         });
         panExercises.add(bpractice);
-        
-         //Button Import in panel Exercises.
+
+        //Button Import in panel Exercises.
         panExercises.add(new BmgLabel("Importer les exercices en ligne : ", colortext));
         BmgButton bimport = new BmgButton("Importer");
         //listener
@@ -118,7 +118,7 @@ public class BmgCreatePanel {
             }
         });
         panExercises.add(bimport);
-        
+
         //Button Export in panel Exercises.
         panExercises.add(new BmgLabel("Exporter en ligne ou en PDF : ", colortext));
         BmgButton bexport = new BmgButton("Exporter");
@@ -131,7 +131,7 @@ public class BmgCreatePanel {
             }
         });
         panExercises.add(bexport);
-        
+
         //Button Solve in panel Exercises.
         panExercises.add(new BmgLabel("Résoudre les exercices : ", colortext));
         BmgButton bsolve = new BmgButton("Résoudre");
@@ -140,11 +140,10 @@ public class BmgCreatePanel {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-               // fen.setPanel(BmgFrame.panS);
+                // fen.setPanel(BmgFrame.panS);
             }
         });
         panExercises.add(bsolve);
-        
 
         //Panel Account
         JPanel panAccount = new JPanel();
@@ -342,14 +341,13 @@ public class BmgCreatePanel {
             new JTextField(15),
             new JTextField(15),};
 
-        //String[] listSchool = School.;
-        String[] listSchoolOffline = {"Autre"};
-        final JComboBox<String> jcb;
-        if (listSchool != null) {
-            jcb = new JComboBox<String>(listSchool);
-        } else {
-            jcb = new JComboBox<String>(listSchoolOffline);
+        if (listSchool == null) {
+            listSchool = new String[1];
+            listSchool[0] = "Autre";
         }
+
+        final JComboBox<String> jcb = new JComboBox<String>(listSchool);
+
         final JPasswordField jpf = new JPasswordField(15);
 
         //Labels
@@ -645,7 +643,7 @@ public class BmgCreatePanel {
         panCenter11.add(jrbMoins);
         panCenter11.add(jrbFois);
         panCenter11.add(jrbDiv);
-        
+
         panCenter1.add(panCenter11);
 
         // Valider
@@ -709,33 +707,33 @@ public class BmgCreatePanel {
                     public void actionPerformed(ActionEvent ae) {
                         // Récupération du type
                         String type = getType(choixType.getSelectedIndex());
-                        
+
                         // Création de l'exercice
                         Exercise e = new Exercise(choixNom.getText(), type);
                         e.generate(slide.getValue(), operateurs);
                         e.save();
-                        
+
                         labFin.set("OK !");
                         labFin.setVisible(true);
                     }
 
                     private String getType(int selectedIndex) {
                         String type = "";
-                        switch(selectedIndex) {
+                        switch (selectedIndex) {
                             case 0:
                                 type = "calculation";
                                 break;
-                            case 1: 
+                            case 1:
                                 type = "fraction";
                                 break;
-                            case 2: 
+                            case 2:
                                 type = "equation";
                                 break;
                             case 3:
                                 type = "power";
                                 break;
                         }
-                        
+
                         return type;
                     }
                 });
@@ -797,17 +795,21 @@ public class BmgCreatePanel {
 
             JOptionPane jop = new JOptionPane();
 
-            if (User.setConnected(bs, email, password)) {
-                JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
+            if (bs.testerConnexion()) {
+                if (User.setConnected(bs, email, password)) {
+                    JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
 
-                //Edit label menu bar
-                fen.panMenu.setLabel("Connecté (" + email + ")");
+                    //Edit label menu bar
+                    fen.panMenu.setLabel("Connecté (" + email + ")");
 
-                //Edit instance User
-                fen.setPanel(BmgFrame.panMain);
+                    //Edit instance User
+                    fen.setPanel(BmgFrame.panMain);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect !", "Information", JOptionPane.ERROR_MESSAGE);
+
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect !", "Information", JOptionPane.ERROR_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, "Erreur base de donnée", "Information", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (AccessDeniedException ex) {
@@ -827,23 +829,28 @@ public class BmgCreatePanel {
     public void actionSignUp(JTextField[] saisies, JComboBox jcb, JPasswordField jpf) {
         //Try to register
         try {
-            JOptionPane jop = new JOptionPane();
-            String school = listSchool[jcb.getSelectedIndex()];
 
-            /*
-             Je ne sais pas ce que viens faire cette ligne ici
-             int i_school = Integer.parseInt(school);
-             */
-            char[] c = jpf.getPassword();
-            String password = new String(c);
-            if (User.signUp(bs, 1, saisies[0].getText(), saisies[1].getText(), listSchool[jcb.getSelectedIndex()], saisies[2].getText(), password)) {
-                //Sign up success !
-                JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
+            if (bs.testerConnexion()) {
+                JOptionPane jop = new JOptionPane();
+                String school = listSchool[jcb.getSelectedIndex()];
 
+                /*
+                 Je ne sais pas ce que viens faire cette ligne ici
+                 int i_school = Integer.parseInt(school);
+                 */
+                char[] c = jpf.getPassword();
+                String password = new String(c);
+                if (User.signUp(bs, 1, saisies[0].getText(), saisies[1].getText(), listSchool[jcb.getSelectedIndex()], saisies[2].getText(), password)) {
+                    //Sign up success !
+                    JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
+
+                } else {
+                    //Error ! don't know why
+                    JOptionPane.showMessageDialog(null, "Erreur lors de l'inscritpion !", "Information", JOptionPane.ERROR_MESSAGE);
+
+                }
             } else {
-                //Error ! don't know why
-                JOptionPane.showMessageDialog(null, "Erreur lors de l'inscritpion !", "Information", JOptionPane.ERROR_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, "Erreur base de donnée !", "Information", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (AlreadyExistsException ex) {

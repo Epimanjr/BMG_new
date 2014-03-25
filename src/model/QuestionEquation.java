@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class QuestionEquation extends Question implements iDbManager {
 
@@ -659,9 +661,9 @@ public class QuestionEquation extends Question implements iDbManager {
             PreparedStatement p_statement = connection.prepareStatement(query);
             p_statement.setString(1, this.text);
             p_statement.setInt(2, this.difficulty);
-            //p_statement.setString(3, this.encodeOperands());
-            //p_statement.setString(4, this.encodeUnknowns());
-            //p_statement.setString(5, this.encodeOperators());
+            p_statement.setString(3, this.encodeOperands());
+            p_statement.setString(4, this.encodeUnknowns());
+            p_statement.setString(5, this.encodeOperators());
             p_statement.setInt(6, this.length);
             ResultSet rs = p_statement.getGeneratedKeys();
             
@@ -670,6 +672,10 @@ public class QuestionEquation extends Question implements iDbManager {
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        }
+        catch (EncodeException ee) 
+        {
+            ee.printStackTrace();
         }
         
         return false;
@@ -686,9 +692,9 @@ public class QuestionEquation extends Question implements iDbManager {
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setString(1, this.text);
                 p_statement.setInt(2, this.difficulty);
-                //p_statement.setString(3, this.encodeOperands());
-                //p_statement.setString(4, this.encodeUnknowns());
-                //p_statement.setString(5, this.encodeOperators());
+                p_statement.setString(3, this.encodeOperands());
+                p_statement.setString(4, this.encodeUnknowns());
+                p_statement.setString(5, this.encodeOperators());
                 p_statement.setInt(6, this.length);
                 p_statement.setInt(7, this.id);
                 p_statement.executeUpdate();
@@ -697,6 +703,10 @@ public class QuestionEquation extends Question implements iDbManager {
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        } 
+        catch (EncodeException ee) 
+        {
+            ee.printStackTrace();
         }
         
         return false;
@@ -743,11 +753,11 @@ public class QuestionEquation extends Question implements iDbManager {
                 String textqe = rs.getString("text_qe");
                 int diffqe = rs.getInt("diff_qe");
                 String s_operds_qe = rs.getString("operands_qe");
-                //ArrayList<Integer> operdsqe = QuestionFraction.decodeOperands(s_operds_qe);
+                ArrayList<Integer> operdsqe = QuestionEquation.decodeOperands(s_operds_qe);
                 String s_unknw_qe = rs.getString("unknowns_qe");
-                ArrayList<Integer> unknwqe = QuestionFraction.decodeDenominators(s_unknw_qe);
+                ArrayList<Integer> unknwqe = QuestionEquation.decodeUnknowns(s_unknw_qe);
                 String s_operrs_qe = rs.getString("operators_qe");
-                ArrayList<Character> operrsqe = QuestionFraction.decodeOperators(s_operrs_qe);
+                ArrayList<Character> operrsqe = QuestionEquation.decodeOperators(s_operrs_qe);
                 
                 //questionEquation = new QuestionEquation(idqe,textqe,diffqe,operdsqe,unknwqe,operrsqe);
             }
@@ -755,6 +765,10 @@ public class QuestionEquation extends Question implements iDbManager {
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        } 
+        catch (DecodeException de) 
+        {
+            de.printStackTrace();
         }
         
         return questionEquation;

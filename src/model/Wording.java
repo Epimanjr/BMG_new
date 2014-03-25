@@ -46,6 +46,7 @@ public class Wording implements iDbManager {
 
     /**
      * This constructor creates a statement with the text given in parameter
+     * @param Stext
      */
     public Wording(String Stext) {
         this.id = -1;
@@ -60,6 +61,8 @@ public class Wording implements iDbManager {
     /**
      * This constructor creates a statement with the text and the values given
      * in parameters
+     * @param Stext
+     * @param Svalues
      */
     public Wording(String Stext, Object[] Svalues) {
         this.id = -1;
@@ -85,6 +88,7 @@ public class Wording implements iDbManager {
 	// ------- METHODS ------
     /**
      *
+     * @param Stext
      */
     public void setText(String Stext) {
         if (Stext != null) {
@@ -94,6 +98,7 @@ public class Wording implements iDbManager {
 
     /**
      *
+     * @param Svalues
      */
     public void setValues(Object[] Svalues) {
         //if (this.values.length == Svalues.length) {
@@ -103,7 +108,9 @@ public class Wording implements iDbManager {
 
     /**
      * Display a statement
+     * @return 
      */
+    @Override
     public String toString() {
         String res = "";
         res = res + "\n		Text: " + this.text;
@@ -341,6 +348,7 @@ public class Wording implements iDbManager {
     // ----- DB METHODS -----
 
     /* MISE A JOURS */
+    @Override
     public boolean insert(BaseSetting bs) 
     {
 	Connection connection = bs.getConnection();
@@ -368,6 +376,7 @@ public class Wording implements iDbManager {
 	return true;
     }
 
+    @Override
     public boolean update(BaseSetting bs) 
     {
 	Connection connection = bs.getConnection();
@@ -395,6 +404,7 @@ public class Wording implements iDbManager {
 	return true;
     }
 
+    @Override
     public boolean delete(BaseSetting bs) 
     {
 	Connection connection = bs.getConnection();

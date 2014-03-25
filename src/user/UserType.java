@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UserType implements iDbManager
 {
@@ -160,5 +161,45 @@ public class UserType implements iDbManager
 	}
 	
 	return userType;
+    }
+    
+    public static UserType[] findAll(BaseSetting bs) 
+    {
+        Connection connection = bs.getConnection();
+        
+        ArrayList<UserType> al = new ArrayList();
+        
+        try
+        {
+            String query = "SELECT * FROM UserType";
+	    PreparedStatement p_statement = connection.prepareStatement(query);
+	    
+	    ResultSet rs = p_statement.executeQuery();
+	    
+            while (rs.next())
+            {
+                int idut = rs.getInt("id_ut");
+                String nameut = rs.getString("name_ut");
+                
+                UserType ut = new UserType(idut,nameut);
+                
+                al.add(ut);
+            }
+        }
+        catch (SQLException sqle)
+        {
+            System.out.println("ERREUR");
+            sqle.printStackTrace();
+        }
+        
+        UserType[] tab = null;
+        
+        if (!(al.isEmpty()))
+        {
+            tab = new UserType[al.size()];
+            al.toArray(tab);
+        }
+        
+        return tab;
     }
 }

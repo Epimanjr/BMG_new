@@ -171,8 +171,8 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         return res.toString();
     }
     
-    public static QuestionCustom decodeSolution() throws DecodeException {
-        QuestionCustom res =null;
+    public SolutionType[] decodeSolution() throws DecodeException {
+        SolutionType[] res =null;
         
         return res;
     }
@@ -192,6 +192,11 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         return res;
     }
 
+    public static Object getSolutionType(String encodedQuestion) throws DecodeException
+    {
+        throw new DecodeException("getSolutionType de QuestionCustom - a completer");
+    }
+    
     // ----------------------
     
     // ----- DB METHODS -----
@@ -295,7 +300,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int idqcustom = rs.getInt("id_qcustom");
                 String textqcustom = rs.getString("text_qcustom");
                 int diffqcustom = rs.getInt("diff_qcustom");
-                //SolutionType[] solqcustom = this.decodeSolution(rs.getString("solutions_qcustom"));
+                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(rs.getString("solutions_qcustom"));
                 
                 //questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom,solqcustom);
             }
@@ -304,6 +309,10 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         {
             sqle.printStackTrace();
         }
+//        catch (DecodeException de) 
+//        {
+//            de.printStackTrace();
+//        }
         
         return questionCustom;
     }

@@ -4,6 +4,10 @@ import database.BaseSetting;
 import exceptions.DecodeException;
 import exceptions.EncodeException;
 import interfaces.iDbManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class QuestionCustom<SolutionType> extends Question implements iDbManager {
@@ -178,16 +182,71 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     /* MISE A JOURS */
     public boolean insert(BaseSetting bs) 
     {
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            String query = "INSERT INTO QuestionCustom (text_qe, diff_qe , solutions_qe) VALUES (?,?,?)";
+            PreparedStatement p_statement = connection.prepareStatement(query);
+            p_statement.setString(1, this.text);
+            p_statement.setInt(2, this.difficulty);
+            //p_statement.setString(3, this.encodeSolutions());
+            ResultSet rs = p_statement.getGeneratedKeys();
+            
+            if (rs.next()) this.id = rs.getInt(1);
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
         return false;
     }
 
     public boolean update(BaseSetting bs) 
     {
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            if (this.id < 0)
+            {
+                String query = "UPDATE QuestionCustom SET (text_qcustom = ? , diff_qcustom = ? , solutions_qcustom = ?) WHERE id_qcustom = ?";
+                PreparedStatement p_statement = connection.prepareStatement(query);
+                p_statement.setString(1, this.text);
+                p_statement.setInt(2, this.difficulty);
+                //p_statement.setText(3, this.encodeSolutions());
+                p_statement.setInt(4, this.id);
+                p_statement.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
         return false;
     }
 
     public boolean delete(BaseSetting bs) 
     {
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            if (QuestionCustom.findById(id, bs) != null)
+            {
+                String query = "DELETE FROM QuestionCustom WHERE id_qcustom = ?";
+                PreparedStatement p_statement = connection.prepareStatement(query);
+                p_statement.setInt(1,id);
+                p_statement.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
         return false;
     }
 

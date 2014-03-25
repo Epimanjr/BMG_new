@@ -685,7 +685,7 @@ public class QuestionEquation extends Question implements iDbManager {
                 String query = "UPDATE QuestionEquation SET (text_qe = ? , diff_qe = ? , operands = ? , unknowns_qe = ? , operators_qe = ? , length_qe = ?) WHERE id_qe = ?";
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setString(1, this.text);
-                p_statement.setInt(2, this.id);
+                p_statement.setInt(2, this.difficulty);
                 //p_statement.setString(3, this.encodeOperands());
                 //p_statement.setString(4, this.encodeUnknowns());
                 //p_statement.setString(5, this.encodeOperators());

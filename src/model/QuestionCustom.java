@@ -445,7 +445,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         {
             if (this.id < 0)
             {
-                String query = "UPDATE QuestionCustom SET (text_qcustom = ? , diff_qcustom = ? , solutions_qcustom = ?) WHERE id_qcustom = ?";
+                String query = "UPDATE QuestionCustom SET (text_qcustom = ? , diff_qcustom = ? , sol_qcustom = ?) WHERE id_qcustom = ?";
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setString(1, this.text);
                 p_statement.setInt(2, this.difficulty);
@@ -527,7 +527,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int idqcustom = rs.getInt("id_qcustom");
                 String textqcustom = rs.getString("text_qcustom");
                 int diffqcustom = rs.getInt("diff_qcustom");
-                String soltextqcustom = rs.getString("solutions_qcustom");
+                String soltextqcustom = rs.getString("sol_qcustom");
                 
                 //SolutionType[] solqcustom = QuestionCustom.decodeSolution(soltextqcustom);
                 
@@ -565,7 +565,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int idqcustom = rs.getInt("id_qcustom");
                 String textqcustom = rs.getString("text_qcustom");
                 int diffqcustom = rs.getInt("diff_qcustom");
-                String soltextqcustom = rs.getString("solutions_qcustom");
+                String soltextqcustom = rs.getString("sol_qcustom");
                 
                 //SolutionType[] solqcustom = QuestionCustom.decodeSolution(soltextqcustom);
                 

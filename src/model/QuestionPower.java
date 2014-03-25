@@ -47,14 +47,15 @@ public class QuestionPower extends Question implements iDbManager {
         this.text = "Calculate.";
         this.difficulty = 0;
         this.operand = 0;
-        this.operators = new ArrayList<Character>();
-        this.powers = new ArrayList<Integer>();
+        this.operators = new ArrayList<>();
+        this.powers = new ArrayList<>();
         this.length = 0;
     }
 
     /**
      * This constructor creates a question,
      * with the text given in parameter.
+     * @param QPtext
      */
     public QuestionPower(String QPtext) {
         super();
@@ -65,14 +66,16 @@ public class QuestionPower extends Question implements iDbManager {
         }
         this.difficulty = 0;
         this.operand = 0;
-        this.operators = new ArrayList<Character>();
-        this.powers = new ArrayList<Integer>();
+        this.operators = new ArrayList<>();
+        this.powers = new ArrayList<>();
         this.length = 0;
     }
 
     /**
      * This constructor creates a question,
      * with the text and the difficulty given in parameters.
+     * @param QPtext
+     * @param QPdifficulty
      */
     public QuestionPower(String QPtext, int QPdifficulty) {
         super();
@@ -87,8 +90,8 @@ public class QuestionPower extends Question implements iDbManager {
             this.difficulty = 0;
         }
         this.operand = 0;
-        this.operators = new ArrayList<Character>();
-        this.powers = new ArrayList<Integer>();
+        this.operators = new ArrayList<>();
+        this.powers = new ArrayList<>();
         this.length = 0;
     }
 
@@ -134,6 +137,7 @@ public class QuestionPower extends Question implements iDbManager {
 
     /**
      * Generate a random question with powers, with the length given in parameter.
+     * @param QPlength
      */
     public void generate(int QPlength) {
         char[] possible_operators = {'+', '-', '*'};
@@ -153,6 +157,7 @@ public class QuestionPower extends Question implements iDbManager {
 
     /**
      * Generate a random question with powers, Operators are choosen in the ArrayList given in parameter.
+     * @param QPoperators
      */
     public void generate(ArrayList<Character> QPoperators) {
         Character[] possible_operators = new Character[QPoperators.size()];
@@ -170,6 +175,8 @@ public class QuestionPower extends Question implements iDbManager {
 
     /**
      * Generate a random question of powers, with the length given in parameter, Operators are choosen in the ArrayList given in parameter.
+     * @param QPoperators
+     * @param QPlength
      */
     public void generate(ArrayList<Character> QPoperators, int QPlength) {
         Character[] possible_operators = new Character[QPoperators.size()];
@@ -203,6 +210,7 @@ public class QuestionPower extends Question implements iDbManager {
         return res;
     }
     
+    @Override
     public String getText() {
         String res = "";
         res = res + this.text + " ";
@@ -218,7 +226,9 @@ public class QuestionPower extends Question implements iDbManager {
     
     /**
      * Display a question of power calculation
+     * @return 
      */
+    @Override
     public String toString() {
         String res = "		QuestionPower";
         res = res + "\n			Text:       " + this.text;
@@ -292,7 +302,9 @@ public class QuestionPower extends Question implements iDbManager {
     /**
 	 * Encode the current question (object) in a string which can recreate this question by the decode() method
 	 * @return encoded question
+     * @throws exceptions.EncodeException
 	 */
+    @Override
 	public String encode() throws EncodeException {
 		String res = "#QuestionPower<";
         res = res + operand;
@@ -329,6 +341,7 @@ public class QuestionPower extends Question implements iDbManager {
 	 * Decode the string generate by the encode() method of this class
 	 * @param str encoded question
 	 * @return decoded question (object)
+     * @throws exceptions.DecodeException
 	 */
 	public static QuestionPower decode(String str) throws DecodeException {
 		QuestionPower res = null;

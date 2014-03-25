@@ -33,6 +33,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import model.Exercise;
 import user.User;
+import user.UserType;
 
 /**
  * class BmgCreatePanel
@@ -78,7 +79,7 @@ public class BmgCreatePanel {
         JPanel panExercises = new JPanel();
         panExercises.setPreferredSize(new Dimension(width - 100, ((height - 100) / 2)));
         panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Exercices !</p></html>"));
-        panExercises.setLayout(new GridLayout(6, 2));
+        panExercises.setLayout(new GridLayout(7, 2));
 
         //Button Generate in panel Exercises.
         panExercises.add(new BmgLabel("Générer des exercices aléatoires : ", colortext));
@@ -345,11 +346,12 @@ public class BmgCreatePanel {
 
         //Center panel
         JPanel panCenter = new JPanel();
-        panCenter.setLayout(new GridLayout(6, 2));
+        panCenter.setLayout(new GridLayout(7, 2));
         panCenter.setPreferredSize(new Dimension(width - 100, (height - 100) / nb));
 
         //TextFields
         final JTextField[] jtfs = {
+            new JTextField(15),
             new JTextField(15),
             new JTextField(15),
             new JTextField(15),};
@@ -358,15 +360,24 @@ public class BmgCreatePanel {
             listSchool = new String[1];
             listSchool[0] = "Autre";
         }
+        
+        String[] listType = new String[1];;
+        listType[0] = "Autre";
+        if (bs != null) {
+            //listType = UserType.findAll();
+        }
 
         final JComboBox<String> jcb = new JComboBox<String>(listSchool);
-
+        final JComboBox<String> jcbt = new JComboBox<String>(listType);
+        
+        
         final JPasswordField jpf = new JPasswordField(15);
 
         //Labels
         JLabel[] labels = {
             new JLabel("Prénom : "),
             new JLabel("Nom : "),
+            new JLabel("Type :"),
             new JLabel("École : "),
             new JLabel("Email : "),
             new JLabel("Mot de passe : "),};
@@ -381,10 +392,12 @@ public class BmgCreatePanel {
         panCenter.add(labels[1]);
         panCenter.add(jtfs[1]);
         panCenter.add(labels[2]);
-        panCenter.add(jcb);
+        panCenter.add(jcbt);
         panCenter.add(labels[3]);
-        panCenter.add(jtfs[2]);
+        panCenter.add(jcb);
         panCenter.add(labels[4]);
+        panCenter.add(jtfs[3]);
+        panCenter.add(labels[5]);
         panCenter.add(jpf);
 
         //Create panSouth, with button
@@ -479,7 +492,7 @@ public class BmgCreatePanel {
         };
 
         //Add components to panel
-        panCenter.setLayout(new GridLayout(6, 2));
+        panCenter.setLayout(new GridLayout(7, 2));
         for (int i = 0; i < jtfs.length; i++) {
             panCenter.add(labels[i]);
             panCenter.add(jtfs[i]);

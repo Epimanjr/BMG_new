@@ -12,10 +12,13 @@ package user;
 import database.BaseSetting;
 import database.Database;
 import interfaces.iDbManager;
+import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -64,9 +67,11 @@ public class Screen implements iDbManager
 	
 	try 
 	{
-	    String query = "INSERT INTO Screen (name_s) VALUE (?)";
+	    //String query = "INSERT INTO Screen (name_s) VALUE (?)";
+            String query = "INSERT INTO Screen (name_s,object_s) VALUES (?,?)";
 	    PreparedStatement p_statement = connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
 	    p_statement.setString(1,""+this.name_s+"");
+            //p_statement.setBlob(2,null);
 	    p_statement.executeUpdate();
 	    ResultSet rs = p_statement.getGeneratedKeys();
 	    
@@ -91,9 +96,13 @@ public class Screen implements iDbManager
 	    if (this.id_s < 0)
 	    {
 		String query = "UPDATE Screen SET name_s = ? WHERE id_s = ?";
+                //String query = "UPDATE Screen SET (name_s = ? , object_s = ?) WHERE id_s = ?";
 		PreparedStatement p_statement = connection.prepareStatement(query);
 		p_statement.setString(1,this.name_s);
+                //p_statement.setBlob(2,null);
+                
 		p_statement.setInt(2,this.id_s);
+                //p_statement.setInt(3,this.id_s);
 		p_statement.executeUpdate();
 	    }
 	}  
@@ -148,8 +157,10 @@ public class Screen implements iDbManager
 	    {
 		int ids = rs.getInt("id_s");
 		String names = rs.getString("name_s");
+                //Screen scr = new Screen(rs.getBlob("object_s"));
 	    
 		screen = new Screen(ids,names);
+                //screen = new Screen(ids,names,scr);
 	    }
 		    
 	}  
@@ -160,5 +171,65 @@ public class Screen implements iDbManager
 	}
 	
 	return screen;
+    }
+    
+    public static Screen findAll(BaseSetting bs)
+    {
+        return null;
+    }
+    
+    public static Blob findById_Blob(BaseSetting bs)
+    {
+        return null;
+    }
+    
+    private static HashMap<String,Screen> accessibleScreensForAnonymous(HashMap<String,Screen> hm, BaseSetting bs)
+    {
+        return null;
+    }
+    
+    private static HashMap<String,Screen> accessibleScreensForStudent(HashMap<String,Screen> hm, BaseSetting bs)
+    {
+        return null;
+    }
+    
+    private static HashMap<String,Screen> accessibleScreensForTeacher(HashMap<String,Screen> hm, BaseSetting bs)
+    {
+        return null;
+    }
+    
+    private static HashMap<String,Screen> accessibleScreensForAdmin(HashMap<String,Screen> hm, BaseSetting bs)
+    {
+        return null;
+    }
+    
+    public static HashMap<String,Screen> accessibleScreens(UserType ut, HashMap<String,Screen> hm, BaseSetting bs)
+    {
+        HashMap<String,Screen> res = new HashMap();
+        
+        if (ut.getName_ut().compareToIgnoreCase("student") == 0)
+        {
+            Screen.accessibleScreensForStudent(hm, bs);
+        }
+        else
+        {
+            if (ut.getName_ut().compareToIgnoreCase("teacher") == 0)
+            {
+                Screen.accessibleScreensForTeacher(hm, bs);
+            }
+            else
+            {
+                if (ut.getName_ut().compareToIgnoreCase("admin") == 0)
+                {
+                    Screen.accessibleScreensForAdmin(hm, bs);
+                }
+                else
+                {
+                    Screen.accessibleScreensForAnonymous(hm, bs);
+                }
+            }
+        }
+        
+        return res;
     }
 }

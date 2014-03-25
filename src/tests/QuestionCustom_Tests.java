@@ -39,9 +39,8 @@ public class QuestionCustom_Tests
         // ATTENTION AU FINDALL (avant = static | maintenant != static)
         QuestionCustom[] tab_qcustom = QuestionCustom.findAll(bs);
         
-        for (int i=0 ; i<tab_qcustom.length ; i++)
+        for (QuestionCustom qcust : tab_qcustom) 
         {
-            QuestionCustom qcust = tab_qcustom[i];
             System.out.println(qcust.getID() + " | " + qcust.getText());
         }
     }

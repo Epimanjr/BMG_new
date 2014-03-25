@@ -292,6 +292,12 @@ public class QuestionFraction extends Question implements iDbManager {
         // res = res + "\n-----------------------";
         return res;
     }
+    
+    public String getSolutionString() {
+        String res = "";
+        res = res + this.solve();
+        return res;
+    }
 
     public ArrayList<Integer> getNumerators() {
         return numerators;

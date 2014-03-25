@@ -41,7 +41,7 @@ public class QuestionEquation extends Question implements iDbManager {
      */
     public QuestionEquation() {
         super();
-        this.text = "Solve.";
+        this.text = "Résoudre.";
         this.difficulty = 0;
         this.operands = new ArrayList<>();
         this.unknowns = new ArrayList<>();
@@ -99,7 +99,6 @@ public class QuestionEquation extends Question implements iDbManager {
     public void generate() {
         char[] possible_operators = {'+', '-', '*', '/'};
         this.length = (int) (Math.random() * 10) + 2;
-        System.out.println("	Random length: " + this.length);
         boolean order0;
         int ukn;
         for (int i = 0; i < this.length; i++) {
@@ -135,7 +134,6 @@ public class QuestionEquation extends Question implements iDbManager {
         possible_operators = QCoperators.toArray(possible_operators);
         char needed_operators[] = {'+', '-'};
         this.length = (int) (Math.random() * 10) + 2;
-        System.out.println("	Random length: " + this.length);
         boolean order0;
         int ukn;
         for (int i = 0; i < this.length; i++) {
@@ -177,7 +175,6 @@ public class QuestionEquation extends Question implements iDbManager {
         possible_operators = QCoperators.toArray(possible_operators);
         char needed_operators[] = {'+', '-'};
         this.length = (int) (Math.random() * 10) + 2;
-        System.out.println("	Random length: " + this.length);
         boolean order0;
         int ukn;
         for (int i = 0; i < this.length; i++) {
@@ -462,6 +459,19 @@ public class QuestionEquation extends Question implements iDbManager {
         return res;
     }
 
+    @Override
+    public String getSolutionString() {
+        String res = "";
+        double[] sol = this.solve();
+        res = res + sol;
+        /*if (sol.length == 1) {
+            res = "x = " + sol[0];
+        } else {
+            res = "x1 = " + sol[0] + " ; x2 = " + sol[1];
+        }*/
+        return res;
+    }
+    
     public ArrayList<Integer> getOperands() {
         return operands;
     }

@@ -44,7 +44,7 @@ public class QuestionPower extends Question implements iDbManager {
      */
     public QuestionPower() {
         super();
-        this.text = "Calculate.";
+        this.text = "Calculer.";
         this.difficulty = 0;
         this.operand = 0;
         this.operators = new ArrayList<>();
@@ -125,7 +125,6 @@ public class QuestionPower extends Question implements iDbManager {
     public void generate() {
         char[] possible_operators = {'*', '/'};
         this.length = (int) (Math.random() * 10) + 2;
-        System.out.println("	Random length: " + this.length);
         this.operand = (int) (Math.random() * 20) + 1;
         for (int i = 0; i < this.length; i++) {
             this.powers.add((int) (Math.random() * 20) + 1);
@@ -145,7 +144,6 @@ public class QuestionPower extends Question implements iDbManager {
         if (QPlength > 0) {
             this.length = QPlength;
         }
-        System.out.println("	Chosen length: " + this.length);
         this.operand = (int) (Math.random() * 20) + 1;
         for (int i = 0; i < this.length; i++) {
             this.powers.add((int) (Math.random() * 20) + 1);
@@ -163,7 +161,6 @@ public class QuestionPower extends Question implements iDbManager {
         Character[] possible_operators = new Character[QPoperators.size()];
         possible_operators = QPoperators.toArray(possible_operators);
         this.length = (int) (Math.random() * 10) + 2;
-        System.out.println("	Random length: " + this.length);
         this.operand = (int) (Math.random() * 20) + 1;
         for (int i = 0; i < this.length; i++) {
             this.powers.add((int) (Math.random() * 20) + 1);
@@ -185,7 +182,6 @@ public class QuestionPower extends Question implements iDbManager {
         if (QPlength > 0) {
             this.length = QPlength;
         }
-        System.out.println("	Chosen length: " + this.length);
         this.operand = (int) (Math.random() * 20) + 1;
         for (int i = 0; i < this.length; i++) {
             this.powers.add((int) (Math.random() * 20) + 1);
@@ -244,6 +240,12 @@ public class QuestionPower extends Question implements iDbManager {
             res = res + it_operators.next() + "(" + operand + "^" + it_powers.next() + ")";
         }
         // res = res + "\n-----------------------";
+        return res;
+    }
+    
+    public String getSolutionString() {
+        String res = "";
+        res = res + this.solve();
         return res;
     }
     

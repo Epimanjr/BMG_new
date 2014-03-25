@@ -137,7 +137,6 @@ public class QuestionCalculation extends Question implements iDbManager {
     public void generate() {
         char[] possible_operators = {'+', '-', '*', '/'};
         this.length = (int) (Math.random() * 10) + 2;
-        System.out.println("	Random length: " + this.length);
         for (int i = 0; i < this.length; i++) {
             this.operands.add((int) (Math.random() * 20) + 1);
             if (i < this.length - 1) {
@@ -157,7 +156,6 @@ public class QuestionCalculation extends Question implements iDbManager {
         if (QClength > 0) {
             this.length = QClength;
         }
-        System.out.println("	Chosen length: " + this.length);
         for (int i = 0; i < this.length; i++) {
             this.operands.add((int) (Math.random() * 20) + 1);
             if (i < length - 1) {
@@ -175,7 +173,6 @@ public class QuestionCalculation extends Question implements iDbManager {
         Character[] possible_operators = new Character[QCoperators.size()];
         possible_operators = QCoperators.toArray(possible_operators);
         this.length = (int) (Math.random() * 10) + 2;
-        System.out.println("	Random length: " + this.length);
         for (int i = 0; i < this.length; i++) {
             this.operands.add((int) (Math.random() * 20) + 1);
             if (i < this.length - 1) {
@@ -198,7 +195,6 @@ public class QuestionCalculation extends Question implements iDbManager {
         if (QClength > 0) {
             this.length = QClength;
         }
-        System.out.println("	Chosen length: " + this.length);
         for (int i = 0; i < this.length; i++) {
             this.operands.add((int) (Math.random() * 20) + 1);
             if (i < length - 1) {

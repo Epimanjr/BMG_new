@@ -318,7 +318,7 @@ public class QuestionPower extends Question implements iDbManager {
 	}
     
     public static ArrayList<Integer> decodePowers(String str) throws DecodeException {
-        ArrayList<Integer> res = new ArrayList<Integer>();
+        ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
         for (int x=0; x<tab.length; x++) {
             res.add(Integer.valueOf(tab[x]));
@@ -328,7 +328,7 @@ public class QuestionPower extends Question implements iDbManager {
     }
     
     public static ArrayList<Character> decodeOperators(String str) throws DecodeException {
-        ArrayList<Character> res = new ArrayList<Character>();
+        ArrayList<Character> res = new ArrayList<>();
         String[] tab = str.split(":");
         for (int x=0; x<tab.length; x++) {
             res.add(tab[x].charAt(0));

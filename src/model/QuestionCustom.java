@@ -197,25 +197,23 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     
     public static Class decodeSolutionType(String encodedQuestion) throws DecodeException, ClassNotFoundException {
         Class res;
-        int i=0;
-        int beginning = i;
-        while (encodedQuestion.charAt(i) != '>') {
-            i++;
-        }
-        String type = encodedQuestion.substring(beginning, i);
+        String type = encodedQuestion;
         
         switch(type) {
             case "int":
-                res = Class.forName("Integer");
+                res = Class.forName("java.lang.Integer");
                 break;
             case "dbl":
-                res = Class.forName("Double");
+                res = Class.forName("java.lang.Double");
                 break;
             case "str":
-                res = Class.forName("String");
+                res = Class.forName("java.lang.String");
                 break;
             case "chr":
-                res = Class.forName("Character");
+                res = Class.forName("java.lang.Character");
+                break;
+            case "bln":
+                res = Class.forName("java.lang.Boolean");
                 break;
             default:
                 throw new DecodeException("non recognized type");
@@ -283,7 +281,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                     i++;
                 }
                 Class objectType = decodeSolutionType(str.substring(16, i));
-                if (objectType == Class.forName("Integer")) {
+                if (objectType == Class.forName("java.lang.Integer")) {
                     QuestionCustom<Integer> res = new QuestionCustom<>();
                     i++;
                     int beginning = i;
@@ -300,7 +298,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                     } else {
                         throw new DecodeException();
                     }
-                } else if (objectType == Class.forName("Double")) {
+                } else if (objectType == Class.forName("java.lang.Double")) {
                     QuestionCustom<Double> res = new QuestionCustom<>();
                     i++;
                     int beginning = i;
@@ -317,7 +315,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                     } else {
                         throw new DecodeException();
                     }
-                } else if (objectType == Class.forName("String")) {
+                } else if (objectType == Class.forName("java.lang.String")) {
                     QuestionCustom<String> res = new QuestionCustom<>();
                     i++;
                     int beginning = i;
@@ -334,7 +332,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                     } else {
                         throw new DecodeException();
                     }
-                } else if (objectType == Class.forName("Character")) {
+                } else if (objectType == Class.forName("java.lang.Character")) {
                     QuestionCustom<Character> res = new QuestionCustom<>();
                     i++;
                     int beginning = i;
@@ -351,7 +349,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                     } else {
                         throw new DecodeException();
                     }
-                } else if (objectType == Class.forName("Boolean")) {
+                } else if (objectType == Class.forName("java.lang.Boolean")) {
                     QuestionCustom<Boolean> res = new QuestionCustom<>();
                     i++;
                     int beginning = i;

@@ -2,8 +2,6 @@ package tests;
 
 import database.BaseSetting;
 import exceptions.DecodeException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.QuestionCustom;
 
 public class QuestionCustom_Tests 

@@ -40,7 +40,7 @@ public class BmgPanelPracticeFirst extends JPanel {
         //Label at first
         JPanel panFirst = new JPanel();
         panFirst.setPreferredSize(new Dimension(fen.width, fen.height / nb));
-        final BmgLabel label = new BmgLabel("Vous pouvez directement pratiquer les exercices que vous avez générés ou importés.", color);
+        final BmgLabel label = new BmgLabel("Pratiquer les exercices que vous avez générés ou importés.", color);
         panFirst.add(label);
 
         //Button choose file

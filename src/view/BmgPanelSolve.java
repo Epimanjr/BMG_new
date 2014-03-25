@@ -44,7 +44,7 @@ public class BmgPanelSolve extends JPanel {
         //Label at first
         JPanel panFirst = new JPanel();
         panFirst.setPreferredSize(new Dimension(fen.width, fen.height / nb));
-        final BmgLabel label = new BmgLabel("Accéder aux solutions", color);
+        final BmgLabel label = new BmgLabel("Accéder aux solutions des exercices que vous avez pratiqués.", color);
         panFirst.add(label);
 
         //Button choose file

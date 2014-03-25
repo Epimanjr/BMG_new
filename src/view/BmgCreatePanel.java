@@ -596,7 +596,7 @@ public class BmgCreatePanel {
 
         // Panel haut
         JPanel panHaut = new JPanel();
-        panHaut.add(new BmgLabel("Générer des exercices aléatoires : ", "#E43B01"));
+        panHaut.add(new BmgLabel("Générer des exercices de manière aléatoire : ", "#E43B01"));
 
         // Panel center
         JPanel panCenter = new JPanel();
@@ -604,8 +604,8 @@ public class BmgCreatePanel {
         final String[] tabChoixType = {
             "Calcul arithmétique",
             "Calcul fractionnaire",
-            "Equation",
-            "Puissance"
+            "Résolution d'équation",
+            "Calcul de puissances"
         };
         final JComboBox choixType = new JComboBox(tabChoixType);
 
@@ -639,7 +639,7 @@ public class BmgCreatePanel {
         panCenter1.add(new BmgLabel("|  Nom de l'exercice : ", couleur));
         panCenter1.add(choixNom);
         panCenter1.add(new JLabel(""));
-        panCenter1.add(new BmgLabel("|  Type : ", couleur));
+        panCenter1.add(new BmgLabel("|  Type des questions : ", couleur));
         panCenter1.add(choixType);
 
         JButton boutonAleatoire = new JButton("Aléatoire !");
@@ -670,7 +670,7 @@ public class BmgCreatePanel {
         final JRadioButton jrbFois = new JRadioButton("*");
         final JRadioButton jrbDiv = new JRadioButton("/");
 
-        panCenter1.add(new BmgLabel("|  Opérateurs : ", couleur));
+        panCenter1.add(new BmgLabel("|  Opérateurs présents : ", couleur));
 
         JPanel panCenter11 = new JPanel();
         panCenter11.setLayout(new GridLayout(2, 2));

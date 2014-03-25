@@ -185,47 +185,71 @@ public class Screen implements iDbManager
     
     private static HashMap<String,Screen> accessibleScreensForAnonymous(HashMap<String,Screen> hm, BaseSetting bs)
     {
-        return null;
+        HashMap<String,Screen> res = new HashMap();
+        
+        HashMap<String,Screen> anonymousAutorized = new HashMap();
+        
+        /**/
+        
+        return res;
     }
     
     private static HashMap<String,Screen> accessibleScreensForStudent(HashMap<String,Screen> hm, BaseSetting bs)
     {
-        return null;
+        HashMap<String,Screen> res = new HashMap();
+        
+        HashMap<String,Screen> studentAutorized = new HashMap();
+        
+        /**/
+        
+        return res;
     }
     
     private static HashMap<String,Screen> accessibleScreensForTeacher(HashMap<String,Screen> hm, BaseSetting bs)
     {
-        return null;
+        HashMap<String,Screen> res = new HashMap();
+        
+        HashMap<String,Screen> teacherAutorized = new HashMap();
+        
+        /**/
+        
+        return res;
     }
     
     private static HashMap<String,Screen> accessibleScreensForAdmin(HashMap<String,Screen> hm, BaseSetting bs)
     {
-        return null;
+        HashMap<String,Screen> res = new HashMap();
+        
+        HashMap<String,Screen> adminAutorized = new HashMap();
+        
+        /**/
+        
+        return res;
     }
     
     public static HashMap<String,Screen> accessibleScreens(UserType ut, HashMap<String,Screen> hm, BaseSetting bs)
     {
-        HashMap<String,Screen> res = new HashMap();
+        HashMap<String,Screen> res;
         
         if (ut.getName_ut().compareToIgnoreCase("student") == 0)
         {
-            Screen.accessibleScreensForStudent(hm, bs);
+            res = Screen.accessibleScreensForStudent(hm, bs);
         }
         else
         {
             if (ut.getName_ut().compareToIgnoreCase("teacher") == 0)
             {
-                Screen.accessibleScreensForTeacher(hm, bs);
+                res = Screen.accessibleScreensForTeacher(hm, bs);
             }
             else
             {
                 if (ut.getName_ut().compareToIgnoreCase("admin") == 0)
                 {
-                    Screen.accessibleScreensForAdmin(hm, bs);
+                    res = Screen.accessibleScreensForAdmin(hm, bs);
                 }
                 else
                 {
-                    Screen.accessibleScreensForAnonymous(hm, bs);
+                    res = Screen.accessibleScreensForAnonymous(hm, bs);
                 }
             }
         }

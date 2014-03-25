@@ -43,13 +43,14 @@ public class QuestionFraction extends Question implements iDbManager {
         super();
         this.text = "Calculate.";
         this.difficulty = 0;
-        this.numerators = new ArrayList<Integer>();
-        this.denominators = new ArrayList<Integer>();
-        this.operators = new ArrayList<Character>();
+        this.numerators = new ArrayList<>();
+        this.denominators = new ArrayList<>();
+        this.operators = new ArrayList<>();
     }
 
     /**
      * This constructor creates a question, with the text given in parameter.
+     * @param QCtext
      */
     public QuestionFraction(String QCtext) {
         super();
@@ -59,13 +60,15 @@ public class QuestionFraction extends Question implements iDbManager {
             this.text = "...";
         }
         this.difficulty = 0;
-        this.numerators = new ArrayList<Integer>();
-        this.denominators = new ArrayList<Integer>();
-        this.operators = new ArrayList<Character>();
+        this.numerators = new ArrayList<>();
+        this.denominators = new ArrayList<>();
+        this.operators = new ArrayList<>();
     }
 
     /**
      * This constructor creates a question, with the text and the difficulty given in parameters.
+     * @param QCtext
+     * @param QCdifficulty
      */
     public QuestionFraction(String QCtext, int QCdifficulty) {
         super();
@@ -79,9 +82,9 @@ public class QuestionFraction extends Question implements iDbManager {
         } else {
             this.difficulty = 0;
         }
-        this.numerators = new ArrayList<Integer>();
-        this.denominators = new ArrayList<Integer>();
-        this.operators = new ArrayList<Character>();
+        this.numerators = new ArrayList<>();
+        this.denominators = new ArrayList<>();
+        this.operators = new ArrayList<>();
     }
     
     public QuestionFraction(String textqf, int diffqf, ArrayList<Integer> numerqf, ArrayList<Integer> denomqf, ArrayList<Character> operqf)
@@ -126,6 +129,7 @@ public class QuestionFraction extends Question implements iDbManager {
 
     /**
      * Generate a random question with fractions, with the length given in parameter.
+     * @param QClength
      */
     public void generate(int QClength) {
         char[] possible_operators = {'+', '-', '*'};
@@ -145,6 +149,7 @@ public class QuestionFraction extends Question implements iDbManager {
 
     /**
      * Generate a random question with fractions, Operators are choosen in the ArrayList given in parameter.
+     * @param QCoperators
      */
     public void generate(ArrayList<Character> QCoperators) {
         Character[] possible_operators = new Character[QCoperators.size()];
@@ -162,6 +167,8 @@ public class QuestionFraction extends Question implements iDbManager {
 
     /**
      * Generate a random question of calculation, with the length given in parameter, Operators are choosen in the ArrayList given in parameter.
+     * @param QCoperators
+     * @param QClength
      */
     public void generate(ArrayList<Character> QCoperators, int QClength) {
         Character[] possible_operators = new Character[QCoperators.size()];
@@ -182,10 +189,11 @@ public class QuestionFraction extends Question implements iDbManager {
 
     /**
      * Solve a question with fraction
+     * @return 
      */
     public double solve() {
         double res = 0;
-        ArrayList<Double> operands = new ArrayList<Double>();
+        ArrayList<Double> operands = new ArrayList<>();
         Iterator<Integer> it_numerators = this.numerators.iterator();
         Iterator<Integer> it_denominators = this.denominators.iterator();
         while (it_numerators.hasNext()) {
@@ -246,6 +254,7 @@ public class QuestionFraction extends Question implements iDbManager {
         return res;
     }
 
+    @Override
     public String getText() {
         String res = "";
         res = res + this.text + " ";
@@ -262,7 +271,9 @@ public class QuestionFraction extends Question implements iDbManager {
     
     /**
      * Display a question of calculation
+     * @return 
      */
+    @Override
     public String toString() {
         String res = "		QuestionFraction";
         res = res + "\n			Text: " + this.text;
@@ -347,7 +358,9 @@ public class QuestionFraction extends Question implements iDbManager {
     /**
 	 * Encode the current question (object) in a string which can recreate this question by the decode() method
 	 * @return encoded question
+     * @throws exceptions.EncodeException
 	 */
+    @Override
 	public String encode() throws EncodeException {
 		String res = "#QuestionFraction<";
         res = res + encodeNumerators();
@@ -361,7 +374,7 @@ public class QuestionFraction extends Question implements iDbManager {
 	}
     
     public static ArrayList<Integer> decodeNumerators(String str) {
-        ArrayList<Integer> res = new ArrayList<Integer>();
+        ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
         for (int x=0; x<tab.length; x++) {
             res.add(Integer.valueOf(tab[x]));
@@ -371,7 +384,7 @@ public class QuestionFraction extends Question implements iDbManager {
     }
     
     public static ArrayList<Integer> decodeDenominators(String str) {
-        ArrayList<Integer> res = new ArrayList<Integer>();
+        ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
         for (int x=0; x<tab.length; x++) {
             res.add(Integer.valueOf(tab[x]));
@@ -381,7 +394,7 @@ public class QuestionFraction extends Question implements iDbManager {
     }
     
     public static ArrayList<Character> decodeOperators(String str) {
-        ArrayList<Character> res = new ArrayList<Character>();
+        ArrayList<Character> res = new ArrayList<>();
         String[] tab = str.split(":");
         for (int x=0; x<tab.length; x++) {
             res.add(tab[x].charAt(0));
@@ -394,6 +407,7 @@ public class QuestionFraction extends Question implements iDbManager {
 	 * Decode the string generate by the encode() method of this class
 	 * @param str encoded question
 	 * @return decoded question (object)
+     * @throws exceptions.DecodeException
 	 */
 	public static QuestionFraction decode(String str) throws DecodeException {
 		QuestionFraction res = null;
@@ -466,6 +480,7 @@ public class QuestionFraction extends Question implements iDbManager {
     // ----- DB METHODS -----
 
     /* MISE A JOURS */
+    @Override
     public boolean insert(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -492,6 +507,7 @@ public class QuestionFraction extends Question implements iDbManager {
         return false;
     }
 
+    @Override
     public boolean update(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -520,6 +536,7 @@ public class QuestionFraction extends Question implements iDbManager {
         return false;
     }
 
+    @Override
     public boolean delete(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();

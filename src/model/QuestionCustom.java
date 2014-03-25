@@ -443,7 +443,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         
         try
         {
-            if (this.id > 0)
+            if (this.id < 0)
             {
                 String query = "UPDATE QuestionCustom SET (text_qcustom = ? , diff_qcustom = ? , sol_qcustom = ?) WHERE id_qcustom = ?";
                 PreparedStatement p_statement = connection.prepareStatement(query);

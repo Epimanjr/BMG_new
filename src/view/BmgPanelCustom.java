@@ -9,7 +9,11 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -75,5 +79,41 @@ public class BmgPanelCustom extends JPanel {
         
         
         this.add(panHaut, BorderLayout.NORTH);
+        
+        JPanel panCenter = new JPanel();
+        panCenter.setLayout(new GridLayout(5,3));
+        
+        JTextField[] tabQuestions = new JTextField[5];
+        JTextField[] tabSolutions = new JTextField[5];
+        JComboBox[] tabTypes = new JComboBox[5];
+        
+        String[] types = {"entier","réel","chaine"};
+        
+        panCenter.add(new BmgLabel("Question", "green"));
+        panCenter.add(new BmgLabel("Type solution", "green"));
+        panCenter.add(new BmgLabel("Solution", "green"));
+        
+        for(int i=0;i<4;i++) {
+            tabQuestions[i] = new JTextField(12);
+            panCenter.add(tabQuestions[i]);
+            tabTypes[i] = new JComboBox(types);
+            panCenter.add(tabTypes[i]);
+            tabSolutions[i] = new JTextField(12);
+            panCenter.add(tabSolutions[i]);
+        }
+        
+        this.add(panCenter,BorderLayout.CENTER);
+        
+        JButton createEx = new JButton("Créer l'exercice");
+        createEx.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                System.out.println("coucou");
+            }
+        }
+        );
+        
+        this.add(createEx,BorderLayout.SOUTH);
     }
 }

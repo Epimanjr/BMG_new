@@ -146,12 +146,12 @@ public class BmgFrameBegin {
             //Wrong connection
             JOptionPane jop = new JOptionPane();
 
-            String[] choix = {"Configurer la base de données maintenant", "Non merci, plus tard"};
+            String[] choix = {"Configurer la base de données maintenant", "Utiliser le mode hors-ligne"};
 
             //Just show small dialog whith 2 buttons.
             int rang = JOptionPane.showOptionDialog(null,
-                    "What would you want to do ?",
-                    "Error database !",
+                    "Que souhaitez-vous faire ?",
+                    "Base de données non configurée",
                     JOptionPane.YES_NO_CANCEL_OPTION,
                     JOptionPane.QUESTION_MESSAGE,
                     null,

@@ -42,9 +42,9 @@ public class BmgPanelCustom extends JPanel {
         panHaut.setLayout(new GridLayout(3, 2));
 
         // Labels
-        JLabel label1 = new JLabel("Nom de l'exercice : ");
-        JLabel label2 = new JLabel("Difficulté : ");
-        JLabel label3 = new JLabel("Enoncé : ");
+        JLabel label1 = new JLabel("|  Nom de l'exercice : ");
+        JLabel label2 = new JLabel("|  Difficulté : ");
+        JLabel label3 = new JLabel("|  Énoncé : ");
         
         label1.setPreferredSize(new Dimension(200, 50));
         label2.setPreferredSize(new Dimension(200, 50));
@@ -89,11 +89,11 @@ public class BmgPanelCustom extends JPanel {
         final JTextField[] tabSolutions = new JTextField[5];
         final JComboBox[] tabTypes = new JComboBox[5];
         
-        final String[] types = {"entier", "réel", "chaine"};
+        final String[] types = {"entier", "réel", "caractère" ,"phrase"};
         
-        panCenter.add(new BmgLabel("Question", "green"));
-        panCenter.add(new BmgLabel("Type solution", "green"));
-        panCenter.add(new BmgLabel("Solution", "green"));
+        panCenter.add(new BmgLabel("Question", "#E43B01"));
+        panCenter.add(new BmgLabel("Type de la réponse", "#E43B01"));
+        panCenter.add(new BmgLabel("Réponse", "#E43B01"));
         
         for (int i = 1; i < 5; i++) {
             tabQuestions[i] = new JTextField(12);
@@ -125,16 +125,33 @@ public class BmgPanelCustom extends JPanel {
                 e.setDifficulty(diff);
                 
                 for(int i=1;i<5;i++) {
-                    String q1 = tabQuestions[i].getText();
-                    String t1 = types[tabTypes[i].getSelectedIndex()];
-                    String s1 = tabSolutions[i].getText();
+                    String q = tabQuestions[i].getText();
+                    String t = types[tabTypes[i].getSelectedIndex()];
+                    String s = tabSolutions[i].getText();
                     //System.out.println("s1"+s1);
 
-                    switch(t1) {
+                    switch(t) {
                         case "entier":
-                            Integer[] ti = {new Integer(s1)};
-                            QuestionCustom<Integer> qcu1 = new QuestionCustom<Integer>(q1,ti);
+                            Integer[] in = {new Integer(s)};
+                            QuestionCustom<Integer> qcu1 = new QuestionCustom<Integer>(q,in);
                             e.addQuestion(qcu1);
+                            break;
+                        case "réel":
+                            Double[] d = {new Double(s)};
+                            QuestionCustom<Double> qcu2 = new QuestionCustom<Double>(q,d);
+                            e.addQuestion(qcu2);
+                            break;
+                        case "caractère":
+                            Character[] c = {s.charAt(0)};
+                            QuestionCustom<Character> qcu3 = new QuestionCustom<Character>(q,c);
+                            e.addQuestion(qcu3);
+                            break;
+                        case "phrase":
+                            String[] st = {s};
+                            QuestionCustom<String> qcu4 = new QuestionCustom<String>(q,st);
+                            e.addQuestion(qcu4);
+                            break;
+                        default:
                             break;
                     }
                 }

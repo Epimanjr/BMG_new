@@ -11,6 +11,7 @@ import database.BaseSetting;
 import exceptions.AccessDeniedException;
 import exceptions.AlreadyExistsException;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -70,20 +71,22 @@ public class BmgCreatePanel {
     public JPanel createMainPanel() {
         // Some settings for this panel, size, color ...
         int nb = 5;
-        String colortitle = "green";
-        String colortext = "black";
+        String colortitle = "#E43B01";
+        String colortext = "rgb(45,45,45)";
 
         //Create the main panel
         JPanel pan = new JPanel();
+        //pan.setBackground(Color.white);
 
         //Panel Exercises
         JPanel panExercises = new JPanel();
+        //panExercises.setBackground(Color.white);
         panExercises.setPreferredSize(new Dimension(width - 100, ((height - 100) / 2)));
         panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";font-size:13px;\">Exercices</p></html>"));
         panExercises.setLayout(new GridLayout(6, 2));
 
         //Button Generate in panel Exercises.
-        panExercises.add(new BmgLabel("Générer des exercices aléatoires : ", colortext));
+        panExercises.add(new BmgLabel(" Générer des exercices aléatoires : ", colortext));
         BmgButton bgenerate = new BmgButton("Générer");
         //listener
         bgenerate.addActionListener(new ActionListener() {
@@ -96,7 +99,7 @@ public class BmgCreatePanel {
         panExercises.add(bgenerate);
         
         //Button créer 
-        panExercises.add(new BmgLabel("Créer des exercices personnalisés : ", colortext));
+        panExercises.add(new BmgLabel(" Créer des exercices personnalisés : ", colortext));
         BmgButton bcreer = new BmgButton("Créer");
         //listener
         bcreer.addActionListener(new ActionListener() {
@@ -109,7 +112,7 @@ public class BmgCreatePanel {
         panExercises.add(bcreer);
 
         //Button Practice in panel Exercises.
-        panExercises.add(new BmgLabel("Pratiquer vos exercices : ", colortext));
+        panExercises.add(new BmgLabel(" Pratiquer vos exercices : ", colortext));
         BmgButton bpractice = new BmgButton("Pratiquer");
         //listener
         bpractice.addActionListener(new ActionListener() {
@@ -122,7 +125,7 @@ public class BmgCreatePanel {
         panExercises.add(bpractice);
 
         //Button Import in panel Exercises.
-        panExercises.add(new BmgLabel("Importer les exercices en ligne : ", colortext));
+        panExercises.add(new BmgLabel(" Importer les exercices en ligne : ", colortext));
         BmgButton bimport = new BmgButton("Importer");
         //listener
         bimport.addActionListener(new ActionListener() {
@@ -135,7 +138,7 @@ public class BmgCreatePanel {
         panExercises.add(bimport);
 
         //Button Export in panel Exercises.
-        panExercises.add(new BmgLabel("Exporter en ligne ou en PDF : ", colortext));
+        panExercises.add(new BmgLabel(" Exporter en ligne ou au format PDF : ", colortext));
         BmgButton bexport = new BmgButton("Exporter");
         //listener
         bexport.addActionListener(new ActionListener() {
@@ -148,7 +151,7 @@ public class BmgCreatePanel {
         panExercises.add(bexport);
 
         //Button Solve in panel Exercises.
-        panExercises.add(new BmgLabel("Accéder aux exercices résolus : ", colortext));
+        panExercises.add(new BmgLabel(" Accéder aux exercices résolus : ", colortext));
         BmgButton bsolve = new BmgButton("Résoudre");
         //listener
         bsolve.addActionListener(new ActionListener() {
@@ -162,12 +165,13 @@ public class BmgCreatePanel {
 
         //Panel Account
         JPanel panAccount = new JPanel();
+        //panAccount.setBackground(Color.white);
         panAccount.setPreferredSize(new Dimension(width - 100, ((height - 100) / nb)));
         panAccount.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";font-size:13px;\">Compte utilisateur</p></html>"));
         panAccount.setLayout(new GridLayout(2, 2));
 
         //Add label
-        panAccount.add(new BmgLabel("Se connecter à votre compte : ", colortext));
+        panAccount.add(new BmgLabel(" Se connecter à votre compte : ", colortext));
 
         //Button Sign in in panel Account
         BmgButton bsignin = new BmgButton("Se connecter");
@@ -181,7 +185,7 @@ public class BmgCreatePanel {
         panAccount.add(bsignin);
 
         //Button Sign up in panel Account
-        panAccount.add(new BmgLabel("Créer un compte : ", colortext));
+        panAccount.add(new BmgLabel(" Créer un compte : ", colortext));
         BmgButton bsignup = new BmgButton("S'enregistrer");
         bsignup.addActionListener(new ActionListener() {
 
@@ -194,12 +198,13 @@ public class BmgCreatePanel {
 
         //Panel Database Settings
         JPanel panSettings = new JPanel();
+        //panSettings.setBackground(Color.white);
         panSettings.setPreferredSize(new Dimension(width - 100, ((height - 100) / nb)));
         panSettings.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";font-size:13px;\">Configuration</p></html>"));
         panSettings.setLayout(new GridLayout(2, 2));
 
         //Add label
-        panSettings.add(new BmgLabel("Configurer la base de données : ", colortext));
+        panSettings.add(new BmgLabel(" Configurer la base de données : ", colortext));
 
         //Button Setting in panel Database Settings
         BmgButton bsettings = new BmgButton("Configurer");
@@ -213,7 +218,7 @@ public class BmgCreatePanel {
         panSettings.add(bsettings);
 
         //Add label and button test in panel Database settings
-        panSettings.add(new BmgLabel("Tester la connexion à votre base : ", colortext));
+        panSettings.add(new BmgLabel(" Tester la connexion à votre base : ", colortext));
         BmgButton btest = new BmgButton("Tester");
         btest.addActionListener(new ActionListener() {
 
@@ -244,7 +249,7 @@ public class BmgCreatePanel {
     public JPanel createPanelSignin() {
         //Some settings of this panel.
         int nb = 8;
-        String labelcolor = "red";
+        String labelcolor = "#E43B01";
 
         //Create this panel here
         JPanel pan = new JPanel();
@@ -336,12 +341,12 @@ public class BmgCreatePanel {
     public JPanel createPanelSignup(String email, String password) {
         //Some settings
         int nb = 3;
-        String labelcolor = "red";
+        String labelcolor = "#E43B01";
 
         //Create panel
         JPanel pan = new JPanel();
 
-        BmgLabel label = new BmgLabel("S'enregistrer : ", labelcolor);
+        BmgLabel label = new BmgLabel("Veuillez renseigner les informations suivantes afin de créer votre compte : ", labelcolor);
         label.setPreferredSize(new Dimension(width - 100, (height - 100) / (2 * nb)));
         pan.add(label, BorderLayout.NORTH);
 
@@ -504,7 +509,7 @@ public class BmgCreatePanel {
 
         //Button and label, to register
         JButton buttonConfirm = new JButton("Confirmer ces informations");
-        final BmgLabel labelRes = new BmgLabel("En attente ...", "green");
+        final BmgLabel labelRes = new BmgLabel("En attente ...", "#E43B01");
         buttonConfirm.addActionListener(new ActionListener() {
 
             @Override
@@ -518,7 +523,7 @@ public class BmgCreatePanel {
 
         //Button and label, to test
         JButton buttonTest = new JButton("Tester la connexion");
-        final BmgLabel labelTest = new BmgLabel("En attente ...", "red");
+        final BmgLabel labelTest = new BmgLabel("En attente ...", "#E43B01");
         buttonTest.addActionListener(new ActionListener() {
 
             @Override
@@ -591,7 +596,7 @@ public class BmgCreatePanel {
 
         // Panel haut
         JPanel panHaut = new JPanel();
-        panHaut.add(new BmgLabel("Générer des exercices aléatoires : ", "red"));
+        panHaut.add(new BmgLabel("Générer des exercices aléatoires : ", "#E43B01"));
 
         // Panel center
         JPanel panCenter = new JPanel();
@@ -628,13 +633,13 @@ public class BmgCreatePanel {
         panCenter1.setPreferredSize(new Dimension(fen.width, 200));
 
         panCenter1.setLayout(new GridLayout(4, 3));
-        String couleur = "black";
+        String couleur = "rgb(45,45,45)";
 
         final JTextField choixNom = new JTextField(12);
-        panCenter1.add(new BmgLabel("Nom de l'exercice : ", couleur));
+        panCenter1.add(new BmgLabel("|  Nom de l'exercice : ", couleur));
         panCenter1.add(choixNom);
         panCenter1.add(new JLabel(""));
-        panCenter1.add(new BmgLabel("Type : ", couleur));
+        panCenter1.add(new BmgLabel("|  Type : ", couleur));
         panCenter1.add(choixType);
 
         JButton boutonAleatoire = new JButton("Aléatoire !");
@@ -656,7 +661,7 @@ public class BmgCreatePanel {
         });
 
         panCenter1.add(boutonAleatoire);
-        panCenter1.add(new BmgLabel("Nombre de questions : ", couleur));
+        panCenter1.add(new BmgLabel("|  Nombre de questions : ", couleur));
         panCenter1.add(slide);
         panCenter1.add(labelInfo);
 
@@ -665,7 +670,7 @@ public class BmgCreatePanel {
         final JRadioButton jrbFois = new JRadioButton("*");
         final JRadioButton jrbDiv = new JRadioButton("/");
 
-        panCenter1.add(new BmgLabel("Opérateurs : ", couleur));
+        panCenter1.add(new BmgLabel("|  Opérateurs : ", couleur));
 
         JPanel panCenter11 = new JPanel();
         panCenter11.setLayout(new GridLayout(2, 2));
@@ -681,7 +686,7 @@ public class BmgCreatePanel {
         panCenter2.setPreferredSize(new Dimension(fen.width / 2, fen.height / 4));
         panCenter2.setLayout(new BorderLayout());
 
-        final BmgLabel labelSum = new BmgLabel("", "red");
+        final BmgLabel labelSum = new BmgLabel("", "#E43B01");
         labelSum.setPreferredSize(new Dimension(fen.width, 100));
 
         // Confirm
@@ -803,11 +808,12 @@ public class BmgCreatePanel {
     public JPanel createPanelAboutUs() {
         JPanel pan = new JPanel();
 
-        String s = "<span style=\"color: red;\">About us : </span><br/><br/>";
-        s += "We are 4 students of Technical High School called Université de Lorraine, in french.<br/>";
-        s += "And I have no idea to continue this label ...";
+        String s = "<span style=\"color: #E43B01;\">À propos de B.M.G. : </span><br/><br/>";
+        s += "Ce programme a été conçu puis réalisé par 4 étudiants de l'I.U.T. Nancy-Charlemagne de l'Université de Lorraine.<br/>";
+        s += "Ces étudiants sont Maxime Blaise, Joseph Dzimbalka, Antoine Nosal et Julien Rische.<br/>";
+        s += "Ce projet a été encadré par Mme Irina Illina.<br/>";
 
-        pan.add(new BmgLabel(s, "blue"));
+        pan.add(new BmgLabel(s, "rgb(45,45,45)"));
 
         return pan;
     }
@@ -835,11 +841,11 @@ public class BmgCreatePanel {
                     //Edit instance User
                     fen.setPanel(BmgFrame.panMain);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect !", "Information", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Email ou mot de passe incorrect!", "Information", JOptionPane.ERROR_MESSAGE);
 
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Erreur base de donnée", "Information", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Erreur base de donnée!", "Information", JOptionPane.ERROR_MESSAGE);
             }
 
         } catch (AccessDeniedException ex) {

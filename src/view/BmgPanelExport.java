@@ -38,16 +38,16 @@ public class BmgPanelExport extends JPanel {
         this.filename = name;
         this.fen = fen;
         int nb = 10;
-        String color = "red";
+        String color = "#E43B01";
 
         //Label at first
         JPanel panFirst = new JPanel();
         panFirst.setPreferredSize(new Dimension(fen.width, fen.height / nb));
-        final BmgLabel label = new BmgLabel("Prêt à devenir brillant ? Pratiquez !", color);
+        final BmgLabel label = new BmgLabel("Exporter vos exercices en ligne ou basculer vers une utilisation papier en les exportant au format PDF pour impression.", color);
         panFirst.add(label);
 
         //Button choose file
-        JButton choosefile = new JButton("Rechercher..");
+        JButton choosefile = new JButton("Sélectionner l'exercice ...");
 
         choosefile.addActionListener(new ActionListener() {
 
@@ -96,13 +96,13 @@ public class BmgPanelExport extends JPanel {
                         //System.out.println("EXERCISE NULL");
                     }
 
-                    String style = "style=\"color: blue; font-size: 12px;\"";
+                    String style = "style=\"color: rgb(45,45,45); font-size: 13px;\"";
                     //Label with summary
-                   labelRes.setText("<html><p style=\"color: green;font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
-                            + "<p><span " + style + ">Title : </span>" + exercise.getTitle() + "<br/></p>"
+                   labelRes.setText("<html><p style=\"color: #E43B01;font-size: 15px;\">Résumé de l'exercice : " + trueFileName + "<br/><br/></p>"
+                            + "<p><span " + style + ">Titre : </span>" + exercise.getTitle() + "<br/></p>"
                             + "<p><span " + style + ">Type : </span>" + exercise.getType() + "<br/></p>"
-                            + "<p><span " + style + ">Difficulty : </span>" + exercise.getDifficulty() + "<br/></p>"
-                            + "<p><span " + style + ">Number of questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
+                            + "<p><span " + style + ">Difficulté : </span>" + exercise.getDifficulty() + "<br/></p>"
+                            + "<p><span " + style + ">Nombre de questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                             + "</html>");
 
                 }
@@ -123,7 +123,7 @@ public class BmgPanelExport extends JPanel {
         panSouth.add(labelRes);
 
         //Button GO
-        buttonOk = new JButton("Exporter");
+        buttonOk = new JButton("Exporter en ligne");
         //Listener
         buttonOk.addActionListener(new ActionListener() {
 
@@ -133,7 +133,7 @@ public class BmgPanelExport extends JPanel {
             }
         });
         
-        boutonExportPDF = new JButton("Exporter en PDF");
+        boutonExportPDF = new JButton("Exporter au format PDF");
         boutonExportPDF.addActionListener(new ActionListener() {
 
             @Override

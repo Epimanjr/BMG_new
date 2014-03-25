@@ -97,7 +97,7 @@ public class BmgPanelPractice {
                     + "<br/><br/>Score : " + practice.getSuccess() + "%"
                     + "<br/><br/>Mauvaise(s) réponse(s) : " + practice.getWrong_answersString()
                     + "<br/><br/>Temps d'execution : " + practice.getExecution_time() + "sec"
-                    + "<br/><br/>Date d'execution : " + practice.getExecution_dateString(), "white", 20));
+                    + "<br/><br/>Date d'execution : " + practice.getExecution_dateString(), "white", 14));
 
         } else {
 
@@ -107,13 +107,13 @@ public class BmgPanelPractice {
             panCenter1.setBackground(new Color(45, 45, 45));
 
             //Si c'est pas fini on continue
-            JLabel lab = new JLabel("<html><p style=\"color: orange;font-size: 14px;\">Question " + iterateur + " / " + getNombreDeQuestions() + "</p><br/><p style=\"color: white;font-size:12px;\">" + e.getQuestionText(iterateur - 1) + "</p>");
+            JLabel lab = new JLabel("<html><p style=\"color: orange;font-size: 14px;\">Question " + iterateur + " / " + getNombreDeQuestions() + "</p><br/><p style=\"color: white;font-size:13px;\">" + e.getQuestionText(iterateur - 1) + "</p>");
             lab.setPreferredSize(new Dimension(fen.width - 200, 100));
 
             panCenter1.add(lab);
 
             //Champ de saisie
-            final JTextField saisie = new JTextField(5);
+            final JTextField saisie = new JTextField(30);
             saisie.setPreferredSize(new Dimension(50, 30));
 
             saisie.setEnabled(true);
@@ -165,11 +165,7 @@ public class BmgPanelPractice {
     }
 
     public void action(String stringRecup) {
-        //String stringRecup = saisie.getText();
-
         if (stringRecup.equals("")) {
-            //TODO
-            //Lever une exception
             practice.addWrong(iterateur - 1);
         } else {
             switch (e.getType()) {
@@ -248,8 +244,6 @@ public class BmgPanelPractice {
     public void actionIfCustom(String recup) {
 
         //test
-        System.out.println(recup);
-        System.out.println(((QuestionCustom) e.getQuestion(iterateur - 1)).getSolutionString());
         if (recup.equals(((QuestionCustom) e.getQuestion(iterateur - 1)).getSolutionString())) {
             practice.addRight(iterateur - 1);
         } else {

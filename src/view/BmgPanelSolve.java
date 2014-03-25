@@ -39,7 +39,7 @@ public class BmgPanelSolve extends JPanel {
         this.filename = name;
         this.fen = fen;
         int nb = 10;
-        String color = "red";
+        String color = "#E43B01";
 
         //Label at first
         JPanel panFirst = new JPanel();
@@ -48,7 +48,7 @@ public class BmgPanelSolve extends JPanel {
         panFirst.add(label);
 
         //Button choose file
-        JButton choosefile = new JButton("Rechercher..");
+        JButton choosefile = new JButton("Sélectionner l'exercice ...");
 
         choosefile.addActionListener(new ActionListener() {
 
@@ -97,13 +97,13 @@ public class BmgPanelSolve extends JPanel {
                         //System.out.println("EXERCISE NULL");
                     }
 
-                    String style = "style=\"color: blue; font-size: 12px;\"";
+                    String style = "style=\"color: rgb(45,45,45); font-size: 13px;\"";
                     //Label with summary
-                   labelRes.setText("<html><p style=\"color: green;font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
-                            + "<p><span " + style + ">Title : </span>" + exercise.getTitle() + "<br/></p>"
+                   labelRes.setText("<html><p style=\"color: #E43B01;font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
+                            + "<p><span " + style + ">Titre : </span>" + exercise.getTitle() + "<br/></p>"
                             + "<p><span " + style + ">Type : </span>" + exercise.getType() + "<br/></p>"
-                            + "<p><span " + style + ">Difficulty : </span>" + exercise.getDifficulty() + "<br/></p>"
-                            + "<p><span " + style + ">Number of questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
+                            + "<p><span " + style + ">Difficulté : </span>" + exercise.getDifficulty() + "<br/></p>"
+                            + "<p><span " + style + ">Nombre de questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                             + "</html>");
 
                 }
@@ -134,7 +134,7 @@ public class BmgPanelSolve extends JPanel {
             }
         });*/
         
-        boutonExportPDF = new JButton("Exercice résolu en PDF");
+        boutonExportPDF = new JButton("Générer l'exercice résolu au format PDF");
         boutonExportPDF.addActionListener(new ActionListener() {
 
             @Override

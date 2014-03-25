@@ -684,7 +684,7 @@ public class QuestionEquation extends Question implements iDbManager {
         try
         {
             String query = "INSERT INTO QuestionEquation (text_qe, diff_qe , operands_qe, unknowns_qe, operators_qe, length_qe) VALUES (?,?,?,?,?,?)";
-            PreparedStatement p_statement = connection.prepareStatement(query);
+            PreparedStatement p_statement = connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             p_statement.setString(1, this.text);
             p_statement.setInt(2, this.difficulty);
             p_statement.setString(3, this.encodeOperands());

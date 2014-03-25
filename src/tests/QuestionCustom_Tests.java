@@ -18,11 +18,11 @@ public class QuestionCustom_Tests
         
         try 
         {
-            Object[] tab_qcustom1 = qcustom1.decodeSolution("dbl:dbl><2.72:3.14");
-            Object[] tab_qcustom2 = qcustom1.decodeSolution("int:int><18:25");
-            Object[] tab_qcustom3 = qcustom1.decodeSolution("str:str><\"azerty\":\"qwerty\"");
-            Object[] tab_qcustom4 = qcustom1.decodeSolution("chr:chr><\'a\':\'z\'");
-            Object[] tab_qcustom5 = qcustom1.decodeSolution("str:str><\"exp\":\"pi\"");
+            Object[] tab_qcustom1 = qcustom1.decodeSolution("dbl><2.72:3.14");
+            Object[] tab_qcustom2 = qcustom1.decodeSolution("int><18:25");
+            Object[] tab_qcustom3 = qcustom1.decodeSolution("str><\"azerty\":\"qwerty\"");
+            Object[] tab_qcustom4 = qcustom1.decodeSolution("chr><\'a\':\'z\'");
+            Object[] tab_qcustom5 = qcustom1.decodeSolution("str><\"exp\":\"pi\"");
             
             qcustom1.setSolution(tab_qcustom1);
             qcustom2.setSolution(tab_qcustom2);

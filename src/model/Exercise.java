@@ -1,6 +1,14 @@
 package model;
 
 import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import static com.itextpdf.text.FontFactory.COURIER;
+import static com.itextpdf.text.FontFactory.COURIER_BOLD;
+import static com.itextpdf.text.FontFactory.TIMES_ROMAN;
+import static com.itextpdf.text.FontFactory.HELVETICA;
+import static com.itextpdf.text.FontFactory.TIMES_BOLD;
+import static com.itextpdf.text.FontFactory.ZAPFDINGBATS;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import exceptions.EncodeException;
@@ -721,16 +729,30 @@ public class Exercise implements iDbManager {
             document.open();
 
             String strExercise = "";
-            strExercise = strExercise + "                                       B.M.G. - Exercice\n\n";
-            strExercise = strExercise + "                   Titre: " + this.title + "\n";
-            strExercise = strExercise + "                   Type: " + this.type + "\n";
-            strExercise = strExercise + "                   Difficulté : " + this.difficulty + "\n";
-            strExercise = strExercise + "                   Nombre de questions : " + this.questions.size() + "\n\n";
-            strExercise = strExercise + "                   Énoncé : " + this.wording.getText() + "\n\n\n";
+            strExercise = strExercise + "B.M.G. (v1.0)\nExercice\n_________________________________________________________________________\n_________________________________________________________________________\n\n";
+            
+            Paragraph p = new Paragraph(strExercise,new Font(Font.getFamily(COURIER),14,Font.BOLD));
+            p.setAlignment(Element.ALIGN_CENTER);
+            document.add(p);
+            
+            strExercise = "";
+            strExercise = strExercise + "+ Titre: " + this.title + "\n";
+            strExercise = strExercise + "+ Type: " + this.type + "\n";
+            if (this.difficulty != 0) {
+                strExercise = strExercise + "+ Difficulté : " + this.difficulty + "\n";
+            }
+            strExercise = strExercise + "+ Nombre de questions : " + this.questions.size() + "\n";
+            strExercise = strExercise + "+ Énoncé : " + this.wording.getText() + "\n\n\n";
+            
+            p = null;
+            p = new Paragraph(strExercise,new Font(Font.getFamily(COURIER),12,Font.BOLD));
+            document.add(p);
+            
+            strExercise = "";
             Iterator it = this.questions.iterator();
             int i = 0;
             while (it.hasNext()) {
-                strExercise = strExercise + "           # Question " + (i + 1) + "\n";
+                strExercise = strExercise + "----- Question #" + (i + 1) + "\n";
                 strExercise = strExercise + ((Question) (it.next())).getText();
                 strExercise = strExercise + "\nRéponse : __________________\n\n";
                 i++;
@@ -738,7 +760,10 @@ public class Exercise implements iDbManager {
             strExercise = strExercise + "\n\n\n                                                 Généré grâce à B.M.G.";
 
             //Write into the document
-            document.add(new Paragraph(strExercise));
+            p = null;
+            p = new Paragraph(strExercise,new Font(Font.getFamily(COURIER)));
+            document.add(p);
+            
         } catch (Exception e) {
             System.err.println(e);
         } finally {

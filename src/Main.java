@@ -13,7 +13,7 @@ public class Main {
         System.out.println("\n-----------------------\n  Welcome in B.M.G. !\n-----------------------\n");
 
         while (true) {
-            Scanner sc = new Scanner(System.in);
+            /*Scanner */sc = new Scanner(System.in);
             System.out.println("1 - Calculation part");
             System.out.println("2 - Fraction part");
             System.out.println("3 - Equation part");
@@ -47,7 +47,7 @@ public class Main {
                     System.out.println("\n-------> A calculation with selected operators <-------");
                     sc = new Scanner(System.in);
                     char op = '+';
-                    ArrayList<Character> operators = new ArrayList<Character>();
+                    ArrayList<Character> operators = new ArrayList<>();
                     while (op != '0') {
                         System.out.print("Operator? ");
                         op = sc.next().charAt(0);
@@ -67,7 +67,7 @@ public class Main {
                     System.out.print("Length? ");
                     int l2 = sc.nextInt();
                     char op2 = '+';
-                    ArrayList<Character> operators2 = new ArrayList<Character>();
+                    ArrayList<Character> operators2 = new ArrayList<>();
                     while (op2 != '0') {
                         System.out.print("Operator? ");
                         op2 = sc.next().charAt(0);
@@ -126,7 +126,7 @@ public class Main {
                     System.out.println("\n-------> A question with fractions with selected operators <-------");
                     sc = new Scanner(System.in);
                     char opf = '+';
-                    ArrayList<Character> operatorsf = new ArrayList<Character>();
+                    ArrayList<Character> operatorsf = new ArrayList<>();
                     while (opf != '0') {
                         System.out.print("Operator? ");
                         opf = sc.next().charAt(0);
@@ -146,7 +146,7 @@ public class Main {
                     System.out.print("Length? ");
                     int l2f = sc.nextInt();
                     char op2f = '+';
-                    ArrayList<Character> operators2f = new ArrayList<Character>();
+                    ArrayList<Character> operators2f = new ArrayList<>();
                     while (op2f != '0') {
                         System.out.print("Operator? ");
                         op2f = sc.next().charAt(0);
@@ -186,7 +186,7 @@ public class Main {
                     QuestionEquation qe1 = new QuestionEquation();
                     sc = new Scanner(System.in);
                     char opcu = '+';
-                    ArrayList<Character> operatorscu = new ArrayList<Character>();
+                    ArrayList<Character> operatorscu = new ArrayList<>();
                     while (opcu != '0') {
                         System.out.print("Operator? ");
                         opcu = sc.next().charAt(0);
@@ -403,7 +403,7 @@ public class Main {
                     String tp = sc.next();
                     System.out.println("");
                     Exercise ex1p = new Exercise(tp);
-                    ArrayList<Character> c = new ArrayList<Character>();
+                    ArrayList<Character> c = new ArrayList<>();
                     c.add('+');
                     c.add('-');
                     ex1p.generate(c);
@@ -414,7 +414,7 @@ public class Main {
                     break;
                 default:
                     break;
-            };
+            }
         }
     }
 

@@ -753,6 +753,7 @@ public class Exercise implements iDbManager {
     }
     
     public void exportToFile(String s) {
+        System.out.println("coucou:"+this);
         //Create a new Document object
         Document document = new Document();
         try {

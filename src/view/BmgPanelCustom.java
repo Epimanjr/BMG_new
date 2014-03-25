@@ -20,6 +20,9 @@ import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import model.Exercise;
+import model.QuestionCustom;
+import model.Wording;
 
 /**
  *
@@ -82,17 +85,17 @@ public class BmgPanelCustom extends JPanel {
         JPanel panCenter = new JPanel();
         panCenter.setLayout(new GridLayout(5, 3));
         
-        JTextField[] tabQuestions = new JTextField[5];
-        JTextField[] tabSolutions = new JTextField[5];
-        JComboBox[] tabTypes = new JComboBox[5];
+        final JTextField[] tabQuestions = new JTextField[5];
+        final JTextField[] tabSolutions = new JTextField[5];
+        final JComboBox[] tabTypes = new JComboBox[5];
         
-        String[] types = {"entier", "réel", "chaine"};
+        final String[] types = {"entier", "réel", "chaine"};
         
         panCenter.add(new BmgLabel("Question", "green"));
         panCenter.add(new BmgLabel("Type solution", "green"));
         panCenter.add(new BmgLabel("Solution", "green"));
         
-        for (int i = 0; i < 4; i++) {
+        for (int i = 1; i < 5; i++) {
             tabQuestions[i] = new JTextField(12);
             panCenter.add(tabQuestions[i]);
             tabTypes[i] = new JComboBox(types);
@@ -112,7 +115,31 @@ public class BmgPanelCustom extends JPanel {
             
             @Override
             public void actionPerformed(ActionEvent ae) {
-                System.out.println("coucou");
+                
+                String name = saisieNom.getText();
+                String wording = saisieEnonce.getText();
+                int diff = slide.getValue();
+                
+                Exercise e = new Exercise(name, "custom");
+                e.setWording(new Wording(wording));
+                e.setDifficulty(diff);
+                
+                String q1 = tabQuestions[1].getText();
+                String t1 = types[tabTypes[1].getSelectedIndex()];
+                String s1 = tabSolutions[1].getText();
+                System.out.println("s1"+s1);
+                
+                switch(t1) {
+                    case "entier":
+                        Integer i = new Integer(s1);
+                        QuestionCustom<Integer> qcu1 = new QuestionCustom<Integer>(q1,i);
+                        e.addQuestion(qcu1);
+                        break;
+                }
+                
+                System.out.println("e:"+e);
+                e.save();
+                
             }
         }
         );

@@ -30,6 +30,7 @@ public class BmgMenuBar extends JMenuBar {
     JButton buttonIndex = new JButton(new ImageIcon("index_small.png"));
     JMenu menuExercises = new JMenu("Exercises");
     JMenuItem itemGenerate = new JMenuItem("Générer");
+    JMenuItem itemCustom = new JMenuItem("Créer");
     JMenuItem itemPractice = new JMenuItem("Pratiquer");
     JMenuItem itemSolve = new JMenuItem("Résoudre");
     JMenuItem itemImport = new JMenuItem("Importer");
@@ -117,7 +118,20 @@ public class BmgMenuBar extends JMenuBar {
                 fen.setPanel(BmgFrame.panGenerate);
             }
         });
+        
+        
 
+        //Custom exercises
+        itemCustom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK));
+        itemCustom.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                fen.setPanel(BmgFrame.panCustom);
+            }
+        });
+        
+        
         //Practice exercises !
         itemPractice.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK));
         itemPractice.addActionListener(new ActionListener() {
@@ -156,6 +170,7 @@ public class BmgMenuBar extends JMenuBar {
     private void addItemMenuExercises() {
 
         menuExercises.add(itemGenerate);
+        menuExercises.add(itemCustom);
         menuExercises.add(itemPractice);
         menuExercises.add(itemSolve);
         menuExercises.add(itemImport);

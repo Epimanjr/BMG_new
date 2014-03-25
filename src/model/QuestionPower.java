@@ -412,8 +412,8 @@ public class QuestionPower extends Question implements iDbManager {
             p_statement.setString(1, this.text);
             p_statement.setInt(2, this.difficulty);
             p_statement.setInt(3, this.operand);
-            //p_statement.setString(4, this.encodeOperators());
-            //p_statement.setString(5, this.encodePowers());
+            p_statement.setString(4, this.encodeOperators());
+            p_statement.setString(5, this.encodePowers());
             p_statement.setInt(6, this.length);
             ResultSet rs = p_statement.getGeneratedKeys();
             
@@ -422,6 +422,10 @@ public class QuestionPower extends Question implements iDbManager {
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        } 
+        catch (EncodeException ee) 
+        {
+            ee.printStackTrace();
         }
         
         return false;
@@ -440,8 +444,8 @@ public class QuestionPower extends Question implements iDbManager {
                 p_statement.setString(1, this.text);
                 p_statement.setInt(2, this.id);
                 p_statement.setInt(3, this.operand);
-                //p_statement.setString(4, this.encodeOperators());
-                //p_statement.setString(5, this.encodePowers());
+                p_statement.setString(4, this.encodeOperators());
+                p_statement.setString(5, this.encodePowers());
                 p_statement.setInt(6, this.length);
                 p_statement.setInt(7, this.id);
                 p_statement.executeUpdate();
@@ -450,6 +454,10 @@ public class QuestionPower extends Question implements iDbManager {
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        } 
+        catch (EncodeException ee) 
+        {
+            ee.printStackTrace();
         }
         
         return false;
@@ -497,16 +505,20 @@ public class QuestionPower extends Question implements iDbManager {
                 int diffqp = rs.getInt("diff_qp");
                 int operdqp = rs.getInt("operand_qp");
                 String s_operrs_qp = rs.getString("operators_qp");
-                //ArrayList<Character> operrs_qp = QuestionEquation.decodeOperators(s_operrs_qp);
+                ArrayList<Character> operrsqp = QuestionEquation.decodeOperators(s_operrs_qp);
                 String s_powers_qp = rs.getString("powers_qp");
-                //ArrayList<Integer> powersqp = QuestionPower.decodePowers(s_powers_qp);
+                ArrayList<Integer> powersqp = QuestionPower.decodePowers(s_powers_qp);
                 
-                //questionPower = new QuestionPower(idqp,textqp,diffqp,operdsqp,unknwqp,operrsqp);
+//                questionPower = new QuestionPower(idqp,textqp,diffqp,operrsqp,powersqp);
             }
         }
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        }
+        catch (DecodeException de) 
+        {
+            de.printStackTrace();
         }
         
         return questionPower;

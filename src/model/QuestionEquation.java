@@ -759,7 +759,7 @@ public class QuestionEquation extends Question implements iDbManager {
                 String s_operrs_qe = rs.getString("operators_qe");
                 ArrayList<Character> operrsqe = QuestionEquation.decodeOperators(s_operrs_qe);
                 
-                //questionEquation = new QuestionEquation(idqe,textqe,diffqe,operdsqe,unknwqe,operrsqe);
+                questionEquation = new QuestionEquation(idqe,textqe,diffqe,operdsqe,unknwqe,operrsqe);
             }
         }
         catch (SQLException sqle)

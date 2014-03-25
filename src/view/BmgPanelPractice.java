@@ -20,6 +20,10 @@ import javax.swing.JTextField;
 import model.Exercise;
 import model.Practice;
 import model.QuestionCalculation;
+import model.QuestionCustom;
+import model.QuestionEquation;
+import model.QuestionFraction;
+import model.QuestionPower;
 
 /**
  *
@@ -172,7 +176,18 @@ public class BmgPanelPractice {
                 case "calculation":
                     actionIfCalculation(stringRecup);
                     break;
-
+                case "fraction":
+                    actionIfFraction(stringRecup);
+                    break;
+                case "power":
+                    actionIfPower(stringRecup);
+                    break;
+                case "equation":
+                    actionIfEquation(stringRecup);
+                    break;
+                case "custom":
+                    actionIfCustom(stringRecup);
+                    break;
             }
         }
 
@@ -185,6 +200,55 @@ public class BmgPanelPractice {
 
         //test
         if (anwser == ((QuestionCalculation) e.getQuestion(iterateur - 1)).solve()) {
+            practice.addRight(iterateur - 1);
+        } else {
+            practice.addWrong(iterateur - 1);
+        }
+    }
+    
+    public void actionIfFraction(String recup) {
+
+        //réponse
+        double anwser = new Double(recup);
+
+        //test
+        if (anwser == ((QuestionFraction) e.getQuestion(iterateur - 1)).solve()) {
+            practice.addRight(iterateur - 1);
+        } else {
+            practice.addWrong(iterateur - 1);
+        }
+    }
+    
+    public void actionIfPower(String recup) {
+
+        //réponse
+        double anwser = new Double(recup);
+
+        //test
+        if (anwser == ((QuestionPower) e.getQuestion(iterateur - 1)).solve()) {
+            practice.addRight(iterateur - 1);
+        } else {
+            practice.addWrong(iterateur - 1);
+        }
+    }
+    
+    public void actionIfEquation(String recup) {
+
+        //réponse
+        double anwser = new Double(recup);
+
+        //test
+        if (anwser == ((QuestionEquation) e.getQuestion(iterateur - 1)).solve()[1]) {
+            practice.addRight(iterateur - 1);
+        } else {
+            practice.addWrong(iterateur - 1);
+        }
+    }
+    
+    public void actionIfCustom(String recup) {
+
+        //test
+        if (recup == ((QuestionCustom) e.getQuestion(iterateur - 1)).getSolutionString()) {
             practice.addRight(iterateur - 1);
         } else {
             practice.addWrong(iterateur - 1);

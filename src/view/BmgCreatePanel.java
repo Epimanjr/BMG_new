@@ -358,7 +358,7 @@ public class BmgCreatePanel {
 
         if (listSchool == null) {
             listSchool = new String[1];
-            listSchool[0] = "Autre";
+            listSchool[0] = "Aucune";
         }
         
         listType[0] = "Autre";

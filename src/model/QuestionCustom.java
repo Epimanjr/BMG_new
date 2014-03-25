@@ -419,6 +419,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
             p_statement.setString(1, this.text);
             p_statement.setInt(2, this.difficulty);
             p_statement.setString(3, this.encodeSolution());
+            p_statement.executeUpdate();
             ResultSet rs = p_statement.getGeneratedKeys();
             
             if (rs.next()) this.id = rs.getInt(1);

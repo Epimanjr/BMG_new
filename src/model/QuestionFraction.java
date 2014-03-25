@@ -493,7 +493,7 @@ public class QuestionFraction extends Question implements iDbManager {
         
         try
         {
-            String query = "INSERT INTO QuestionFraction (text_qf, diff_qf , numerators, denominators, operators, length) VALUES (?,?,?,?,?,?)";
+            String query = "INSERT INTO QuestionFraction (text_qf, diff_qf , numerators_qf, denominators_qf, operators_qf, length_qf) VALUES (?,?,?,?,?,?)";
             PreparedStatement p_statement = connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             p_statement.setString(1, this.text);
             p_statement.setInt(2, this.difficulty);
@@ -523,7 +523,7 @@ public class QuestionFraction extends Question implements iDbManager {
         {
             if (this.id < 0)
             {
-                String query = "UPDATE QuestionFraction SET (text_qf = ? , diff_qf = ? , numerators = ? , denominators = ? , operators = ? , length = ?) WHERE id_qf = ?";
+                String query = "UPDATE QuestionFraction SET (text_qf = ? , diff_qf = ? , numerators_qf = ? , denominators_qf = ? , operators_qf = ? , length_qf = ?) WHERE id_qf = ?";
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setString(1, this.text);
                 p_statement.setInt(2, this.id);
@@ -586,11 +586,11 @@ public class QuestionFraction extends Question implements iDbManager {
                 int idqf = rs.getInt("id_qf");
                 String textqf = rs.getString("text_qf");
                 int diffqf = rs.getInt("diff_qf");
-                String s_numerqf = rs.getString("numerators");
+                String s_numerqf = rs.getString("numerators_qf");
                 ArrayList<Integer> numerqf = QuestionFraction.decodeNumerators(s_numerqf);
-                String s_denomqf = rs.getString("denominators");
+                String s_denomqf = rs.getString("denominators_qf");
                 ArrayList<Integer> denomqf = QuestionFraction.decodeDenominators(s_denomqf);
-                String s_operqf = rs.getString("operators");
+                String s_operqf = rs.getString("operators_qf");
                 ArrayList<Character> operqf = QuestionFraction.decodeOperators(s_operqf);
                 
                 questionFraction = new QuestionFraction(idqf,textqf,diffqf,numerqf,denomqf,operqf);

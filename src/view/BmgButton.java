@@ -26,7 +26,8 @@ public class BmgButton extends JButton {
         super(name);
         
         this.setPreferredSize(new Dimension(150,40));
-        this.setBackground(Color.red);
+        this.setBackground(new Color(45, 45, 45));
+        this.setForeground(Color.WHITE);
     }
     
     /**

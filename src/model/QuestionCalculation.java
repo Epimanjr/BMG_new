@@ -44,7 +44,7 @@ public class QuestionCalculation extends Question implements iDbManager {
      */
     public QuestionCalculation() {
         super();
-        this.text = "Calculate.";
+        this.text = "Calculer.";
         this.difficulty = 0;
         this.operands = new ArrayList<>();
         this.operators = new ArrayList<>();
@@ -302,6 +302,12 @@ public class QuestionCalculation extends Question implements iDbManager {
             res = res + it_operators.next() + it_operands.next();
         }
         res = res + "\n			" + this.solve();
+        return res;
+    }
+
+    public String getSolutionString() {
+        String res = "";
+        res = res + this.solve();
         return res;
     }
     

@@ -28,7 +28,7 @@ public class BmgPanelSolve extends JPanel {
 
     String filename = "";
     JLabel labelRes = new JLabel("Aucun fichier sélectionné.");
-    JButton buttonOk = new JButton("GO");
+    //JButton buttonOk = new JButton("GO");
     JButton boutonExportPDF;
     BmgFrame fen;
 
@@ -124,17 +124,17 @@ public class BmgPanelSolve extends JPanel {
         panSouth.add(labelRes);
 
         //Button GO
-        buttonOk = new JButton("Exporter");
+        //buttonOk = new JButton("Exporter");
         //Listener
-        buttonOk.addActionListener(new ActionListener() {
+        /*buttonOk.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
                 actionExporter(ex);
             }
-        });
+        });*/
         
-        boutonExportPDF = new JButton("Exporter en PDF");
+        boutonExportPDF = new JButton("Exercice résolu en PDF");
         boutonExportPDF.addActionListener(new ActionListener() {
 
             @Override
@@ -144,7 +144,7 @@ public class BmgPanelSolve extends JPanel {
             }
         });
         
-        panSouth.add(buttonOk);
+        //panSouth.add(buttonOk);
         panSouth.add(boutonExportPDF);
 
         this.add(panSouth);
@@ -162,13 +162,13 @@ public class BmgPanelSolve extends JPanel {
         if(JFileChooser.APPROVE_OPTION == resultatEnregistrer) {
             nomFichier = jfc.getSelectedFile().toString();
             
-            e.exportToFile(nomFichier + ".pdf");
+            e.exportToFileWithSolutions(nomFichier + ".pdf");
         }
     }
     
-    public void actionExporter(Exercise e) {
+    /*public void actionExporter(Exercise e) {
         e.insert(fen.bs);
-    }
+    }*/
 
     public void addSomething(Component c) {
         this.add(c);

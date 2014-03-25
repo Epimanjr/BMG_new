@@ -146,7 +146,7 @@ public class BmgCreatePanel {
         panExercises.add(bexport);
 
         //Button Solve in panel Exercises.
-        panExercises.add(new BmgLabel("Résoudre les exercices : ", colortext));
+        panExercises.add(new BmgLabel("Accéder aux exercices résolus : ", colortext));
         BmgButton bsolve = new BmgButton("Résoudre");
         //listener
         bsolve.addActionListener(new ActionListener() {
@@ -276,7 +276,7 @@ public class BmgCreatePanel {
         panSouth.setLayout(new BorderLayout());
 
         //Button sign in
-        BmgButton buttonSignin = new BmgButton("S'enregistrer");
+        BmgButton buttonSignin = new BmgButton("Se connecter");
         buttonSignin.addActionListener(new ActionListener() {
 
             @Override
@@ -574,7 +574,7 @@ public class BmgCreatePanel {
 
         // Panel haut
         JPanel panHaut = new JPanel();
-        panHaut.add(new BmgLabel("Générer des exercises aléatoires : ", "red"));
+        panHaut.add(new BmgLabel("Générer des exercices aléatoires : ", "red"));
 
         // Panel center
         JPanel panCenter = new JPanel();

@@ -445,6 +445,36 @@ public class Exercise implements iDbManager {
     public String getType() {
         return type;
     }
+    
+    /**
+     * French type accessor
+     *
+     * @return Exercise type
+     */
+    public String getTypeFrench() {
+        String res = "";
+        switch(this.type) {
+            case "calculation":
+                res = "Calcul arithmétique";
+                break;
+            case "fraction":
+                res = "Calcul fractionnaire";
+                break;
+            case "equation":
+                res = "Résolution d'équation";
+                break;
+            case "power":
+                res = "Calcul de puissances";
+                break;
+            case "custom":
+                res = "Personnalisé";
+                break;
+            default:
+                res = "Personnalisé";
+                break;
+        }
+        return res;
+    }
 
     /**
      * Difficulty level accessor
@@ -729,7 +759,7 @@ public class Exercise implements iDbManager {
             document.open();
 
             String strExercise = "";
-            strExercise = strExercise + "B.M.G. (v1.0)\nExercice\n_________________________________________________________________________\n_________________________________________________________________________\n\n";
+            strExercise = strExercise + "_____________________________________________________________\n\nB.M.G. (v1.0)\nExercice\n_____________________________________________________________\n\n";
             
             Paragraph p = new Paragraph(strExercise,new Font(Font.getFamily(COURIER),14,Font.BOLD));
             p.setAlignment(Element.ALIGN_CENTER);
@@ -737,7 +767,7 @@ public class Exercise implements iDbManager {
             
             strExercise = "";
             strExercise = strExercise + "+ Titre: " + this.title + "\n";
-            strExercise = strExercise + "+ Type: " + this.type + "\n";
+            strExercise = strExercise + "+ Type: " + this.getTypeFrench() + "\n";
             if (this.difficulty != 0) {
                 strExercise = strExercise + "+ Difficulté : " + this.difficulty + "\n";
             }
@@ -757,7 +787,62 @@ public class Exercise implements iDbManager {
                 strExercise = strExercise + "\nRéponse : __________________\n\n";
                 i++;
             }
-            strExercise = strExercise + "\n\n\n                                                 Généré grâce à B.M.G.";
+            strExercise = strExercise + "\n\n________________________________________________________________________";
+
+            //Write into the document
+            p = null;
+            p = new Paragraph(strExercise,new Font(Font.getFamily(COURIER)));
+            document.add(p);
+            
+        } catch (Exception e) {
+            System.err.println(e);
+        } finally {
+            //Close the document
+            document.close();
+        }
+    }
+    
+        public void exportToFileWithSolutions(String s) {
+        //Create a new Document object
+        Document document = new Document();
+        try {
+            //Associate the document with a PDF writer and an output stream
+            PdfWriter.getInstance(document, new FileOutputStream(s));
+
+            //Open the document
+            document.open();
+
+            String strExercise = "";
+            strExercise = strExercise + "_____________________________________________________________\n\nB.M.G. (v1.0)\nExercice Résolu\n_____________________________________________________________\n\n";
+            
+            Paragraph p = new Paragraph(strExercise,new Font(Font.getFamily(COURIER),14,Font.BOLD));
+            p.setAlignment(Element.ALIGN_CENTER);
+            document.add(p);
+            
+            strExercise = "";
+            strExercise = strExercise + "+ Titre: " + this.title + "\n";
+            strExercise = strExercise + "+ Type: " + this.getTypeFrench()+ "\n";
+            if (this.difficulty != 0) {
+                strExercise = strExercise + "+ Difficulté : " + this.difficulty + "\n";
+            }
+            strExercise = strExercise + "+ Nombre de questions : " + this.questions.size() + "\n";
+            strExercise = strExercise + "+ Énoncé : " + this.wording.getText() + "\n\n\n";
+            
+            p = null;
+            p = new Paragraph(strExercise,new Font(Font.getFamily(COURIER),12,Font.BOLD));
+            document.add(p);
+            
+            strExercise = "";
+            Iterator it = this.questions.iterator();
+            int i = 0;
+            while (it.hasNext()) {
+                strExercise = strExercise + "----- Question #" + (i + 1) + "\n";
+                Question q = ((Question) (it.next()));
+                strExercise = strExercise + q.getText();
+                strExercise = strExercise + "\nRéponse : "+q.getSolutionString()+"\n\n";
+                i++;
+            }
+            strExercise = strExercise + "\n\n________________________________________________________________________";
 
             //Write into the document
             p = null;
@@ -985,4 +1070,5 @@ public class Exercise implements iDbManager {
     }
 
     // ----------------------
+
 }

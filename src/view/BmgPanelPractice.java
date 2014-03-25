@@ -69,10 +69,10 @@ public class BmgPanelPractice {
         panHaut.setLayout(new BorderLayout());
 
         String color1 = "black";
-        String color2 = "green";
-        panHaut.add(new JLabel("<html><p style=\"margin-left: 380px;\"><br/>You're practicing exercise " + e.getTitle() + "</p></html>"), BorderLayout.NORTH);
+        String color2 = "grey";
+        panHaut.add(new JLabel("<html><p style=\"margin-left: 380x;\"><br/>Vous faites l'exercice : " + e.getTitle() + "</p></html>"), BorderLayout.NORTH);
 
-        panHaut.add(new JLabel("<html><p style=\"font-size: 12px;margin-left: 50px; color: " + color2 + ";\"><br/>Enonce : " + e.getWordingText() + "</p></html>"), BorderLayout.CENTER);
+        panHaut.add(new JLabel("<html><p style=\"font-size: 16px;margin-left: 50x; color: " + color2 + ";\"><br/>Énoncé : " + e.getWordingText() + "</p></html>"), BorderLayout.CENTER);
     }
 
     public void setPanCenter() {
@@ -103,7 +103,7 @@ public class BmgPanelPractice {
             panCenter1.setBackground(new Color(45, 45, 45));
 
             //Si c'est pas fini on continue
-            JLabel lab = new JLabel("<html><p style=\"color: white\">Question " + iterateur + " / " + getNombreDeQuestions() + "</p><br/><p style=\"color: red;\">" + e.getQuestionText(iterateur - 1) + "</p>");
+            JLabel lab = new JLabel("<html><p style=\"color: orange;font-size: 14px;\">Question " + iterateur + " / " + getNombreDeQuestions() + "</p><br/><p style=\"color: white;font-size:12px;\">" + e.getQuestionText(iterateur - 1) + "</p>");
             lab.setPreferredSize(new Dimension(fen.width - 200, 100));
 
             panCenter1.add(lab);

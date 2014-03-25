@@ -180,5 +180,10 @@ public abstract class Question {
     }
     
     public abstract ArrayList<Question> findAll_ByIdExercise(int ide, BaseSetting bs);
+
+    public String getSolutionString() {
+        String res = "Solution";
+        return res;
+    }
     
 }

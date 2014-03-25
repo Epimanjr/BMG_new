@@ -28,7 +28,7 @@ import javax.swing.KeyStroke;
 public class BmgMenuBar extends JMenuBar {
 
     JButton buttonIndex = new JButton(new ImageIcon("index_small.png"));
-    JMenu menuExercises = new JMenu("Exercises");
+    JMenu menuExercises = new JMenu("Exercices");
     JMenuItem itemGenerate = new JMenuItem("Générer");
     JMenuItem itemCustom = new JMenuItem("Créer");
     JMenuItem itemPractice = new JMenuItem("Pratiquer");

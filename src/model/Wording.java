@@ -40,7 +40,7 @@ public class Wording implements iDbManager {
      */
     public Wording() {
         this.id = -1;
-        this.text = "Answer the following questions.";
+        this.text = "Répondre aux questions suivantes.";
         this.values = new Object[0];
     }
 

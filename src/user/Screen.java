@@ -10,9 +10,7 @@ findByNom : /
 package user;
 
 import database.BaseSetting;
-import database.Database;
 import interfaces.iDbManager;
-import java.io.InputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,8 +19,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Screen implements iDbManager
 {
@@ -63,6 +59,7 @@ public class Screen implements iDbManager
     }
 
     /* MISE A JOURS */
+    @Override
     public boolean insert(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -89,6 +86,7 @@ public class Screen implements iDbManager
 	return true;
     }
     
+    @Override
     public boolean update(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -117,6 +115,7 @@ public class Screen implements iDbManager
 	return true;
     }
 
+    @Override
     public boolean delete(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();

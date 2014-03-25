@@ -102,14 +102,15 @@ public class QuestionPower extends Question implements iDbManager {
         this.length = QPlength;
     }
     
-    QuestionPower(int QPid, String QPtext, int QPdiff, int QPoperand, ArrayList<Character> QPoperators, int QPlength) {
+    QuestionPower(int QPid, String QPtext, int QPdiff, int QPoperand, ArrayList<Character> QPoperators, ArrayList<Integer> QPpowers) {
         super();
         this.id = QPid;
         this.text = QPtext;
         this.difficulty = QPdiff;
         this.operand = QPoperand;
         this.operators = QPoperators;
-        this.length = QPlength;
+        this.powers = QPpowers;
+        this.length = 0;
     }
 
     // ----------------------
@@ -509,7 +510,7 @@ public class QuestionPower extends Question implements iDbManager {
                 String s_powers_qp = rs.getString("powers_qp");
                 ArrayList<Integer> powersqp = QuestionPower.decodePowers(s_powers_qp);
                 
-//                questionPower = new QuestionPower(idqp,textqp,diffqp,operrsqp,powersqp);
+                questionPower = new QuestionPower(idqp,textqp,diffqp,operdqp,operrsqp,powersqp);
             }
         }
         catch (SQLException sqle)

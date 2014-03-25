@@ -3,7 +3,6 @@ package model;
 import database.BaseSetting;
 import exceptions.EncodeException;
 import exceptions.DecodeException;
-import interfaces.iDbManager;
 import java.util.ArrayList;
 
 /**

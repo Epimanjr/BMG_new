@@ -3,7 +3,7 @@ package tests;
 import database.BaseSetting;
 import user.UserType;
 
-public class UserType_Test 
+public class UserType_Tests 
 {
     public static void main(String[] args)
     {

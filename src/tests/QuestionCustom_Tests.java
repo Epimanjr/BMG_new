@@ -35,6 +35,8 @@ public class QuestionCustom_Tests
             System.out.println("DECODE EXCEPTION");
         }
         
+        System.out.println("\n"+"Insert - x5"+"\n");
+        
         qcustom1.insert(bs);
         qcustom2.insert(bs);
         qcustom3.insert(bs);
@@ -43,27 +45,38 @@ public class QuestionCustom_Tests
         
         QuestionCustom qcustom;
         
+        System.out.println("\n"+"FindById - no1"+"\n");
+        
         qcustom = null;
         // ATTENTION AU FINDBYID (avant = static | maintenant != static)
         qcustom = QuestionCustom.findById(4, bs);
         System.out.println(qcustom);
-        qcustom.setText("Je suis la 4eme question personnalisee au monde! J'ai droit au lot de consolation et je le veux tout de suite!");
+        qcustom.setText("Eh mais j'ai droit au lot de consolation! et je le veux tout de suite!");
+        
+        System.out.println("\n"+"Update"+"\n");
         
         qcustom.update(bs);
+        
+        System.out.println("\n"+"FindById - no2"+"\n");
         
         qcustom = null;
         // ATTENTION AU FINDBYID (avant = static | maintenant != static)
         qcustom = QuestionCustom.findById(5, bs);
+        System.out.println(qcustom);
         qcustom.setText("\"- Toi t'es dernier donc tu t'en vas! Au revoir!\"");
         
+        System.out.println("\n"+"Delete"+"\n");
+        
         qcustom.delete(bs);
+        
+        System.out.println("\n"+"FindAll"+"\n");
         
         // ATTENTION AU FINDALL (avant = static | maintenant != static)
         QuestionCustom[] tab_qcustom = QuestionCustom.findAll(bs);
         
         for (QuestionCustom qcust : tab_qcustom) 
         {
-            System.out.println(qcust.getID() + " | " + qcust.getText());
+            System.out.println(qcust);
         }
     }
 }

@@ -47,12 +47,13 @@ public class BmgCreatePanel {
     int width;
     int height;
     String[] listSchool;
+    String[] listType;
 
     public BmgCreatePanel(BmgFrame fen, BaseSetting bs, int width, int height) {
         this.fen = fen;
         this.bs = bs;
         this.listSchool = Manipulation.getAllSchoolName(bs);
-
+        this.listType = new String[1];
         this.width = width;
         this.height = height;
     }
@@ -79,7 +80,7 @@ public class BmgCreatePanel {
         JPanel panExercises = new JPanel();
         panExercises.setPreferredSize(new Dimension(width - 100, ((height - 100) / 2)));
         panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Exercices !</p></html>"));
-        panExercises.setLayout(new GridLayout(7, 2));
+        panExercises.setLayout(new GridLayout(6, 2));
 
         //Button Generate in panel Exercises.
         panExercises.add(new BmgLabel("Générer des exercices aléatoires : ", colortext));
@@ -353,7 +354,6 @@ public class BmgCreatePanel {
         final JTextField[] jtfs = {
             new JTextField(15),
             new JTextField(15),
-            new JTextField(15),
             new JTextField(15),};
 
         if (listSchool == null) {
@@ -361,10 +361,13 @@ public class BmgCreatePanel {
             listSchool[0] = "Autre";
         }
         
-        String[] listType = new String[1];;
         listType[0] = "Autre";
         if (bs != null) {
-            //listType = UserType.findAll();
+            UserType[] tabUt = UserType.findAll(bs);
+            listType = new String[tabUt.length];
+            for(int i=0;i<tabUt.length;i++) {
+                listType[i] = tabUt[i].getName_ut();
+            }
         }
 
         final JComboBox<String> jcb = new JComboBox<String>(listSchool);
@@ -396,7 +399,7 @@ public class BmgCreatePanel {
         panCenter.add(labels[3]);
         panCenter.add(jcb);
         panCenter.add(labels[4]);
-        panCenter.add(jtfs[3]);
+        panCenter.add(jtfs[2]);
         panCenter.add(labels[5]);
         panCenter.add(jpf);
 
@@ -409,7 +412,7 @@ public class BmgCreatePanel {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                actionSignUp(jtfs, jcb, jpf);
+                actionSignUp(jtfs, jcb, jcbt, jpf);
 
             }
         });
@@ -426,7 +429,7 @@ public class BmgCreatePanel {
                 //Action s'il appui sur la touche entrée
                 if (ke.getKeyCode() == KeyEvent.VK_ENTER) {
                     //Méthode méthode que l'action avec la souris
-                    actionSignUp(jtfs, jcb, jpf);
+                    actionSignUp(jtfs, jcb, jcbt, jpf);
                 }
             }
 
@@ -492,7 +495,7 @@ public class BmgCreatePanel {
         };
 
         //Add components to panel
-        panCenter.setLayout(new GridLayout(7, 2));
+        panCenter.setLayout(new GridLayout(6, 2));
         for (int i = 0; i < jtfs.length; i++) {
             panCenter.add(labels[i]);
             panCenter.add(jtfs[i]);
@@ -852,7 +855,7 @@ public class BmgCreatePanel {
      * @param jcb
      * @param jpf
      */
-    public void actionSignUp(JTextField[] saisies, JComboBox jcb, JPasswordField jpf) {
+    public void actionSignUp(JTextField[] saisies, JComboBox jcb, JComboBox jcbt, JPasswordField jpf) {
         //Try to register
         try {
 
@@ -866,7 +869,7 @@ public class BmgCreatePanel {
                  */
                 char[] c = jpf.getPassword();
                 String password = new String(c);
-                if (User.signUp(bs, 1, saisies[0].getText(), saisies[1].getText(), listSchool[jcb.getSelectedIndex()], saisies[2].getText(), password)) {
+                if (User.signUp(bs, jcbt.getSelectedIndex()+1, saisies[0].getText(), saisies[1].getText(), listSchool[jcb.getSelectedIndex()], saisies[2].getText(), password)) {
                     //Sign up success !
                     JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
 

@@ -16,6 +16,6 @@ public class BmgPanelSouth extends JPanel {
         super();
 
         //Label
-        this.add(new BmgLabel("©M.Blaise, A.Nosal, J.Rische, J.Dzimbalka, for BMG 2013/2014", "green"));
+        this.add(new BmgLabel("© Brilliant Mathematicians Generator - v1.0", "black"));
     }
 }

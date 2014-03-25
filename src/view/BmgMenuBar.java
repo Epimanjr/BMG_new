@@ -225,10 +225,10 @@ public class BmgMenuBar extends JMenuBar {
         final JDialog dialog = new JDialog();
 
         JPanel pan = new JPanel();
-        pan.add(new BmgLabel("If you need help, we're not here !", "green"));
+        pan.add(new BmgLabel("Disponible prochainement...", "#E43B01"));
 
         //Close button
-        JButton fermer = new JButton("Close");
+        JButton fermer = new JButton("Fermer");
         fermer.addActionListener(new ActionListener() {
 
             @Override
@@ -242,7 +242,7 @@ public class BmgMenuBar extends JMenuBar {
         
         //Dialog settings
         dialog.setContentPane(pan);
-        dialog.setTitle("Help menu");
+        dialog.setTitle("Aide");
         dialog.setLocation(300, 300);
         dialog.setPreferredSize(new Dimension(400, 300));
         dialog.pack();
@@ -291,9 +291,9 @@ public class BmgMenuBar extends JMenuBar {
                 JOptionPane jop = new JOptionPane();
                 fen.bs.setInfo();
                 if (fen.bs.testerConnexion()) {
-                    JOptionPane.showMessageDialog(null, "Success !", "Database Connexion", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Connexion OK !", "Information", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error !", "Database Connexion", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Erreur !", "Information", JOptionPane.ERROR_MESSAGE);
 
                 }
             }

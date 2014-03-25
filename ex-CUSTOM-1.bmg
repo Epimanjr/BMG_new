@@ -1,0 +1,6 @@
+#Exercise<-1><CUSTOM><custom><2>
+#Wording<-1><$<Trouver la réponse aux questions.>$><emp><>
+#QuestionCustom<int><2><-1><$<Combien font 1+1 ?>$><0>
+#QuestionCustom<str><Antoine Nosal><-1><$<Comment je m'apelle ?>$><0>
+#QuestionCustom<chr><o><-1><$<Vrai ou faux ? (o/n)>$><0>
+#QuestionCustom<dbl><1.5><-1><$<Combien font 1.5+1 ?>$><0>

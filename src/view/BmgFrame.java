@@ -7,6 +7,7 @@ package view;
 
 // Here all imports needed for this class.
 import database.BaseSetting;
+import java.awt.Color;
 import java.awt.Dimension;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -110,7 +111,6 @@ public final class BmgFrame extends JFrame {
         this.setPreferredSize(new Dimension(width, height));
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
         this.pack();
         this.setVisible(true);
 

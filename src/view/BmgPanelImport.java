@@ -68,7 +68,7 @@ public class BmgPanelImport extends JPanel {
         final JComboBox jcb = new JComboBox(tabExercices);
 
         // Button OK
-        JButton bok = new JButton("Ok");
+        JButton bok = new JButton("Sélectionner");
 
         // Add Listener
         bok.addActionListener(new ActionListener() {
@@ -83,15 +83,15 @@ public class BmgPanelImport extends JPanel {
 
                 // Affichage
                 String trueFileName = tabExercices[index];
-                String style = "style=\"color: blue; font-size: 12px;\"";
+                String style = "style=\"color: #E43B01; font-size: 13px;\"";
 
                 //Label with summary
                 //labelRes = new JLabel("");
-                labelRes.setText("<html><p style=\"color: green;font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
-                        + "<p><span " + style + ">Title : </span>" + exercise.getTitle() + "<br/></p>"
+                labelRes.setText("<html><p style=\"color: rgb(45,45,45);font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
+                        + "<p><span " + style + ">Titre : </span>" + exercise.getTitle() + "<br/></p>"
                         + "<p><span " + style + ">Type : </span>" + exercise.getType() + "<br/></p>"
-                        + "<p><span " + style + ">Difficulty : </span>" + exercise.getDifficulty() + "<br/></p>"
-                        + "<p><span " + style + ">Number of questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
+                        + "<p><span " + style + ">Difficulté : </span>" + exercise.getDifficulty() + "<br/></p>"
+                        + "<p><span " + style + ">Nombre de questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                         + "</html>");
 
                 exercise.save();
@@ -122,14 +122,14 @@ public class BmgPanelImport extends JPanel {
         labelRes.setPreferredSize(new Dimension(400, 300));
 
         // Button import
-        JButton bimport = new JButton("Importer");
+        JButton bimport = new JButton("Importer l'exercice");
 
         // Add Listener
         bimport.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                String style = "style=\"color: red;font-size: 15px\"";
+                String style = "style=\"color: #E43B01;font-size: 15px\"";
                 labelRes.setText("<html><p " + style + ">OK</p></html>");
             }
         });

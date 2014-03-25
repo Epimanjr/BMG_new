@@ -19,6 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -188,8 +189,12 @@ public class Screen implements iDbManager
         HashMap<String,Screen> res = new HashMap();
         
         HashMap<String,Screen> anonymousAutorized = new HashMap();
+        anonymousAutorized.put("test", null);
         
-        /**/
+        //for (Map.Entry<String,Screen> e : anonymousAutorized.entrySet()) 
+        //{
+            //e.getValue() + " | " + e.getKey()
+        //}
         
         return res;
     }
@@ -199,6 +204,7 @@ public class Screen implements iDbManager
         HashMap<String,Screen> res = new HashMap();
         
         HashMap<String,Screen> studentAutorized = new HashMap();
+        studentAutorized.put("test", null);
         
         /**/
         
@@ -210,6 +216,7 @@ public class Screen implements iDbManager
         HashMap<String,Screen> res = new HashMap();
         
         HashMap<String,Screen> teacherAutorized = new HashMap();
+        teacherAutorized.put("test", null);
         
         /**/
         
@@ -221,6 +228,7 @@ public class Screen implements iDbManager
         HashMap<String,Screen> res = new HashMap();
         
         HashMap<String,Screen> adminAutorized = new HashMap();
+        adminAutorized.put("test", null);
         
         /**/
         

@@ -103,7 +103,22 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         this.solution = QCsolution;
     }
     
-    
+    QuestionCustom(int idqcustom,String QCtext, int QCdifficulty, SolutionType[] QCsolution)
+    {
+        super();
+        this.id = idqcustom;
+        if (QCtext != null) {
+            this.text = QCtext;
+        } else {
+            this.text = "...";
+        }
+        if (QCdifficulty >= 0) {
+            this.difficulty = QCdifficulty;
+        } else {
+            this.difficulty = 0;
+        }
+        this.solution = QCsolution;
+    }
     
     
     /*@Override
@@ -270,7 +285,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int idqcustom = rs.getInt("id_qcustom");
                 String textqcustom = rs.getString("text_qcustom");
                 int diffqcustom = rs.getInt("diff_qcustom");
-                //String solqcustom = rs.getText("solutions_qcustom");
+                //SolutionType[] solqcustom = this.decodeSolution(rs.getString("solutions_qcustom"));
                 
                 //questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom,solqcustom);
             }

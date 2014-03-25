@@ -23,17 +23,26 @@ public class QuestionCustom_Tests
         QuestionCustom qcustom;
         
         qcustom = null;
+        // ATTENTION AU FINDBYID (avant = static | maintenant != static)
         qcustom = QuestionCustom.findById(4, bs);
         qcustom.setText("Je suis la 4eme question personnalisee au monde! J'ai droit au lot de consolation et je le veux tout de suite!");
         
         qcustom.update(bs);
         
         qcustom = null;
+        // ATTENTION AU FINDBYID (avant = static | maintenant != static)
         qcustom = QuestionCustom.findById(5, bs);
         qcustom.setText("\"- Toi t'es dernier donc tu t'en vas! Au revoir!\"");
         
         qcustom.delete(bs);
         
+        // ATTENTION AU FINDALL (avant = static | maintenant != static)
         QuestionCustom[] tab_qcustom = QuestionCustom.findAll(bs);
+        
+        for (int i=0 ; i<tab_qcustom.length ; i++)
+        {
+            QuestionCustom qcust = tab_qcustom[i];
+            System.out.println(qcust.getID() + " | " + qcust.getText());
+        }
     }
 }

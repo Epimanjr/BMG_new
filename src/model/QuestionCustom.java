@@ -112,6 +112,23 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         this.solution = QCsolution;
     }
     
+    QuestionCustom(int idqcustom,String QCtext, int QCdifficulty)
+    {
+        super();
+        this.id = idqcustom;
+        if (QCtext != null) {
+            this.text = QCtext;
+        } else {
+            this.text = "...";
+        }
+        if (QCdifficulty >= 0) {
+            this.difficulty = QCdifficulty;
+        } else {
+            this.difficulty = 0;
+        }
+        this.solution = null;
+    }
+    
     QuestionCustom(int idqcustom,String QCtext, int QCdifficulty, SolutionType[] QCsolution)
     {
         super();
@@ -455,6 +472,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         
         try
         {
+            // ATTENTION AU FINDBYID (avant = static | maintenant != static)
             if (QuestionCustom.findById(id, bs) != null)
             {
                 String query = "DELETE FROM QuestionCustom WHERE id_qcustom = ?";
@@ -472,6 +490,23 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     }
 
     /* FINDERS */
+    
+    public QuestionCustom getSolutionType(String s, BaseSetting bs) throws DecodeException
+    {
+        QuestionCustom tips = new QuestionCustom("");
+        
+        Object[] decodeSolution = tips.decodeSolution(s);
+        
+        //fake.setSolution(decodeSolution);
+        
+        tips = QuestionCustom.findById(id, bs);
+        
+        tips.setSolution(decodeSolution);
+        
+        return tips;
+    }
+    
+    // ATTENTION AU FINDBYID (avant = static | maintenant != static)
     public static QuestionCustom findById(int id, BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -491,9 +526,11 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int idqcustom = rs.getInt("id_qcustom");
                 String textqcustom = rs.getString("text_qcustom");
                 int diffqcustom = rs.getInt("diff_qcustom");
-                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(rs.getString("solutions_qcustom"));
+                String soltextqcustom = rs.getString("solutions_qcustom");
                 
-                //questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom,solqcustom);
+                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(soltextqcustom);
+                
+                questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);//,solqcustom);
             }
         }
         catch (SQLException sqle)
@@ -508,11 +545,12 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         return questionCustom;
     }
     
+    // ATTENTION AU FINDALL (avant = static | maintenant != static)
     public static QuestionCustom[] findAll(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
         
-        ArrayList<UserType> al_qcustom = new ArrayList();
+        ArrayList<QuestionCustom> al_qcustom = new ArrayList();
         
         try
         {
@@ -526,11 +564,13 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int idqcustom = rs.getInt("id_qcustom");
                 String textqcustom = rs.getString("text_qcustom");
                 int diffqcustom = rs.getInt("diff_qcustom");
-                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(rs.getString("solutions_qcustom"));
+                String soltextqcustom = rs.getString("solutions_qcustom");
                 
-                //QuestionCustom questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom,solqcustom);
+                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(soltextqcustom);
                 
-                //al_qcustom.add(questionCustom);
+                QuestionCustom questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);//,solqcustom);
+                
+                al_qcustom.add(questionCustom);
             }
         }
         catch (SQLException sqle)

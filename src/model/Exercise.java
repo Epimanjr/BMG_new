@@ -4,11 +4,11 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import static com.itextpdf.text.FontFactory.COURIER;
-import static com.itextpdf.text.FontFactory.COURIER_BOLD;
-import static com.itextpdf.text.FontFactory.TIMES_ROMAN;
-import static com.itextpdf.text.FontFactory.HELVETICA;
-import static com.itextpdf.text.FontFactory.TIMES_BOLD;
-import static com.itextpdf.text.FontFactory.ZAPFDINGBATS;
+//import static com.itextpdf.text.FontFactory.COURIER_BOLD;
+//import static com.itextpdf.text.FontFactory.TIMES_ROMAN;
+//import static com.itextpdf.text.FontFactory.HELVETICA;
+//import static com.itextpdf.text.FontFactory.TIMES_BOLD;
+//import static com.itextpdf.text.FontFactory.ZAPFDINGBATS;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import exceptions.EncodeException;
@@ -59,7 +59,7 @@ public class Exercise implements iDbManager {
     /**
      * Exercise questions
      */
-    private ArrayList<Question> questions;
+    private final ArrayList<Question> questions;
 
     /**
      * Exercise type
@@ -112,6 +112,7 @@ public class Exercise implements iDbManager {
     /**
      * This constructor creates an exercise of the type given in parameter All others characteristics are random
      *
+     * @param Etitle
      * @param Etype Exercise type
      */
     public Exercise(String Etitle, String Etype) {
@@ -225,6 +226,7 @@ public class Exercise implements iDbManager {
 
     /**
      * Generate a random exercise with 10 randoms questions, type must be precised in the attribute.
+     * @param numberOfQuestions
      */
     public void generate(int numberOfQuestions) {
         if (this.type.compareTo("") != 0) {
@@ -258,6 +260,8 @@ public class Exercise implements iDbManager {
 
     /**
      * Generate a random exercise with 10 randoms questions, type must be precised in the attribute.
+     * @param numberOfQuestions
+     * @param Eoperators
      */
     public void generate(int numberOfQuestions, ArrayList<Character> Eoperators) {
         if (this.type.compareTo("") != 0) {
@@ -1020,11 +1024,11 @@ public class Exercise implements iDbManager {
                 int idq = rs.getInt("id_q");
 
                 if (QuestionCalculation.findById(idq, bs) != null)
-                alq.add(QuestionCalculation.findById(idq, bs));
+                    alq.add(QuestionCalculation.findById(idq, bs));
                 if (QuestionFraction.findById(idq, bs) != null)
-                alq.add(QuestionFraction.findById(idq, bs));
+                    alq.add(QuestionFraction.findById(idq, bs));
                 if (QuestionEquation.findById(idq, bs) != null)
-                alq.add(QuestionEquation.findById(idq, bs));
+                    alq.add(QuestionEquation.findById(idq, bs));
             }
 
         } catch (SQLException sqle) {

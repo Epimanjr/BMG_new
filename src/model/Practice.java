@@ -55,8 +55,8 @@ public class Practice {
         this.execution_date = new GregorianCalendar();
         this.execution_date.setTime(new Date());
         this.success = 0.0;
-        this.wrong_answers = new ArrayList<Integer>();
-        this.right_answers = new ArrayList<Integer>();
+        this.wrong_answers = new ArrayList<>();
+        this.right_answers = new ArrayList<>();
         this.practiced_exercise = e;
     }
 
@@ -67,8 +67,8 @@ public class Practice {
         this.execution_date.setTime(new Date());
         this.execution_date.setTime(new Date());
         this.success = 0.0;
-        this.wrong_answers = new ArrayList<Integer>();
-        this.right_answers = new ArrayList<Integer>();
+        this.wrong_answers = new ArrayList<>();
+        this.right_answers = new ArrayList<>();
         this.practiced_exercise = e;
     }
 
@@ -128,7 +128,7 @@ public class Practice {
     }
 
     public static ArrayList<Integer> decodeRightAnswers(String str) {
-        ArrayList<Integer> res = new ArrayList<Integer>();
+        ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
         for (int x = 0; x < tab.length; x++) {
             res.add(Integer.valueOf(tab[x]));
@@ -138,7 +138,7 @@ public class Practice {
     }
 
     public static ArrayList<Integer> decodeWrongAnswers(String str) {
-        ArrayList<Integer> res = new ArrayList<Integer>();
+        ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
         for (int x = 0; x < tab.length; x++) {
             res.add(Integer.valueOf(tab[x]));

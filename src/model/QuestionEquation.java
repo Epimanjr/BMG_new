@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class QuestionEquation extends Question implements iDbManager {
 
@@ -45,35 +43,38 @@ public class QuestionEquation extends Question implements iDbManager {
         super();
         this.text = "Solve.";
         this.difficulty = 0;
-        this.operands = new ArrayList<Integer>();
-        this.unknowns = new ArrayList<Integer>();
-        this.operators = new ArrayList<Character>();
+        this.operands = new ArrayList<>();
+        this.unknowns = new ArrayList<>();
+        this.operators = new ArrayList<>();
         this.length = 0;
     }
 
     /**
      * This constructor creates a question with the text given in parameter
+     * @param QCtext
      */
     public QuestionEquation(String QCtext) {
         super();
         this.text = QCtext;
         this.difficulty = 0;
-        this.operands = new ArrayList<Integer>();
-        this.unknowns = new ArrayList<Integer>();
-        this.operators = new ArrayList<Character>();
+        this.operands = new ArrayList<>();
+        this.unknowns = new ArrayList<>();
+        this.operators = new ArrayList<>();
         this.length = 0;
     }
 
     /**
      * This constructor creates a question with the text and the difficulty given in parameters
+     * @param QCtext
+     * @param QCdifficulty
      */
     public QuestionEquation(String QCtext, int QCdifficulty) {
         super();
         this.text = QCtext;
         this.difficulty = QCdifficulty;
-        this.operands = new ArrayList<Integer>();
-        this.unknowns = new ArrayList<Integer>();
-        this.operators = new ArrayList<Character>();
+        this.operands = new ArrayList<>();
+        this.unknowns = new ArrayList<>();
+        this.operators = new ArrayList<>();
         this.length = 0;
     }
     
@@ -168,6 +169,8 @@ public class QuestionEquation extends Question implements iDbManager {
     
     /**
      * Generate a random question with an equation
+     * @param order
+     * @param QCoperators
      */
     public void generate(int order, ArrayList<Character> QCoperators) {
         Character[] possible_operators = new Character[QCoperators.size()];
@@ -208,6 +211,7 @@ public class QuestionEquation extends Question implements iDbManager {
 
     /**
      * Generate a random question with an equation with the length given in parameter
+     * @param QClength
      */
     /*public void generate(int QClength) {
      char[] possible_operators = {'+', '-', '*', '/'};
@@ -266,6 +270,7 @@ public class QuestionEquation extends Question implements iDbManager {
 
     /**
      * Solve a question with an equation
+     * @return 
      */
     public double[] solve() {
         /*double res = 0;
@@ -322,7 +327,7 @@ public class QuestionEquation extends Question implements iDbManager {
             }
             res = new double[order];
 
-            ArrayList<Double> equation = new ArrayList<Double>();
+            ArrayList<Double> equation = new ArrayList<>();
             equation.add((double) operands.get(0));
             for (int i = 1; i < operands.size(); i++) {
                 if (operators.get(i - 1) == '-') {
@@ -386,6 +391,7 @@ public class QuestionEquation extends Question implements iDbManager {
         return res;
     }
 
+    @Override
     public String getText() {
         String res = "";
         res = res + this.text + " ";
@@ -418,7 +424,9 @@ public class QuestionEquation extends Question implements iDbManager {
     
     /**
      * Display a question with an equation
+     * @return 
      */
+    @Override
     public String toString() {
         String res = "		QuestionEquation";
         res = res + "\n			Text: " + this.text;
@@ -532,7 +540,9 @@ public class QuestionEquation extends Question implements iDbManager {
      * Encode the current question (object) in a string which can recreate this question by the decode() method
      *
      * @return encoded question
+     * @throws exceptions.EncodeException
      */
+    @Override
     public String encode() throws EncodeException {
         String res = "#QuestionEquation<";
         res = res + encodeOperands();
@@ -580,6 +590,7 @@ public class QuestionEquation extends Question implements iDbManager {
      *
      * @param str encoded question
      * @return decoded question (object)
+     * @throws exceptions.DecodeException
      */
     public static QuestionEquation decode(String str) throws DecodeException {
         QuestionEquation res = null;
@@ -652,6 +663,7 @@ public class QuestionEquation extends Question implements iDbManager {
     // ----- DB METHODS -----
 
     /* MISE A JOURS */
+    @Override
     public boolean insert(BaseSetting bs) {
         Connection connection = bs.getConnection();
         
@@ -681,6 +693,7 @@ public class QuestionEquation extends Question implements iDbManager {
         return false;
     }
 
+    @Override
     public boolean update(BaseSetting bs) {
         Connection connection = bs.getConnection();
         
@@ -712,6 +725,7 @@ public class QuestionEquation extends Question implements iDbManager {
         return false;
     }
 
+    @Override
     public boolean delete(BaseSetting bs) {
         Connection connection = bs.getConnection();
         

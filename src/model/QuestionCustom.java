@@ -9,8 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class QuestionCustom<SolutionType> extends Question implements iDbManager {
 
@@ -40,6 +38,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     /**
      * This constructor creates a question,
      * with the text given in parameter.
+     * @param QCtext
      */
     public QuestionCustom(String QCtext) {
         super();
@@ -55,6 +54,8 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     /**
      * This constructor creates a question,
      * with the text and the solution given in parameters.
+     * @param QCtext
+     * @param QCsolution
      */
     public QuestionCustom(String QCtext, SolutionType[] QCsolution) {
         super();
@@ -70,6 +71,8 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     /**
      * This constructor creates a question,
      * with the text and the difficulty given in parameters.
+     * @param QCtext
+     * @param QCdifficulty
      */
     public QuestionCustom(String QCtext, int QCdifficulty) {
         super();
@@ -89,6 +92,9 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     /**
      * This constructor creates a question,
      * with the text, the difficulty and the solution given in parameters.
+     * @param QCtext
+     * @param QCdifficulty
+     * @param QCsolution
      */
     public QuestionCustom(String QCtext, int QCdifficulty, SolutionType[] QCsolution) {
         super();
@@ -183,7 +189,9 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     
     /**
      * Display a question custom.
+     * @return 
      */
+    @Override
     public String toString() {
         String res = "		QuestionCustom";
         res = res + "\n                 Text: " + this.text;
@@ -202,6 +210,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     // ----- DB METHODS -----
 
     /* MISE A JOURS */
+    @Override
     public boolean insert(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -229,6 +238,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         return false;
     }
 
+    @Override
     public boolean update(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -258,6 +268,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         return false;
     }
 
+    @Override
     public boolean delete(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();

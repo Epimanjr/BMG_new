@@ -19,7 +19,6 @@ setDisconnected : ...
 package user;
 
 import database.BaseSetting;
-import database.Database;
 import exceptions.AccessDeniedException;
 import exceptions.AlreadyExistsException;
 import interfaces.iDbManager;
@@ -27,8 +26,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class User implements iDbManager
 {
@@ -163,6 +160,7 @@ public class User implements iDbManager
     }
 
     /* MISE A JOURS */
+    @Override
     public boolean insert(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -196,6 +194,7 @@ public class User implements iDbManager
         return false;
     }    
     
+    @Override
     public boolean update(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -224,6 +223,7 @@ public class User implements iDbManager
         return true;
     }
 
+    @Override
     public boolean delete(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -406,7 +406,7 @@ public class User implements iDbManager
 	{
 	    User u = User.findByLogs(eml, pswd, bs);
 	    u.setConnected_u(1);
-	    b = u.update(bs);
+	    u.update(bs);
 	    b = (User.findById(u.getId_u(), bs).isConnected_u() == 1);
             b = true;
 	}
@@ -426,7 +426,7 @@ public class User implements iDbManager
 	{
 	    User u = User.findByLogs(eml, pswd, bs);
 	    u.setConnected_u(0);
-	    b = u.update(bs);
+	    u.update(bs);
 	    b = (User.findById(u.getId_u(), bs).isConnected_u() == 0);
 	}
 	

@@ -3,10 +3,12 @@ package database;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Database 
 {
-    private BaseSetting bs = new BaseSetting();
+    private final BaseSetting bs = new BaseSetting();
     private Connection connection = null;
     private String driver = "com.mysql.jdbc.Driver";
     private String url = "jdbc:mysql://localhost:3306/BMG_db";
@@ -45,10 +47,6 @@ public class Database
 	{
 	    System.out.println("SQL Exception in disconnect method");
 	    sqle.printStackTrace();
-	} catch (Exception e) 
-	{
-	    System.out.println("Exception in disconnect method");
-	    e.printStackTrace();
 	}
 	
 	return res;
@@ -68,12 +66,10 @@ public class Database
 	{
 	    System.out.println("SQL Exception in connect method");
 	    sqle.printStackTrace();
-	}
-	catch (Exception e)
-	{
-	    System.out.println("Exception in connect method");
-	    e.printStackTrace();
-	}
+	} catch (ClassNotFoundException cnfe) {
+            System.out.println("ClassNotFound Exception in connect method");
+	    cnfe.printStackTrace();
+        }
 	return res;
     }
     

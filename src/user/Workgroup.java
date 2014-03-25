@@ -10,14 +10,11 @@ findByNom : /
 package user;
 
 import database.BaseSetting;
-import database.Database;
 import interfaces.iDbManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Workgroup implements iDbManager
 {
@@ -58,6 +55,7 @@ public class Workgroup implements iDbManager
     }
     
     /* MISE A JOURS */
+    @Override
     public boolean insert(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -82,6 +80,7 @@ public class Workgroup implements iDbManager
 	return true;
     }
     
+    @Override
     public boolean update(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
@@ -106,6 +105,7 @@ public class Workgroup implements iDbManager
 	return true;
     }
 
+    @Override
     public boolean delete(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();

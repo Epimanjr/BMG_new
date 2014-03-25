@@ -78,7 +78,7 @@ public class BmgCreatePanel {
         JPanel panExercises = new JPanel();
         panExercises.setPreferredSize(new Dimension(width - 100, ((height - 100) / 2)));
         panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Exercices !</p></html>"));
-        panExercises.setLayout(new GridLayout(5, 2));
+        panExercises.setLayout(new GridLayout(6, 2));
 
         //Button Generate in panel Exercises.
         panExercises.add(new BmgLabel("Générer des exercices aléatoires : ", colortext));
@@ -92,6 +92,19 @@ public class BmgCreatePanel {
             }
         });
         panExercises.add(bgenerate);
+        
+        //Button créer 
+        panExercises.add(new BmgLabel("Créer des exercices personnalisés : ", colortext));
+        BmgButton bcreer = new BmgButton("Créer");
+        //listener
+        bcreer.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                fen.setPanel(BmgFrame.panCustom);
+            }
+        });
+        panExercises.add(bcreer);
 
         //Button Practice in panel Exercises.
         panExercises.add(new BmgLabel("Pratiquer vos exercices : ", colortext));
@@ -140,7 +153,7 @@ public class BmgCreatePanel {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
-                // fen.setPanel(BmgFrame.panS);
+                 fen.setPanel(BmgFrame.panSolve);
             }
         });
         panExercises.add(bsolve);

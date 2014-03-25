@@ -37,7 +37,7 @@ public class BmgPanelCustom extends JPanel {
         
         JPanel panHaut = new JPanel();
         panHaut.setLayout(new GridLayout(3, 2));
-        
+
         // Labels
         JLabel label1 = new JLabel("Nom de l'exercice : ");
         JLabel label2 = new JLabel("Difficulté : ");
@@ -49,11 +49,11 @@ public class BmgPanelCustom extends JPanel {
         
         final JTextField saisieNom = new JTextField(20);
         final JTextField saisieEnonce = new JTextField(20);
-        
+
         // Slide
         final JSlider slide = new JSlider();
         final JLabel labelInfo = new JLabel("Valeur actuelle : " + 2);
-
+        
         slide.setMaximum(5);
         slide.setMinimum(1);
         slide.setValue(2);
@@ -68,7 +68,7 @@ public class BmgPanelCustom extends JPanel {
                         + ((JSlider) event.getSource()).getValue());
             }
         });
-        
+
         // Ajout des composants
         panHaut.add(label1);
         panHaut.add(saisieNom);
@@ -77,23 +77,22 @@ public class BmgPanelCustom extends JPanel {
         panHaut.add(label3);
         panHaut.add(saisieEnonce);
         
-        
         this.add(panHaut, BorderLayout.NORTH);
         
         JPanel panCenter = new JPanel();
-        panCenter.setLayout(new GridLayout(5,3));
+        panCenter.setLayout(new GridLayout(5, 3));
         
         JTextField[] tabQuestions = new JTextField[5];
         JTextField[] tabSolutions = new JTextField[5];
         JComboBox[] tabTypes = new JComboBox[5];
         
-        String[] types = {"entier","réel","chaine"};
+        String[] types = {"entier", "réel", "chaine"};
         
         panCenter.add(new BmgLabel("Question", "green"));
         panCenter.add(new BmgLabel("Type solution", "green"));
         panCenter.add(new BmgLabel("Solution", "green"));
         
-        for(int i=0;i<4;i++) {
+        for (int i = 0; i < 4; i++) {
             tabQuestions[i] = new JTextField(12);
             panCenter.add(tabQuestions[i]);
             tabTypes[i] = new JComboBox(types);
@@ -102,11 +101,15 @@ public class BmgPanelCustom extends JPanel {
             panCenter.add(tabSolutions[i]);
         }
         
-        this.add(panCenter,BorderLayout.CENTER);
+        this.add(panCenter, BorderLayout.CENTER);
+        
+        JPanel panSouth = new JPanel();
+        panSouth.setLayout(new BoxLayout(panSouth, BoxLayout.PAGE_AXIS));
         
         JButton createEx = new JButton("Créer l'exercice");
+        createEx.setPreferredSize(new Dimension(fen.height, 100));
         createEx.addActionListener(new ActionListener() {
-
+            
             @Override
             public void actionPerformed(ActionEvent ae) {
                 System.out.println("coucou");
@@ -114,6 +117,13 @@ public class BmgPanelCustom extends JPanel {
         }
         );
         
-        this.add(createEx,BorderLayout.SOUTH);
+        JLabel labelSouth = new JLabel("");
+        labelSouth.setPreferredSize(new Dimension(800, 100));
+        
+        panSouth.add(labelSouth);
+        panSouth.add(createEx);
+        
+        this.add(panSouth, BorderLayout.SOUTH);
+        
     }
 }

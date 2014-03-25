@@ -43,6 +43,7 @@ public final class BmgFrame extends JFrame {
     static JPanel panPractice;
     static JPanel panExport;
     static JPanel panImport;
+    static JPanel panSolve;
 
     BmgCreatePanel bcp;
 
@@ -95,6 +96,7 @@ public final class BmgFrame extends JFrame {
         panExport = new BmgPanelExport(fen(), "");
         panImport = new BmgPanelImport(fen());
         panCustom = new BmgPanelCustom(fen());
+        panSolve = new BmgPanelSolve(fen(), labelConnection);
     }
 
     /**

@@ -122,7 +122,7 @@ public class BmgMenuBar extends JMenuBar {
         
 
         //Custom exercises
-        itemCustom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, KeyEvent.CTRL_MASK));
+        itemCustom.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK));
         itemCustom.addActionListener(new ActionListener() {
 
             @Override
@@ -162,6 +162,15 @@ public class BmgMenuBar extends JMenuBar {
             }
         });
         
+        itemSolve.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.CTRL_MASK));
+        itemSolve.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                fen.setPanel(BmgFrame.panSolve);
+            }
+        });
+        
     }
 
     /**
@@ -175,7 +184,7 @@ public class BmgMenuBar extends JMenuBar {
         menuExercises.add(itemSolve);
         menuExercises.add(itemImport);
         menuExercises.add(itemExport);
-        menuExercises.add(itemEdit);
+        //menuExercises.add(itemEdit);
         this.add(menuExercises);
     }
 

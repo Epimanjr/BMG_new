@@ -15,9 +15,9 @@ import view.Automate;
 public class Principale {
 
     public static void main(String[] args) {
-        BaseInformation baseInformation = new BaseInformation("mysql", "com.mysql.jdbc.Driver", "BMG_DB", "root", "", "//localhost");
+        //BaseInformation baseInformation = new BaseInformation("mysql", "com.mysql.jdbc.Driver", "BMG_DB", "root", "", "//localhost");
         if (args.length == 1) {
-            System.out.println("Args 1");
+            //System.out.println("Args 1");
             Automate a = new Automate(args);
 
         } else {

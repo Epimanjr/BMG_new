@@ -253,7 +253,34 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     /* FINDERS */
     public static QuestionCustom findById(int id, BaseSetting bs) 
     {
-        return null;
+        Connection connection = bs.getConnection();
+        
+        QuestionCustom questionCustom = null;
+        
+        try
+        {
+            String query = "SELECT * FROM QuestionCustom WHERE id_qcustom = ?";
+            PreparedStatement p_statement = connection.prepareStatement(query);
+            p_statement.setInt(1,id);
+            
+            ResultSet rs = p_statement.executeQuery();
+            
+            if (rs.next())
+            {
+                int idqcustom = rs.getInt("id_qcustom");
+                String textqcustom = rs.getString("text_qcustom");
+                int diffqcustom = rs.getInt("diff_qcustom");
+                //String solqcustom = rs.getText("solutions_qcustom");
+                
+                //questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom,solqcustom);
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return questionCustom;
     }
 
     // ----------------------

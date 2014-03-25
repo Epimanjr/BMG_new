@@ -4,6 +4,10 @@ import exceptions.EncodeException;
 import exceptions.DecodeException;
 import database.BaseSetting;
 import interfaces.iDbManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.*;
 
 public class QuestionEquation extends Question implements iDbManager {
@@ -68,6 +72,18 @@ public class QuestionEquation extends Question implements iDbManager {
         this.operands = new ArrayList<Integer>();
         this.unknowns = new ArrayList<Integer>();
         this.operators = new ArrayList<Character>();
+        this.length = 0;
+    }
+    
+    public QuestionEquation(int QEid, String QEtext, int QEdifficulty, ArrayList<Integer> QEoperds, ArrayList<Integer> QEunknw, ArrayList<Character> QEoperrs)
+    {
+        super();
+        this.id = QEid;
+        this.text = QEtext;
+        this.difficulty = QEdifficulty;
+        this.operands = QEoperds;
+        this.unknowns = QEunknw;
+        this.operators = QEoperrs;
         this.length = 0;
     }
 
@@ -635,20 +651,113 @@ public class QuestionEquation extends Question implements iDbManager {
 
     /* MISE A JOURS */
     public boolean insert(BaseSetting bs) {
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            String query = "INSERT INTO QuestionEquation (text_qe, diff_qe , operands_qe, unknowns_qe, operators_qe, length_qe) VALUES (?,?,?,?,?,?)";
+            PreparedStatement p_statement = connection.prepareStatement(query);
+            p_statement.setString(1, this.text);
+            p_statement.setInt(2, this.difficulty);
+            //p_statement.setString(3, this.encodeOperands());
+            //p_statement.setString(4, this.encodeUnknowns());
+            //p_statement.setString(5, this.encodeOperators());
+            p_statement.setInt(6, this.length);
+            ResultSet rs = p_statement.getGeneratedKeys();
+            
+            if (rs.next()) this.id = rs.getInt(1);
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
         return false;
     }
 
     public boolean update(BaseSetting bs) {
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            if (this.id < 0)
+            {
+                String query = "UPDATE QuestionEquation SET (text_qe = ? , diff_qe = ? , operands = ? , unknowns_qe = ? , operators_qe = ? , length_qe = ?) WHERE id_qe = ?";
+                PreparedStatement p_statement = connection.prepareStatement(query);
+                p_statement.setString(1, this.text);
+                p_statement.setInt(2, this.id);
+                //p_statement.setString(3, this.encodeOperands());
+                //p_statement.setString(4, this.encodeUnknowns());
+                //p_statement.setString(5, this.encodeOperators());
+                p_statement.setInt(6, this.length);
+                p_statement.setInt(7, this.id);
+                p_statement.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
         return false;
     }
 
     public boolean delete(BaseSetting bs) {
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            if (QuestionEquation.findById(id, bs) != null)
+            {
+                String query = "DELETE FROM QuestionEquation WHERE id_qe = ?";
+                PreparedStatement p_statement = connection.prepareStatement(query);
+                p_statement.setInt(1,id);
+                p_statement.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
         return false;
     }
 
     /* FINDERS */
     public static QuestionEquation findById(int id, BaseSetting bs) {
-        return null;
+        Connection connection = bs.getConnection();
+        
+        QuestionEquation questionEquation = null;
+        
+        try
+        {
+            String query = "SELECT * FROM QuestionEquation WHERE id_qe = ?";
+            PreparedStatement p_statement = connection.prepareStatement(query);
+            p_statement.setInt(1,id);
+            
+            ResultSet rs = p_statement.executeQuery();
+            
+            if (rs.next())
+            {
+                int idqe = rs.getInt("id_qe");
+                String textqe = rs.getString("text_qe");
+                int diffqe = rs.getInt("diff_qe");
+                String s_operds_qe = rs.getString("operands_qe");
+                //ArrayList<Integer> operdsqe = QuestionFraction.decodeOperands(s_operds_qe);
+                String s_unknw_qe = rs.getString("unknowns_qe");
+                ArrayList<Integer> unknwqe = QuestionFraction.decodeDenominators(s_unknw_qe);
+                String s_operrs_qe = rs.getString("operators_qe");
+                ArrayList<Character> operrsqe = QuestionFraction.decodeOperators(s_operrs_qe);
+                
+                //questionEquation = new QuestionEquation(idqe,textqe,diffqe,operdsqe,unknwqe,operrsqe);
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return questionEquation;
     }
 
     // ----------------------

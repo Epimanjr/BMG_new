@@ -197,7 +197,11 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     
     public static Class decodeSolutionType(String encodedQuestion) throws DecodeException, ClassNotFoundException {
         Class res;
-        String type = encodedQuestion;
+        int i=0;
+        while (encodedQuestion.charAt(i) != '>') {
+            i++;
+        }
+        String type = encodedQuestion.substring(0, i);
         
         switch(type) {
             case "int":
@@ -276,15 +280,15 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
     public static QuestionCustom decode(String str) throws DecodeException, ClassNotFoundException {
         if (str.substring(0, 15).compareTo("#QuestionCustom") == 0) {
             int i = 15;
+            int beginning = i;
             if (str.charAt(i) == '<') {
                 while (str.charAt(i) != '>') {
                     i++;
                 }
-                Class objectType = decodeSolutionType(str.substring(16, i));
+                Class objectType = decodeSolutionType(str.substring(16));
                 if (objectType == Class.forName("java.lang.Integer")) {
                     QuestionCustom<Integer> res = new QuestionCustom<>();
                     i++;
-                    int beginning = i;
                     if (str.charAt(i) == '<') {
                         while (str.charAt(i) != '>') {
                             i++;
@@ -301,7 +305,6 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 } else if (objectType == Class.forName("java.lang.Double")) {
                     QuestionCustom<Double> res = new QuestionCustom<>();
                     i++;
-                    int beginning = i;
                     if (str.charAt(i) == '<') {
                         while (str.charAt(i) != '>') {
                             i++;
@@ -318,7 +321,6 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 } else if (objectType == Class.forName("java.lang.String")) {
                     QuestionCustom<String> res = new QuestionCustom<>();
                     i++;
-                    int beginning = i;
                     if (str.charAt(i) == '<') {
                         while (str.charAt(i) != '>') {
                             i++;
@@ -335,7 +337,6 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 } else if (objectType == Class.forName("java.lang.Character")) {
                     QuestionCustom<Character> res = new QuestionCustom<>();
                     i++;
-                    int beginning = i;
                     if (str.charAt(i) == '<') {
                         while (str.charAt(i) != '>') {
                             i++;
@@ -352,7 +353,6 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 } else if (objectType == Class.forName("java.lang.Boolean")) {
                     QuestionCustom<Boolean> res = new QuestionCustom<>();
                     i++;
-                    int beginning = i;
                     if (str.charAt(i) == '<') {
                         while (str.charAt(i) != '>') {
                             i++;

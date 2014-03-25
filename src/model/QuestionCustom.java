@@ -9,6 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import user.UserType;
 
 public class QuestionCustom<SolutionType> extends Question implements iDbManager {
 
@@ -499,6 +500,51 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
 //        }
         
         return questionCustom;
+    }
+    
+    public static QuestionCustom[] findAll(BaseSetting bs) 
+    {
+        Connection connection = bs.getConnection();
+        
+        ArrayList<UserType> al_qcustom = new ArrayList();
+        
+        try
+        {
+            String query = "SELECT * FROM QuestionCustom";
+            PreparedStatement p_statement = connection.prepareStatement(query);
+            
+            ResultSet rs = p_statement.executeQuery();
+            
+            while (rs.next())
+            {
+                int idqcustom = rs.getInt("id_qcustom");
+                String textqcustom = rs.getString("text_qcustom");
+                int diffqcustom = rs.getInt("diff_qcustom");
+                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(rs.getString("solutions_qcustom"));
+                
+                //QuestionCustom questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom,solqcustom);
+                
+                //al_qcustom.add(questionCustom);
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+//        catch (DecodeException de) 
+//        {
+//            de.printStackTrace();
+//        }
+        
+        QuestionCustom[] tab_qcustom = null;
+        
+        if (!(al_qcustom.isEmpty()))
+        {
+            tab_qcustom = new QuestionCustom[al_qcustom.size()];
+            al_qcustom.toArray(tab_qcustom);
+        }
+        
+        return tab_qcustom;
     }
 
     // ----------------------

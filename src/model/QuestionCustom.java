@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class QuestionCustom<SolutionType> extends Question implements iDbManager {
 
@@ -205,7 +207,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
             PreparedStatement p_statement = connection.prepareStatement(query);
             p_statement.setString(1, this.text);
             p_statement.setInt(2, this.difficulty);
-            //p_statement.setText(3, this.encodeSolution());
+            p_statement.setString(3, this.encodeSolution());
             ResultSet rs = p_statement.getGeneratedKeys();
             
             if (rs.next()) this.id = rs.getInt(1);
@@ -213,6 +215,10 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        }
+        catch (EncodeException ee) 
+        {
+            ee.printStackTrace();
         }
         
         return false;
@@ -230,7 +236,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setString(1, this.text);
                 p_statement.setInt(2, this.difficulty);
-                //p_statement.setText(3, this.encodeSolution());
+                p_statement.setString(3, this.encodeSolution());
                 p_statement.setInt(4, this.id);
                 p_statement.executeUpdate();
             }
@@ -238,6 +244,10 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
+        } 
+        catch (EncodeException ee) 
+        {
+            ee.printStackTrace();
         }
         
         return false;

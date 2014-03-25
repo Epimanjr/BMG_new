@@ -46,6 +46,7 @@ public class QuestionCustom_Tests
         qcustom = null;
         // ATTENTION AU FINDBYID (avant = static | maintenant != static)
         qcustom = QuestionCustom.findById(4, bs);
+        System.out.println(qcustom);
         qcustom.setText("Je suis la 4eme question personnalisee au monde! J'ai droit au lot de consolation et je le veux tout de suite!");
         
         qcustom.update(bs);

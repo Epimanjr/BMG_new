@@ -691,6 +691,7 @@ public class QuestionEquation extends Question implements iDbManager {
             p_statement.setString(4, this.encodeUnknowns());
             p_statement.setString(5, this.encodeOperators());
             p_statement.setInt(6, this.length);
+            p_statement.executeUpdate();
             ResultSet rs = p_statement.getGeneratedKeys();
             
             if (rs.next()) this.id = rs.getInt(1);

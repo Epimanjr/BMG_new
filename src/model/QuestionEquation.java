@@ -313,6 +313,7 @@ public class QuestionEquation extends Question implements iDbManager {
          return res;*/
 
         double[] res = new double[0];
+        System.out.println("coucou1");
         if (!operands.isEmpty()) {
             int order = 0;
             int o;
@@ -323,10 +324,11 @@ public class QuestionEquation extends Question implements iDbManager {
                 }
             }
             res = new double[order];
-
+            System.out.println("coucou2");
             ArrayList<Double> equation = new ArrayList<>();
             equation.add((double) operands.get(0));
             for (int i = 1; i < operands.size(); i++) {
+                System.out.println("coucou3");
                 if (operators.get(i - 1) == '-') {
                     equation.add((double) operands.get(i) * -1);
                 } else if (operators.get(i - 1) == '/') {
@@ -376,6 +378,7 @@ public class QuestionEquation extends Question implements iDbManager {
                         c += equation.get(i);
                     }
                 }
+                System.out.println("coucou4");
                 delta = Math.pow(b, 2) - 4 * a * c;
                 if (delta == 0.0) {
                     res[0] = -b / (2 * a);
@@ -385,6 +388,7 @@ public class QuestionEquation extends Question implements iDbManager {
                 }
             }
         }
+        System.out.println(res);
         return res;
     }
 
@@ -463,8 +467,8 @@ public class QuestionEquation extends Question implements iDbManager {
     public String getSolutionString() {
         String res = "";
         double[] sol = this.solve();
-        res = res + sol;
-        /*if (sol.length == 1) {
+        /*res = res + sol;
+        if (sol.length == 1) {
             res = "x = " + sol[0];
         } else {
             res = "x1 = " + sol[0] + " ; x2 = " + sol[1];

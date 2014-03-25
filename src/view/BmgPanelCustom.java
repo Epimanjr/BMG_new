@@ -131,8 +131,8 @@ public class BmgPanelCustom extends JPanel {
                 
                 switch(t1) {
                     case "entier":
-                        Integer i = new Integer(s1);
-                        QuestionCustom<Integer> qcu1 = new QuestionCustom<Integer>(q1,i);
+                        Integer[] ti = {new Integer(s1)};
+                        QuestionCustom<Integer> qcu1 = new QuestionCustom<Integer>(q1,ti);
                         e.addQuestion(qcu1);
                         break;
                 }

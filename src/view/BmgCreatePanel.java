@@ -362,13 +362,14 @@ public class BmgCreatePanel {
         }
         
         listType[0] = "Autre";
-        if (bs != null) {
+        System.out.println(bs);
+        /*if (bs != null) {
             UserType[] tabUt = UserType.findAll(bs);
             listType = new String[tabUt.length];
             for(int i=0;i<tabUt.length;i++) {
                 listType[i] = tabUt[i].getName_ut();
             }
-        }
+        }*/
 
         final JComboBox<String> jcb = new JComboBox<String>(listSchool);
         final JComboBox<String> jcbt = new JComboBox<String>(listType);

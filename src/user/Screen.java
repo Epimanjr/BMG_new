@@ -209,7 +209,6 @@ public class Screen implements iDbManager
 	return screen;
     }
     
-    /* A COMPLETER */
     public static ArrayList<Screen> findAll(BaseSetting bs)
     {
         Connection connection = bs.getConnection();
@@ -241,6 +240,19 @@ public class Screen implements iDbManager
 	}
         
         return al_screen;
+    }
+    
+    public static HashMap<String,Screen> findAllToHashMap(BaseSetting bs)
+    {
+        HashMap<String,Screen> res = new HashMap();
+        ArrayList<Screen> al_screen = Screen.findAll(bs);
+        
+        for (Screen s : al_screen)
+        {
+            res.put(s.getName_s(), s);
+        }
+        
+        return res;
     }
     
     /* A COMPLETER */

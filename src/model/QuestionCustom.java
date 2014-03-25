@@ -215,7 +215,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setString(1, this.text);
                 p_statement.setInt(2, this.difficulty);
-                //p_statement.setText(3, this.encodeSolutions());
+                //p_statement.setText(3, this.encodeSolution());
                 p_statement.setInt(4, this.id);
                 p_statement.executeUpdate();
             }

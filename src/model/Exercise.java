@@ -648,6 +648,15 @@ public class Exercise implements iDbManager {
                                 } else if (qtype.compareTo("#QuestionPower") == 0) {
                                     QuestionPower qp = QuestionPower.decode(encodedExercise);
                                     res.addQuestion(qp);
+                                } else if (qtype.compareTo("#QuestionCustom") == 0) {
+                                    QuestionCustom qct = null;
+                                    try {
+                                        qct = QuestionCustom.decode(encodedExercise);
+                                    } catch (ClassNotFoundException cnfe) {
+                                        cnfe.printStackTrace();
+                                    }
+                                    System.out.println(qct);
+                                    res.addQuestion(qct);
                                 } else if (qtype.compareTo("#Wording") == 0) {
                                     Wording w = Wording.decode(encodedExercise);
                                     res.setWording(w);

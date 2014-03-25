@@ -145,38 +145,6 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         this.solution = solution;
     }
     
-    public String encodeSolution() throws EncodeException {
-        StringBuilder res = new StringBuilder();
-        if (this.solution != null && this.solution.length > 0) {
-            for (Object value : this.solution) {
-                if (value instanceof Integer) {
-                    res.append("int:");
-                } else if (value instanceof Double) {
-                    res.append("dbl:");
-                } else if (value instanceof Character) {
-                    res.append("chr:");
-                } else if (value instanceof String) {
-                    res.append("str:");
-                } else if (value instanceof Boolean) {
-                    res.append("bln:");
-                } else if (value == null) {
-                    res.append("nul:");
-                } else {
-                    throw new EncodeException("Unsupported variable type");
-                }
-            }
-            res.replace(res.length()-1, res.length(), "");
-            res.append("><");
-            for (Object value : this.solution) {
-                res.append(value).append(':');
-            }
-            res.replace(res.length()-1, res.length(), "");
-        } else {
-            throw new EncodeException("Empty solution array");
-        }
-        return res.toString();
-    }
-    
     public SolutionType[] decodeSolution() throws DecodeException {
         SolutionType[] res =null;
         
@@ -199,11 +167,218 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         res = res + "\n                 Solution: " + this.solution;
         return res;
     }
-
-    public static Object getSolutionType(String encodedQuestion) throws DecodeException
-    {
-        throw new DecodeException("getSolutionType de QuestionCustom - a completer");
+    
+    public String encodeSolution() throws EncodeException {
+        StringBuilder res = new StringBuilder();
+        if (this.solution != null && this.solution.length > 0) {
+            if (solution[0] instanceof Integer) {
+                res.append("int");
+            } else if (solution[0] instanceof Double) {
+                res.append("dbl");
+            } else if (solution[0] instanceof Character) {
+                res.append("chr");
+            } else if (solution[0] instanceof String) {
+                res.append("str");
+            } else if (solution[0] instanceof Boolean) {
+                res.append("bln");
+            } else {
+                throw new EncodeException("Unsupported variable type");
+            }
+            res.append("><");
+            for (Object value : this.solution) {
+                res.append(value).append(':');
+            }
+            res.replace(res.length()-1, res.length(), "");
+        } else {
+            throw new EncodeException("Empty solution array");
+        }
+        return res.toString();
     }
+    
+    public static Class decodeSolutionType(String encodedQuestion) throws DecodeException, ClassNotFoundException {
+        Class res;
+        int i=0;
+        int beginning = i;
+        while (encodedQuestion.charAt(i) != '>') {
+            i++;
+        }
+        String type = encodedQuestion.substring(beginning, i);
+        
+        switch(type) {
+            case "int":
+                res = Class.forName("Integer");
+                break;
+            case "dbl":
+                res = Class.forName("Double");
+                break;
+            case "str":
+                res = Class.forName("String");
+                break;
+            case "chr":
+                res = Class.forName("Character");
+                break;
+            default:
+                throw new DecodeException("non recognized type");
+        }
+        return res;
+    }
+    
+    public SolutionType[] decodeSolution(String str) throws DecodeException {
+        SolutionType[] res;
+        int i=0;
+        int beginning = i;
+        while (str.charAt(i) != '>') {
+            i++;
+        }
+        String type = str.substring(beginning, i);
+        
+        i++;
+        beginning = i;
+        if (str.charAt(i) == '<') {
+            i++;
+            while (i < str.length()) {
+                i++;
+            }
+            String[] tab = str.substring(beginning+1, i).split(":");
+            res = (SolutionType[]) new Object[tab.length];
+            for (int x=0; x<tab.length; x++) {
+                switch(type) {
+                case "int":
+                    res[x] = (SolutionType) Integer.valueOf(tab[x]);
+                    break;
+                case "dbl":
+                    res[x] = (SolutionType) Double.valueOf(tab[x]);
+                    break;
+                case "str":
+                    res[x] = (SolutionType) tab[x];
+                    break;
+                case "chr":
+                    res[x] = (SolutionType) ((Character) tab[x].charAt(0));
+                    break;
+                default:
+                    throw new DecodeException("non recognized type");
+                }
+            }
+        } else {
+            res = null;
+            throw new DecodeException();
+        }
+        return res;
+    }
+    
+    @Override
+    public String encode() throws EncodeException {
+        StringBuilder res = new StringBuilder("#QuestionCustom<");
+        res.append(encodeSolution());
+        res.append(">");
+        res.append(super.encode());
+        return res.toString();
+    }
+    
+    public static QuestionCustom decode(String str) throws DecodeException, ClassNotFoundException {
+        if (str.substring(0, 15).compareTo("#QuestionCustom") == 0) {
+            int i = 15;
+            if (str.charAt(i) == '<') {
+                while (str.charAt(i) != '>') {
+                    i++;
+                }
+                Class objectType = decodeSolutionType(str.substring(16, i));
+                if (objectType == Class.forName("Integer")) {
+                    QuestionCustom<Integer> res = new QuestionCustom<>();
+                    i++;
+                    int beginning = i;
+                    if (str.charAt(i) == '<') {
+                        while (str.charAt(i) != '>') {
+                            i++;
+                        }
+                        res.setSolution(res.decodeSolution(str.substring(beginning+1, i)));
+                        
+                        i++;
+                        str = str.substring(i);
+                        Question.decode(res, str);
+                        return res;
+                    } else {
+                        throw new DecodeException();
+                    }
+                } else if (objectType == Class.forName("Double")) {
+                    QuestionCustom<Double> res = new QuestionCustom<>();
+                    i++;
+                    int beginning = i;
+                    if (str.charAt(i) == '<') {
+                        while (str.charAt(i) != '>') {
+                            i++;
+                        }
+                        res.setSolution(res.decodeSolution(str.substring(beginning+1, i)));
+                        
+                        i++;
+                        str = str.substring(i);
+                        Question.decode(res, str);
+                        return res;
+                    } else {
+                        throw new DecodeException();
+                    }
+                } else if (objectType == Class.forName("String")) {
+                    QuestionCustom<String> res = new QuestionCustom<>();
+                    i++;
+                    int beginning = i;
+                    if (str.charAt(i) == '<') {
+                        while (str.charAt(i) != '>') {
+                            i++;
+                        }
+                        res.setSolution(res.decodeSolution(str.substring(beginning+1, i)));
+                        
+                        i++;
+                        str = str.substring(i);
+                        Question.decode(res, str);
+                        return res;
+                    } else {
+                        throw new DecodeException();
+                    }
+                } else if (objectType == Class.forName("Character")) {
+                    QuestionCustom<Character> res = new QuestionCustom<>();
+                    i++;
+                    int beginning = i;
+                    if (str.charAt(i) == '<') {
+                        while (str.charAt(i) != '>') {
+                            i++;
+                        }
+                        res.setSolution(res.decodeSolution(str.substring(beginning+1, i)));
+                        
+                        i++;
+                        str = str.substring(i);
+                        Question.decode(res, str);
+                        return res;
+                    } else {
+                        throw new DecodeException();
+                    }
+                } else if (objectType == Class.forName("Boolean")) {
+                    QuestionCustom<Boolean> res = new QuestionCustom<>();
+                    i++;
+                    int beginning = i;
+                    if (str.charAt(i) == '<') {
+                        while (str.charAt(i) != '>') {
+                            i++;
+                        }
+                        res.setSolution(res.decodeSolution(str.substring(beginning+1, i)));
+                        
+                        i++;
+                        str = str.substring(i);
+                        Question.decode(res, str);
+                        return res;
+                    } else {
+                        throw new DecodeException();
+                    }
+                } else {
+                    throw new DecodeException("unsupported type");
+                }
+            } else {
+                throw new DecodeException();
+            }
+        } else {
+            throw new DecodeException();
+        }
+    }
+    
     
     // ----------------------
     

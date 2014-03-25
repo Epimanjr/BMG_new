@@ -4,6 +4,10 @@ import database.BaseSetting;
 import exceptions.EncodeException;
 import exceptions.DecodeException;
 import interfaces.iDbManager;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -399,17 +403,113 @@ public class QuestionPower extends Question implements iDbManager {
     @Override
     public boolean insert(BaseSetting bs) 
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            String query = "INSERT INTO QuestionPower (text_qp, diff_qp , operand_qp, operators_qp, powers_qp, length_qp) VALUES (?,?,?,?,?,?)";
+            PreparedStatement p_statement = connection.prepareStatement(query);
+            p_statement.setString(1, this.text);
+            p_statement.setInt(2, this.difficulty);
+            p_statement.setInt(3, this.operand);
+            //p_statement.setString(4, this.encodeOperators());
+            //p_statement.setString(5, this.encodePowers());
+            p_statement.setInt(6, this.length);
+            ResultSet rs = p_statement.getGeneratedKeys();
+            
+            if (rs.next()) this.id = rs.getInt(1);
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return false;
     }
 
     @Override
     public boolean update(BaseSetting bs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            if (this.id < 0)
+            {
+                String query = "UPDATE QuestionPower SET (text_qp = ? , diff_qp = ? , operand_qp = ? , operators_qp = ? , powers_qp = ? , length_qp = ?) WHERE id_qp = ?";
+                PreparedStatement p_statement = connection.prepareStatement(query);
+                p_statement.setString(1, this.text);
+                p_statement.setInt(2, this.id);
+                p_statement.setInt(3, this.operand);
+                //p_statement.setString(4, this.encodeOperators());
+                //p_statement.setString(5, this.encodePowers());
+                p_statement.setInt(6, this.length);
+                p_statement.setInt(7, this.id);
+                p_statement.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return false;
     }
 
     @Override
     public boolean delete(BaseSetting bs) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = bs.getConnection();
+        
+        try
+        {
+            if (QuestionPower.findById(id, bs) != null)
+            {
+                String query = "DELETE FROM QuestionPower WHERE id_qp = ?";
+                PreparedStatement p_statement = connection.prepareStatement(query);
+                p_statement.setInt(1,id);
+                p_statement.executeUpdate();
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return false;
+    }
+    
+    public static QuestionPower findById(int id, BaseSetting bs) {
+        Connection connection = bs.getConnection();
+        
+        QuestionPower questionPower = null;
+        
+        try
+        {
+            String query = "SELECT * FROM QuestionPower WHERE id_qp = ?";
+            PreparedStatement p_statement = connection.prepareStatement(query);
+            p_statement.setInt(1,id);
+            
+            ResultSet rs = p_statement.executeQuery();
+            
+            if (rs.next())
+            {
+                int idqp = rs.getInt("id_qp");
+                String textqp = rs.getString("text_qp");
+                int diffqp = rs.getInt("diff_qp");
+                int operdqp = rs.getInt("operand_qp");
+                String s_operrs_qp = rs.getString("operators_qp");
+                //ArrayList<Character> operrs_qp = QuestionEquation.decodeOperators(s_operrs_qp);
+                String s_powers_qp = rs.getString("powers_qp");
+                //ArrayList<Integer> powersqp = QuestionPower.decodePowers(s_powers_qp);
+                
+                //questionPower = new QuestionPower(idqp,textqp,diffqp,operdsqp,unknwqp,operrsqp);
+            }
+        }
+        catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        }
+        
+        return questionPower;
     }
     
 }

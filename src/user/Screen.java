@@ -210,9 +210,37 @@ public class Screen implements iDbManager
     }
     
     /* A COMPLETER */
-    public static Screen findAll(BaseSetting bs)
+    public static ArrayList<Screen> findAll(BaseSetting bs)
     {
-        return null;
+        Connection connection = bs.getConnection();
+	
+	ArrayList<Screen> al_screen = new ArrayList<>();
+        
+        try
+        {
+            String query = "SELECT * FROM Screen";
+	    PreparedStatement p_statement = connection.prepareStatement(query);
+	    ResultSet rs = p_statement.executeQuery();
+            
+            while (rs.next())
+            {
+                int ids = rs.getInt("id_s");
+		String names = rs.getString("name_s");
+                
+		Screen screen = new Screen(ids,names);
+                
+                //Screen screen = (Screen)rs.getBlob("object_s");
+                
+                al_screen.add(screen);
+            }
+        }
+        catch (SQLException sqle)
+	{
+	    System.out.println("ERREUR");
+	    sqle.printStackTrace();
+	}
+        
+        return al_screen;
     }
     
     /* A COMPLETER */

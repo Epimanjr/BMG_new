@@ -175,11 +175,13 @@ public class Screen implements iDbManager
 	return screen;
     }
     
+    /* A COMPLETER */
     public static Screen findAll(BaseSetting bs)
     {
         return null;
     }
     
+    /* A COMPLETER */
     public static Blob findById_Blob(BaseSetting bs)
     {
         return null;
@@ -194,7 +196,7 @@ public class Screen implements iDbManager
         
         for (Map.Entry<String,Screen> e : allScreens.entrySet()) 
         {
-            if (anonymousAutorized.contains("e.getKey()"))
+            if (anonymousAutorized.contains(e.getKey()))
               res.put(e.getKey(),e.getValue());
         }
         
@@ -205,10 +207,14 @@ public class Screen implements iDbManager
     {
         HashMap<String,Screen> res = new HashMap();
         
-        HashMap<String,Screen> studentAutorized = new HashMap();
-        studentAutorized.put("test", null);
+        ArrayList<String> studentAutorized = new ArrayList();
+        studentAutorized.add("test");
         
-        /**/
+        for (Map.Entry<String,Screen> e : allScreens.entrySet()) 
+        {
+            if (studentAutorized.contains(e.getKey()))
+              res.put(e.getKey(),e.getValue());
+        }
         
         return res;
     }
@@ -217,10 +223,14 @@ public class Screen implements iDbManager
     {
         HashMap<String,Screen> res = new HashMap();
         
-        HashMap<String,Screen> teacherAutorized = new HashMap();
-        teacherAutorized.put("test", null);
+        ArrayList<String> teacherAutorized = new ArrayList();
+        teacherAutorized.add("test");
         
-        /**/
+        for (Map.Entry<String,Screen> e : allScreens.entrySet()) 
+        {
+            if (teacherAutorized.contains(e.getKey()))
+              res.put(e.getKey(),e.getValue());
+        }
         
         return res;
     }
@@ -229,10 +239,14 @@ public class Screen implements iDbManager
     {
         HashMap<String,Screen> res = new HashMap();
         
-        HashMap<String,Screen> adminAutorized = new HashMap();
-        adminAutorized.put("test", null);
+        ArrayList<String> adminAutorized = new ArrayList();
+        adminAutorized.add("test");
         
-        /**/
+        for (Map.Entry<String,Screen> e : allScreens.entrySet()) 
+        {
+            if (adminAutorized.contains(e.getKey()))
+              res.put(e.getKey(),e.getValue());
+        }
         
         return res;
     }

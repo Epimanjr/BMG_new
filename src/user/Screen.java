@@ -73,7 +73,7 @@ public class Screen implements iDbManager
             String query = "INSERT INTO Screen (name_s,object_s) VALUES (?,?)";
 	    PreparedStatement p_statement = connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
 	    p_statement.setString(1,""+this.name_s+"");
-            //p_statement.setBlob(2,null);
+            //p_statement.setBlob(2,this);
 	    p_statement.executeUpdate();
 	    ResultSet rs = p_statement.getGeneratedKeys();
 	    
@@ -101,7 +101,7 @@ public class Screen implements iDbManager
                 //String query = "UPDATE Screen SET (name_s = ? , object_s = ?) WHERE id_s = ?";
 		PreparedStatement p_statement = connection.prepareStatement(query);
 		p_statement.setString(1,this.name_s);
-                //p_statement.setBlob(2,null);
+                //p_statement.setBlob(2,this);
                 
 		p_statement.setInt(2,this.id_s);
                 //p_statement.setInt(3,this.id_s);
@@ -159,10 +159,10 @@ public class Screen implements iDbManager
 	    {
 		int ids = rs.getInt("id_s");
 		String names = rs.getString("name_s");
-                //Screen scr = new Screen(rs.getBlob("object_s"));
-	    
+                
 		screen = new Screen(ids,names);
-                //screen = new Screen(ids,names,scr);
+
+                //Screen screen = (Screen)rs.getBlob("object_s");
 	    }
 		    
 	}  
@@ -175,10 +175,84 @@ public class Screen implements iDbManager
 	return screen;
     }
     
-    /* A COMPLETER */
-    public static Screen findAll(BaseSetting bs)
+    public static Screen findByName(String name,BaseSetting bs) 
     {
-        return null;
+        Connection connection = bs.getConnection();
+	
+	Screen screen = null;
+	
+	try 
+	{
+	    String query = "SELECT * FROM Screen WHERE name_s = ?";
+	    PreparedStatement p_statement = connection.prepareStatement(query);
+	    p_statement.setString(1,name);
+	    
+	    ResultSet rs = p_statement.executeQuery();
+	    
+	    if (rs.next())
+	    {
+		int ids = rs.getInt("id_s");
+		String names = rs.getString("name_s");
+                
+		screen = new Screen(ids,names);
+
+                //Screen screen = (Screen)rs.getBlob("object_s");
+	    }
+		    
+	}  
+	catch (SQLException sqle) 
+	{
+	    System.out.println("ERREUR");
+	    sqle.printStackTrace();
+	}
+	
+	return screen;
+    }
+    
+    public static ArrayList<Screen> findAll(BaseSetting bs)
+    {
+        Connection connection = bs.getConnection();
+	
+	ArrayList<Screen> al_screen = new ArrayList<>();
+        
+        try
+        {
+            String query = "SELECT * FROM Screen";
+	    PreparedStatement p_statement = connection.prepareStatement(query);
+	    ResultSet rs = p_statement.executeQuery();
+            
+            while (rs.next())
+            {
+                int ids = rs.getInt("id_s");
+		String names = rs.getString("name_s");
+                
+		Screen screen = new Screen(ids,names);
+                
+                //Screen screen = (Screen)rs.getBlob("object_s");
+                
+                al_screen.add(screen);
+            }
+        }
+        catch (SQLException sqle)
+	{
+	    System.out.println("ERREUR");
+	    sqle.printStackTrace();
+	}
+        
+        return al_screen;
+    }
+    
+    public static HashMap<String,Screen> findAllToHashMap(BaseSetting bs)
+    {
+        HashMap<String,Screen> res = new HashMap();
+        ArrayList<Screen> al_screen = Screen.findAll(bs);
+        
+        for (Screen s : al_screen)
+        {
+            res.put(s.getName_s(), s);
+        }
+        
+        return res;
     }
     
     /* A COMPLETER */

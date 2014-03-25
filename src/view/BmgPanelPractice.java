@@ -248,7 +248,9 @@ public class BmgPanelPractice {
     public void actionIfCustom(String recup) {
 
         //test
-        if (recup == ((QuestionCustom) e.getQuestion(iterateur - 1)).getSolutionString()) {
+        System.out.println(recup);
+        System.out.println(((QuestionCustom) e.getQuestion(iterateur - 1)).getSolutionString());
+        if (recup.equals(((QuestionCustom) e.getQuestion(iterateur - 1)).getSolutionString())) {
             practice.addRight(iterateur - 1);
         } else {
             practice.addWrong(iterateur - 1);

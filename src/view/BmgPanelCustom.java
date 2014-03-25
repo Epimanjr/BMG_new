@@ -124,17 +124,19 @@ public class BmgPanelCustom extends JPanel {
                 e.setWording(new Wording(wording));
                 e.setDifficulty(diff);
                 
-                String q1 = tabQuestions[1].getText();
-                String t1 = types[tabTypes[1].getSelectedIndex()];
-                String s1 = tabSolutions[1].getText();
-                System.out.println("s1"+s1);
-                
-                switch(t1) {
-                    case "entier":
-                        Integer[] ti = {new Integer(s1)};
-                        QuestionCustom<Integer> qcu1 = new QuestionCustom<Integer>(q1,ti);
-                        e.addQuestion(qcu1);
-                        break;
+                for(int i=1;i<5;i++) {
+                    String q1 = tabQuestions[i].getText();
+                    String t1 = types[tabTypes[i].getSelectedIndex()];
+                    String s1 = tabSolutions[i].getText();
+                    //System.out.println("s1"+s1);
+
+                    switch(t1) {
+                        case "entier":
+                            Integer[] ti = {new Integer(s1)};
+                            QuestionCustom<Integer> qcu1 = new QuestionCustom<Integer>(q1,ti);
+                            e.addQuestion(qcu1);
+                            break;
+                    }
                 }
                 
                 System.out.println("e:"+e);

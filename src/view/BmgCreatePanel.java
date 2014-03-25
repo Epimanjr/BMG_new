@@ -79,7 +79,7 @@ public class BmgCreatePanel {
         //Panel Exercises
         JPanel panExercises = new JPanel();
         panExercises.setPreferredSize(new Dimension(width - 100, ((height - 100) / 2)));
-        panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Exercices !</p></html>"));
+        panExercises.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";font-size:13px;\">Exercices</p></html>"));
         panExercises.setLayout(new GridLayout(6, 2));
 
         //Button Generate in panel Exercises.
@@ -163,7 +163,7 @@ public class BmgCreatePanel {
         //Panel Account
         JPanel panAccount = new JPanel();
         panAccount.setPreferredSize(new Dimension(width - 100, ((height - 100) / nb)));
-        panAccount.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Compte utilisateur</p></html>"));
+        panAccount.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";font-size:13px;\">Compte utilisateur</p></html>"));
         panAccount.setLayout(new GridLayout(2, 2));
 
         //Add label
@@ -195,7 +195,7 @@ public class BmgCreatePanel {
         //Panel Database Settings
         JPanel panSettings = new JPanel();
         panSettings.setPreferredSize(new Dimension(width - 100, ((height - 100) / nb)));
-        panSettings.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";\">Configuration</p></html>"));
+        panSettings.setBorder(BorderFactory.createTitledBorder("<html><p style=\"color: " + colortitle + ";font-size:13px;\">Configuration</p></html>"));
         panSettings.setLayout(new GridLayout(2, 2));
 
         //Add label
@@ -363,13 +363,13 @@ public class BmgCreatePanel {
         
         listType[0] = "Autre";
         System.out.println(bs);
-        /*if (bs != null) {
+        if (bs.getConnection() != null) {
             UserType[] tabUt = UserType.findAll(bs);
             listType = new String[tabUt.length];
             for(int i=0;i<tabUt.length;i++) {
                 listType[i] = tabUt[i].getName_ut();
             }
-        }*/
+        }
 
         final JComboBox<String> jcb = new JComboBox<String>(listSchool);
         final JComboBox<String> jcbt = new JComboBox<String>(listType);

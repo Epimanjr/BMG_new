@@ -168,6 +168,12 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         return res;
     }
     
+    public String getSolutionString() {
+        String res = "";
+        res = res + this.solution[0];
+        return res;
+    }
+    
     public String encodeSolution() throws EncodeException {
         StringBuilder res = new StringBuilder();
         if (this.solution != null && this.solution.length > 0) {

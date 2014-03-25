@@ -494,7 +494,7 @@ public class QuestionFraction extends Question implements iDbManager {
         try
         {
             String query = "INSERT INTO QuestionFraction (text_qf, diff_qf , numerators, denominators, operators, length) VALUES (?,?,?,?,?,?)";
-            PreparedStatement p_statement = connection.prepareStatement(query);
+            PreparedStatement p_statement = connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
             p_statement.setString(1, this.text);
             p_statement.setInt(2, this.difficulty);
             p_statement.setString(3, this.encodeNumerators());

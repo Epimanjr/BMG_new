@@ -18,6 +18,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
@@ -184,22 +185,23 @@ public class Screen implements iDbManager
         return null;
     }
     
-    private static HashMap<String,Screen> accessibleScreensForAnonymous(HashMap<String,Screen> hm, BaseSetting bs)
+    private static HashMap<String,Screen> accessibleScreensForAnonymous(HashMap<String,Screen> allScreens, BaseSetting bs)
     {
         HashMap<String,Screen> res = new HashMap();
         
-        HashMap<String,Screen> anonymousAutorized = new HashMap();
-        anonymousAutorized.put("test", null);
+        ArrayList<String> anonymousAutorized = new ArrayList();
+        anonymousAutorized.add("test");
         
-        //for (Map.Entry<String,Screen> e : anonymousAutorized.entrySet()) 
-        //{
-            //e.getValue() + " | " + e.getKey()
-        //}
+        for (Map.Entry<String,Screen> e : allScreens.entrySet()) 
+        {
+            if (anonymousAutorized.contains("e.getKey()"))
+              res.put(e.getKey(),e.getValue());
+        }
         
         return res;
     }
     
-    private static HashMap<String,Screen> accessibleScreensForStudent(HashMap<String,Screen> hm, BaseSetting bs)
+    private static HashMap<String,Screen> accessibleScreensForStudent(HashMap<String,Screen> allScreens, BaseSetting bs)
     {
         HashMap<String,Screen> res = new HashMap();
         
@@ -211,7 +213,7 @@ public class Screen implements iDbManager
         return res;
     }
     
-    private static HashMap<String,Screen> accessibleScreensForTeacher(HashMap<String,Screen> hm, BaseSetting bs)
+    private static HashMap<String,Screen> accessibleScreensForTeacher(HashMap<String,Screen> allScreens, BaseSetting bs)
     {
         HashMap<String,Screen> res = new HashMap();
         
@@ -223,7 +225,7 @@ public class Screen implements iDbManager
         return res;
     }
     
-    private static HashMap<String,Screen> accessibleScreensForAdmin(HashMap<String,Screen> hm, BaseSetting bs)
+    private static HashMap<String,Screen> accessibleScreensForAdmin(HashMap<String,Screen> allScreens, BaseSetting bs)
     {
         HashMap<String,Screen> res = new HashMap();
         
@@ -235,29 +237,29 @@ public class Screen implements iDbManager
         return res;
     }
     
-    public static HashMap<String,Screen> accessibleScreens(UserType ut, HashMap<String,Screen> hm, BaseSetting bs)
+    public static HashMap<String,Screen> accessibleScreens(UserType ut, HashMap<String,Screen> allScreens, BaseSetting bs)
     {
         HashMap<String,Screen> res;
         
         if (ut.getName_ut().compareToIgnoreCase("student") == 0)
         {
-            res = Screen.accessibleScreensForStudent(hm, bs);
+            res = Screen.accessibleScreensForStudent(allScreens, bs);
         }
         else
         {
             if (ut.getName_ut().compareToIgnoreCase("teacher") == 0)
             {
-                res = Screen.accessibleScreensForTeacher(hm, bs);
+                res = Screen.accessibleScreensForTeacher(allScreens, bs);
             }
             else
             {
                 if (ut.getName_ut().compareToIgnoreCase("admin") == 0)
                 {
-                    res = Screen.accessibleScreensForAdmin(hm, bs);
+                    res = Screen.accessibleScreensForAdmin(allScreens, bs);
                 }
                 else
                 {
-                    res = Screen.accessibleScreensForAnonymous(hm, bs);
+                    res = Screen.accessibleScreensForAnonymous(allScreens, bs);
                 }
             }
         }

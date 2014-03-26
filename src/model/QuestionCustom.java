@@ -540,9 +540,13 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int diffqcustom = rs.getInt("diff_qcustom");
                 String soltextqcustom = rs.getString("sol_qcustom");
                 
-                questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);
+                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(soltextqcustom);
                 
-                questionCustom.getSolutionType(soltextqcustom,bs);
+                questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);//,solqcustom);
+                
+                Object[] o = questionCustom.getSolutionType(soltextqcustom,bs);
+                
+                questionCustom.setSolution(o);
             }
         }
         catch (SQLException sqle)
@@ -582,6 +586,10 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 
                 QuestionCustom questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);//,solqcustom);
                 
+                Object[] o = questionCustom.getSolutionType(soltextqcustom,bs);
+                
+                questionCustom.setSolution(o);
+                
                 al_qcustom.add(questionCustom);
             }
         }
@@ -589,10 +597,10 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         {
             sqle.printStackTrace();
         }
-//        catch (DecodeException de) 
-//        {
-//            de.printStackTrace();
-//        }
+        catch (DecodeException de) 
+        {
+            de.printStackTrace();
+        }
         
         QuestionCustom[] tab_qcustom = null;
         

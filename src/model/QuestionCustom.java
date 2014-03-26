@@ -498,11 +498,13 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         
         Object[] decodeSolution = tips.decodeSolution(s);
         
-        //fake.setSolution(decodeSolution);
+        //tips.setSolution(decodeSolution);
         
         tips = QuestionCustom.findById(id, bs);
         
         tips.setSolution(decodeSolution);
+        
+        System.out.println(tips);
         
         return tips;
     }

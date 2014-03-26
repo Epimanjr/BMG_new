@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import user.UserType;
 
 public class QuestionCustom<SolutionType> extends Question implements iDbManager {
 
@@ -161,6 +160,11 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
 
     public void setSolution(SolutionType[] solution) {
         this.solution = solution;
+    }
+    
+    public SolutionType[] getSolution()
+    {
+        return this.solution;
     }
     
     public SolutionType[] decodeSolution() throws DecodeException {
@@ -492,19 +496,25 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
 
     /* FINDERS */
     
-    public QuestionCustom getSolutionType(String s, BaseSetting bs) throws DecodeException
+    //public SolutionType[] getSolutionTypeee
+    
+    public Object[] getSolutionType(String s, BaseSetting bs) throws DecodeException
     {
         QuestionCustom tips = new QuestionCustom("");
         
         Object[] decodeSolution = tips.decodeSolution(s);
         
-        //fake.setSolution(decodeSolution);
+        //tips.setSolution(decodeSolution);
         
-        tips = QuestionCustom.findById(id, bs);
+        tips = QuestionCustom.findById(this.id, bs);
         
         tips.setSolution(decodeSolution);
         
-        return tips;
+        //System.out.println(tips);
+        
+        //return tips;
+        
+        return tips.getSolution();
     }
     
     // ATTENTION AU FINDBYID (avant = static | maintenant != static)
@@ -532,16 +542,20 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 //SolutionType[] solqcustom = QuestionCustom.decodeSolution(soltextqcustom);
                 
                 questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);//,solqcustom);
+                
+                Object[] o = questionCustom.getSolutionType(soltextqcustom,bs);
+                
+                questionCustom.setSolution(o);
             }
         }
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
         }
-//        catch (DecodeException de) 
-//        {
-//            de.printStackTrace();
-//        }
+        catch (DecodeException de) 
+        {
+            de.printStackTrace();
+        }
         
         return questionCustom;
     }
@@ -571,6 +585,10 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 
                 QuestionCustom questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);//,solqcustom);
                 
+                Object[] o = questionCustom.getSolutionType(soltextqcustom,bs);
+                
+                questionCustom.setSolution(o);
+                
                 al_qcustom.add(questionCustom);
             }
         }
@@ -578,10 +596,10 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         {
             sqle.printStackTrace();
         }
-//        catch (DecodeException de) 
-//        {
-//            de.printStackTrace();
-//        }
+        catch (DecodeException de) 
+        {
+            de.printStackTrace();
+        }
         
         QuestionCustom[] tab_qcustom = null;
         

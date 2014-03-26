@@ -97,6 +97,8 @@ public class BmgPanelImport extends JPanel {
                         + "<p><span " + style + ">Nombre de questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                         + "</html>");
 
+                System.out.println(exercise);
+                System.out.println(exercise.getType());
                 exercise.save();
 
             }

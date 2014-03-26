@@ -166,6 +166,7 @@ public class BmgPanelExport extends JPanel {
     }
     
     public void actionExporter(Exercise e) {
+        System.out.println("eeeee"+e);
         e.insert(fen.bs);
     }
 

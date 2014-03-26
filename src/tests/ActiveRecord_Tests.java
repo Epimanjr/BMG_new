@@ -179,6 +179,8 @@ public class ActiveRecord_Tests
 	
 	if (w != null) System.out.println(""+w.getId()+" | "+w.getText()+""); else System.out.println("delete W : OK");
 	
+        /* QUESTION-CALCULATION : OK */
+        
 	ArrayList<Integer> aliqc1 = new ArrayList<>(); aliqc1.add(6); aliqc1.add(2); aliqc1.add(3); aliqc1.add(7);
 	ArrayList<Integer> aliqc2 = new ArrayList<>(); aliqc2.add(2); aliqc2.add(8); aliqc2.add(5); aliqc2.add(9);
 	ArrayList<Integer> aliqc3 = new ArrayList<>(); aliqc3.add(1); aliqc3.add(4); aliqc3.add(8); aliqc3.add(9);
@@ -211,6 +213,8 @@ public class ActiveRecord_Tests
 	
 	if (qc != null) System.out.println(""+qc.getID()+" | "+qc.getText()+""); else System.out.println("delete QC : OK");
 	
+        /* QUESTION-FRACTION : PAS OK */
+        
         ArrayList<Integer> aliqfn1 = new ArrayList<>(); aliqfn1.add(6); aliqfn1.add(2); aliqfn1.add(3); aliqfn1.add(7);
 	ArrayList<Integer> aliqfn2 = new ArrayList<>(); aliqfn2.add(2); aliqfn2.add(8); aliqfn2.add(5); aliqfn2.add(9);
 	ArrayList<Integer> aliqfn3 = new ArrayList<>(); aliqfn3.add(1); aliqfn3.add(4); aliqfn3.add(8); aliqfn3.add(9);
@@ -246,6 +250,11 @@ public class ActiveRecord_Tests
 	
 	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("delete QF : OK");
 	
+        /* QUESTION-EQUATION : PAS OK */
+        
+        /* QUESTION-POWER : PAS OK */
+        
+        /* QUESTION-CUSTOM : PAS OK */
         
 	ArrayList<Question> alq1 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionCalculation_1); 
 	ArrayList<Question> alq2 = new ArrayList<Question>(); alq1.add(questionCalculation_1);  alq1.add(questionCalculation_2); 

@@ -367,7 +367,7 @@ public class QuestionCalculation extends Question implements iDbManager {
             while (itopd.hasNext()) {
                 res.append(itopd.next()).append(":");
             }
-            res.replace(0, res.length()-1, "");
+            res.replace(res.length()-1, res.length(), "");
         } else {
             throw new EncodeException("Empty ArrayList");
         }
@@ -384,7 +384,7 @@ public class QuestionCalculation extends Question implements iDbManager {
         if (operators.size() > 0) {
             Iterator<Character> itopt = operators.iterator();
             while (itopt.hasNext()) {
-                res.append(itopt.next()).append(":");
+                res.replace(res.length()-1, res.length(), "");
             }
             res.replace(0, res.length()-1, "");
         } else {

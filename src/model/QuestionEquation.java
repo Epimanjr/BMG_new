@@ -514,7 +514,7 @@ public class QuestionEquation extends Question implements iDbManager {
             while (itopd.hasNext()) {
                 res.append(itopd.next()).append(":");
             }
-            res.replace(0, res.length()-1, "");
+            res.replace(res.length()-1, res.length(), "");
         } else {
             throw new EncodeException("Empty ArrayList");
         }
@@ -528,7 +528,7 @@ public class QuestionEquation extends Question implements iDbManager {
             while (itukn.hasNext()) {
                 res.append(itukn.next()).append(":");
             }
-            res.replace(0, res.length()-1, "");
+            res.replace(res.length()-1, res.length(), "");
         }  else {
             throw new EncodeException("Empty ArrayList");
         }
@@ -542,7 +542,7 @@ public class QuestionEquation extends Question implements iDbManager {
             while (itopt.hasNext()) {
                 res.append(itopt.next()).append(":");
             }
-            res.replace(0, res.length()-1, "");
+            res.replace(res.length()-1, res.length(), "");
         } else {
             throw new EncodeException("Empty ArrayList");
         }

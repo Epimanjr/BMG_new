@@ -337,7 +337,7 @@ public class QuestionFraction extends Question implements iDbManager {
         while (itnum.hasNext()) {
 			res.append(itnum.next()).append(":");
 		}
-		res.replace(0, res.length()-1, "");
+		res.replace(res.length()-1, res.length(), "");
         return res.toString();
     }
     
@@ -347,7 +347,7 @@ public class QuestionFraction extends Question implements iDbManager {
 		while (itdnm.hasNext()) {
 			res.append(itdnm.next()).append(":");
 		}
-		res.replace(0, res.length()-1, "");
+		res.replace(res.length()-1, res.length(), "");
         return res.toString();
     }
     
@@ -357,7 +357,7 @@ public class QuestionFraction extends Question implements iDbManager {
 		while (itopt.hasNext()) {
 			res.append(itopt.next()).append(":");
 		}
-		res.replace(0, res.length()-1, "");
+		res.replace(res.length()-1, res.length(), "");
         return res.toString();
     }
 

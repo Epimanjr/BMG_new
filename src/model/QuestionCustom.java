@@ -186,6 +186,7 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         return res;
     }
     
+    @Override
     public String getSolutionString() {
         String res = "";
         res = res + this.solution[0];

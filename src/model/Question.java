@@ -102,8 +102,7 @@ public abstract class Question {
      * @throws EncodeException 
      */
     public String encode() throws EncodeException {
-        String res = "<" + id + "><$<" + text + ">$><" + difficulty + ">";
-        return res;
+        return "<" + id + "><$<" + text + ">$><" + difficulty + ">";
     }
     
     /**

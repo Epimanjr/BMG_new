@@ -252,9 +252,21 @@ public class ActiveRecord_Tests
 	
         /* QUESTION-EQUATION : PAS OK */
         
+        /*
+        
+        */
+        
         /* QUESTION-POWER : PAS OK */
         
+        /*
+        
+        */
+        
         /* QUESTION-CUSTOM : PAS OK */
+        
+        /*
+        
+        */
         
 	ArrayList<Question> alq1 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionCalculation_1); 
 	ArrayList<Question> alq2 = new ArrayList<Question>(); alq1.add(questionCalculation_1);  alq1.add(questionCalculation_2); 

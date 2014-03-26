@@ -467,12 +467,12 @@ public class QuestionEquation extends Question implements iDbManager {
     public String getSolutionString() {
         String res = "";
         double[] sol = this.solve();
-        /*res = res + sol;
+        //res = res + sol;
         if (sol.length == 1) {
             res = "x = " + sol[0];
         } else {
             res = "x1 = " + sol[0] + " ; x2 = " + sol[1];
-        }*/
+        }
         return res;
     }
     

@@ -59,7 +59,7 @@ public class Exercise implements iDbManager {
     /**
      * Exercise questions
      */
-    private final ArrayList<Question> questions;
+    public ArrayList<Question> questions;
 
     /**
      * Exercise type

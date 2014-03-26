@@ -80,7 +80,7 @@ public class BmgPanelImport extends JPanel {
                 int index = jcb.getSelectedIndex();
                 System.out.println("index:"+index);
                 listeExercices = Exercise.findAll(fen.bs);
-                System.out.println("lex:"+listeExercices);
+                //System.out.println("lex:"+listeExercices);
                 // Récupération de l'exercice
                 Exercise exercise = listeExercices.get(index);
 
@@ -170,18 +170,12 @@ public class BmgPanelImport extends JPanel {
 
         // Remplissage
         int it = 0;
-        System.out.println("koko: "+listeExercices.size());
-        //System.out.println("kpkp: "+listeExercices);
         for (Exercise e : listeExercices) {
-            System.out.println(listeExercices.indexOf(e));
-            System.out.println("kpkp: "+listeExercices.get(0));
-            System.out.println("kaka");
+            System.out.println("nb"+e.questions.size());
             res[it] = e.getTitle();
             it++;
         }
-        //System.out.println("koko: "+listeExercices.get(0));
 
-        //System.out.println("res :"+res[0]);
         return res;
     }
 

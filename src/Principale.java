@@ -21,7 +21,7 @@ public class Principale {
             Automate a = new Automate(args);
 
         } else {
-            BmgFrame bmgFrame = new BmgFrame("BMG 2014", 900, 700, true);
+            BmgFrame bmgFrame = new BmgFrame("B.M.G. v1.0", 800, 600, true);
         }
     }
 

@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import user.UserType;
 
 public class QuestionCustom<SolutionType> extends Question implements iDbManager {
 

@@ -170,7 +170,8 @@ public class BmgPanelImport extends JPanel {
 
         // Remplissage
         int it = 0;
-        //System.out.println("koko: "+listeExercices.get(0));
+        //System.out.println("koko: "+listeExercices.size());
+        //System.out.println("kpkp: "+listeExercices.get(0));
         for (Exercise e : listeExercices) {
             System.out.println("kaka");
             res[it] = e.getTitle();

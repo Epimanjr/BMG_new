@@ -465,9 +465,8 @@ public class QuestionEquation extends Question implements iDbManager {
 
     @Override
     public String getSolutionString() {
-        String res = "";
+        String res;
         double[] sol = this.solve();
-        //res = res + sol;
         if (sol.length == 1) {
             res = "x = " + sol[0];
         } else {
@@ -509,45 +508,45 @@ public class QuestionEquation extends Question implements iDbManager {
     }
 
     public String encodeOperands() throws EncodeException {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         if (this.operands.size() > 0) {
             Iterator<Integer> itopd = operands.iterator();
             while (itopd.hasNext()) {
-                res = res + itopd.next() + ":";
+                res.append(itopd.next()).append(":");
             }
-            res = res.substring(0, res.length() - 1);
+            res.replace(0, res.length()-1, "");
         } else {
             throw new EncodeException("Empty ArrayList");
         }
-        return res;
+        return res.toString();
     }
 
     public String encodeUnknowns() throws EncodeException {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         if (this.unknowns.size() > 0) {
             Iterator<Integer> itukn = unknowns.iterator();
             while (itukn.hasNext()) {
-                res = res + itukn.next() + ":";
+                res.append(itukn.next()).append(":");
             }
-            res = res.substring(0, res.length() - 1);
+            res.replace(0, res.length()-1, "");
         }  else {
             throw new EncodeException("Empty ArrayList");
         }
-        return res;
+        return res.toString();
     }
 
     public String encodeOperators() throws EncodeException {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         if (this.operators.size() > 0) {
             Iterator<Character> itopt = operators.iterator();
             while (itopt.hasNext()) {
-                res = res + itopt.next() + ":";
+                res.append(itopt.next()).append(":");
             }
-            res = res.substring(0, res.length() - 1);
+            res.replace(0, res.length()-1, "");
         } else {
             throw new EncodeException("Empty ArrayList");
         }
-        return res;
+        return res.toString();
     }
 
     /**
@@ -558,22 +557,22 @@ public class QuestionEquation extends Question implements iDbManager {
      */
     @Override
     public String encode() throws EncodeException {
-        String res = "#QuestionEquation<";
-        res = res + encodeOperands();
-        res = res + "><";
-        res = res + encodeUnknowns();
-        res = res + "><";
-        res = res + encodeOperators();
-        res = res + "><" + length + ">";
-        res = res + super.encode();
-        return res;
+        StringBuilder res = new StringBuilder("#QuestionEquation<");
+        res.append(encodeOperands());
+        res.append("><");
+        res.append(encodeUnknowns());
+        res.append("><");
+        res.append(encodeOperators());
+        res.append("><").append(length).append(">");
+        res.append(super.encode());
+        return res.toString();
     }
 
     public static ArrayList<Integer> decodeOperands(String str) throws DecodeException {
         ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
-        for (int x = 0; x < tab.length; x++) {
-            res.add(Integer.valueOf(tab[x]));
+        for (String opd : tab) {
+            res.add(Integer.valueOf(opd));
         }
         assert res.size() > 0 : "empty operands table";
         return res;
@@ -582,8 +581,8 @@ public class QuestionEquation extends Question implements iDbManager {
     public static ArrayList<Integer> decodeUnknowns(String str) throws DecodeException {
         ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
-        for (int x = 0; x < tab.length; x++) {
-            res.add(Integer.valueOf(tab[x]));
+        for (String ukn : tab) {
+            res.add(Integer.valueOf(ukn));
         }
         assert res.size() > 0 : "empty unknowns table";
         return res;
@@ -592,8 +591,8 @@ public class QuestionEquation extends Question implements iDbManager {
     public static ArrayList<Character> decodeOperators(String str) throws DecodeException {
         ArrayList<Character> res = new ArrayList<>();
         String[] tab = str.split(":");
-        for (int x = 0; x < tab.length; x++) {
-            res.add(tab[x].charAt(0));
+        for (String opt : tab) {
+            res.add(opt.charAt(0));
         }
         assert res.size() > 0 : "empty operators table";
         return res;
@@ -607,7 +606,7 @@ public class QuestionEquation extends Question implements iDbManager {
      * @throws exceptions.DecodeException
      */
     public static QuestionEquation decode(String str) throws DecodeException {
-        QuestionEquation res = null;
+        QuestionEquation res;
         if (str.substring(0, 17).compareTo("#QuestionEquation") == 0) {
             res = new QuestionEquation();
             int i = 17;

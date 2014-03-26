@@ -1057,12 +1057,29 @@ public class Exercise implements iDbManager {
             while (rs.next()) {
                 int idq = rs.getInt("id_q");
 
-                if (QuestionCalculation.findById(idq, bs) != null)
+//                if (QuestionCalculation.findById(idq, bs) != null)
+//                    alq.add(QuestionCalculation.findById(idq, bs));
+//                if (QuestionFraction.findById(idq, bs) != null)
+//                    alq.add(QuestionFraction.findById(idq, bs));
+//                if (QuestionEquation.findById(idq, bs) != null)
+//                    alq.add(QuestionEquation.findById(idq, bs));
+//                if (QuestionPower.findById(idq, bs) != null)
+//                    alq.add(QuestionPower.findById(idq, bs));
+//                if (QuestionCustom.findById(idq, bs) != null)
+//                    alq.add(QuestionCustom.findById(idq, bs));
+                
+                String tpq = rs.getString("tp_q");
+                
+                if (tpq.compareToIgnoreCase("CLC") == 0)
                     alq.add(QuestionCalculation.findById(idq, bs));
-                if (QuestionFraction.findById(idq, bs) != null)
+                if (tpq.compareToIgnoreCase("FRC") == 0)
                     alq.add(QuestionFraction.findById(idq, bs));
-                if (QuestionEquation.findById(idq, bs) != null)
+                if (tpq.compareToIgnoreCase("EQU") == 0)
                     alq.add(QuestionEquation.findById(idq, bs));
+                if (tpq.compareToIgnoreCase("PWR") == 0)
+                    alq.add(QuestionPower.findById(idq, bs));
+                if (tpq.compareToIgnoreCase("CST") == 0)
+                    alq.add(QuestionCustom.findById(idq, bs));
             }
 
         } catch (SQLException sqle) {

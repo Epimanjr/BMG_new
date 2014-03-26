@@ -1,0 +1,6 @@
+#Exercise<-1><Ersagun57><custom><3>
+#Wording<-1><$<Bienvenue dans le monde d'Ersagun>$><emp><>
+#QuestionCustom<int><2><-1><$<Combien font 1+1 ?>$><0>
+#QuestionCustom<str><Ersagun><-1><$<Comment s'appelle Ersagun>$><0>
+#QuestionCustom<chr><o><-1><$<Julien est roux ? (o/n)>$><0>
+#QuestionCustom<dbl><2.5><-1><$<Calculez 1.5+1>$><0>

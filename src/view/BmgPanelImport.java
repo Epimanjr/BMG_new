@@ -69,6 +69,7 @@ public class BmgPanelImport extends JPanel {
 
         // Button OK
         JButton bok = new JButton("Sélectionner");
+        JButton bup = new JButton("Actualiser");
 
         // Add Listener
         bok.addActionListener(new ActionListener() {
@@ -98,14 +99,33 @@ public class BmgPanelImport extends JPanel {
 
             }
         });
+        
+        bup.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ArrayList<Exercise> list = Exercise.findAll(fen.bs);
+                updateListExercises(jcb,list,tabExercices);
+            }
+        });
 
         // Ajout
         panHaut.add(jcb);
         panHaut.add(bok);
+        panHaut.add(bup);
 
         this.add(panHaut, BorderLayout.NORTH);
     }
 
+    public void updateListExercises(JComboBox j, ArrayList<Exercise> l, String[] t) {
+        j.removeAllItems();
+        this.listeExercices = l;
+        t = convertToTableau();
+        for (String st : t) {
+            j.addItem(st);
+        }
+    }
+    
     private void setPanel() {
         // Génération des autres panels
         this.setPanelHaut();

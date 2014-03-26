@@ -59,7 +59,7 @@ public class BmgPanelImport extends JPanel {
         panHaut = new JPanel();
 
         // Récupération du tableau d'exercices
-        if(listeExercices == null) {
+        if (listeExercices == null) {
             listeExercices = new ArrayList<>();
         }
         final String[] tabExercices = convertToTableau();
@@ -78,14 +78,26 @@ public class BmgPanelImport extends JPanel {
             public void actionPerformed(ActionEvent ae) {
                 // Index
                 int index = jcb.getSelectedIndex();
-                System.out.println("index:"+index);
-                listeExercices = Exercise.findAll(fen.bs);
+                //System.out.println("index:"+index);
+                //listeExercices = Exercise.findAll(fen.bs);
                 //System.out.println("lex:"+listeExercices);
                 // Récupération de l'exercice
                 Exercise exercise = listeExercices.get(index);
-
+                //convertToTableau(tabExercices);
+                //System.out.println("\n"+tabExercices+"\n");
                 // Affichage
-                String trueFileName = tabExercices[index];
+
+                String[] t = new String[listeExercices.size()];
+
+                // Remplissage
+                int it = 0;
+                for (Exercise e : listeExercices) {
+                    System.out.println("nb" + e.questions.size());
+                    t[it] = e.getTitle();
+                    it++;
+                }
+
+                String trueFileName = t[index];
                 String style = "style=\"color: #E43B01; font-size: 13px;\"";
 
                 //Label with summary
@@ -103,14 +115,14 @@ public class BmgPanelImport extends JPanel {
 
             }
         });
-        
+
         bup.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent ae) {
                 ArrayList<Exercise> list = Exercise.findAll(fen.bs);
                 //System.out.println("list"+list);
-                updateListExercises(jcb,list,tabExercices);
+                updateListExercises(jcb, list, tabExercices);
             }
         });
 
@@ -130,7 +142,7 @@ public class BmgPanelImport extends JPanel {
             j.addItem(st);
         }
     }
-    
+
     private void setPanel() {
         // Génération des autres panels
         this.setPanelHaut();
@@ -173,12 +185,27 @@ public class BmgPanelImport extends JPanel {
         // Remplissage
         int it = 0;
         for (Exercise e : listeExercices) {
-            System.out.println("nb"+e.questions.size());
+            System.out.println("nb" + e.questions.size());
             res[it] = e.getTitle();
             it++;
         }
 
         return res;
+    }
+
+    private String[] convertToTableau(String[] t) {
+        //Création du tableau
+        t = null;
+        t = new String[listeExercices.size()];
+
+        // Remplissage
+        int it = 0;
+        for (Exercise e : listeExercices) {
+            System.out.println("nb" + e.questions.size());
+            t[it] = e.getTitle();
+            it++;
+        }
+        return t;
     }
 
 }

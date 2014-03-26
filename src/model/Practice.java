@@ -295,7 +295,8 @@ public class Practice {
                 double s = rs.getDouble("success");
                 String wa = rs.getString("wrong_answers");
 
-                /*constructeur*/
+                Exercise ex = Exercise.findById(ide, bs);
+                practice = new Practice(idu, ex);
             }
 
         } catch (SQLException sqle) {
@@ -309,7 +310,8 @@ public class Practice {
         Connection connection = bs.getConnection();
 
         ArrayList<Practice> al_practice = new ArrayList<>();
-
+        Practice practice = null;
+        
         try {
             String query = "SELECT * FROM PracticeAn WHERE id_u = ? AND id_e = ?";
             PreparedStatement p_statement = connection.prepareStatement(query);
@@ -327,8 +329,9 @@ public class Practice {
                 double s = rs.getDouble("success");
                 String wa = rs.getString("wrrong_answers");
 
-                /*constructeur*/
-                al_practice.add(null);
+                Exercise ex = Exercise.findById(ide, bs);
+                practice = new Practice(idu, ex);
+                al_practice.add(practice);
             }
 
         } catch (SQLException sqle) {

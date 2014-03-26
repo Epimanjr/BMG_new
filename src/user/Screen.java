@@ -11,6 +11,13 @@ package user;
 
 import database.BaseSetting;
 import interfaces.iDbManager;
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.OutputStream;
+import java.io.Serializable;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,7 +27,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Screen implements iDbManager
+public class Screen implements iDbManager, Serializable
 {
     private int id_s;
     private String name_s;
@@ -63,27 +70,61 @@ public class Screen implements iDbManager
     public boolean insert(BaseSetting bs) 
     {
         Connection connection = bs.getConnection();
-	
-	try 
-	{
-	    //String query = "INSERT INTO Screen (name_s) VALUE (?)";
+        
+        
+        
+        try 
+        {
+            
+//            ObjectOutputStream oos = new ObjectOutputStream
+//            (
+//                new BufferedOutputStream
+//                (
+//                    new OutputStream() 
+//                    {
+//                        @Override
+//                        public void write(int i) throws IOException 
+//                        {
+//                            
+//                        }
+//                    }
+//                )
+//            );
+//            
+//            oos.writeObject(oos);
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ObjectOutputStream oos = new ObjectOutputStream(baos);
+            
+            oos.writeObject(this);
+            
+            byte[] data = baos.toByteArray();
+            
+            ByteArrayInputStream bais = new ByteArrayInputStream(data);
+            
+            //String query = "INSERT INTO Screen (name_s) VALUE (?)";
             String query = "INSERT INTO Screen (name_s,object_s) VALUES (?,?)";
-	    PreparedStatement p_statement = connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
-	    p_statement.setString(1,""+this.name_s+"");
-            //p_statement.setBlob(2,this);
-	    p_statement.executeUpdate();
-	    ResultSet rs = p_statement.getGeneratedKeys();
-	    
-	    if (rs.next()) this.id_s = rs.getInt(1);
-		    
-	}  
-	catch (SQLException sqle) 
-	{
-	    System.out.println("ERREUR");
-	    sqle.printStackTrace();
-	}
-	
-	return true;
+            PreparedStatement p_statement = connection.prepareStatement(query,PreparedStatement.RETURN_GENERATED_KEYS);
+            p_statement.setString(1,""+this.name_s+"");
+            p_statement.setBinaryStream(2,bais,(long)data.length);
+            p_statement.executeUpdate();
+            ResultSet rs = p_statement.getGeneratedKeys();
+            
+            if (rs.next()) this.id_s = rs.getInt(1);
+            
+        }
+        catch (SQLException sqle)
+        {
+            System.out.println("ERREUR");
+            sqle.printStackTrace();
+        }   
+        catch (IOException ioe) 
+        {
+            System.out.println("ERREUR");
+            ioe.printStackTrace();        
+        }
+        
+        return true; 
     }
     
     @Override

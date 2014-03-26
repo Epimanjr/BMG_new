@@ -268,9 +268,9 @@ public class ActiveRecord_Tests
         
         */
         
-	ArrayList<Question> alq1 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionCalculation_1); 
-	ArrayList<Question> alq2 = new ArrayList<Question>(); alq1.add(questionCalculation_1);  alq1.add(questionCalculation_2); 
-	ArrayList<Question> alq3 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionCalculation_2); 
+	ArrayList<Question> alq1 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
+	ArrayList<Question> alq2 = new ArrayList<Question>(); alq1.add(questionCalculation_1);  alq1.add(questionFraction_2);
+	ArrayList<Question> alq3 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
 	
 	Exercise exercise_1 = new Exercise("Exercise1",wording_1,alq1,"type",0,false);
 	b = exercise_1.insert(bs);

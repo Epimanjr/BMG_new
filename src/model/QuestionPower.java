@@ -282,23 +282,23 @@ public class QuestionPower extends Question implements iDbManager {
     }
     
     public String encodePowers() throws EncodeException {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         Iterator<Integer> itdnm = powers.iterator();
 		while (itdnm.hasNext()) {
-			res = res + itdnm.next() + ":";
+			res.append(itdnm.next()).append(":");
 		}
-		res = res.substring(0, res.length()-1);
-        return res;
+		res.replace(0, res.length()-1, "");
+        return res.toString();
     }
     
     public String encodeOperators() throws EncodeException {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         Iterator<Character> itopt = operators.iterator();
 		while (itopt.hasNext()) {
-			res = res + itopt.next() + ":";
+			res.append(itopt.next()).append(":");
 		}
-		res = res.substring(0, res.length()-1);
-        return res;
+		res = res.replace(0, res.length()-1, "");
+        return res.toString();
     }
 
     /**
@@ -308,22 +308,22 @@ public class QuestionPower extends Question implements iDbManager {
 	 */
     @Override
 	public String encode() throws EncodeException {
-		String res = "#QuestionPower<";
-        res = res + operand;
-		res = res + "><";
-		res = res + encodePowers();
-		res = res + "><";
-		res = res + encodeOperators();
-		res = res + "><" + length + ">";
-		res = res + super.encode();
-		return res;
+		StringBuilder res = new StringBuilder("#QuestionPower<");
+        res.append(operand);
+		res.append("><");
+		res.append(encodePowers());
+		res.append("><");
+		res.append(encodeOperators());
+		res.append("><").append(length).append(">");
+		res.append(super.encode());
+		return res.toString();
 	}
     
     public static ArrayList<Integer> decodePowers(String str) throws DecodeException {
         ArrayList<Integer> res = new ArrayList<>();
         String[] tab = str.split(":");
-        for (int x=0; x<tab.length; x++) {
-            res.add(Integer.valueOf(tab[x]));
+        for (String pow : tab) {
+            res.add(Integer.valueOf(pow));
         }
         assert res.size() > 0 : "empty denominators table";
         return res;
@@ -332,8 +332,8 @@ public class QuestionPower extends Question implements iDbManager {
     public static ArrayList<Character> decodeOperators(String str) throws DecodeException {
         ArrayList<Character> res = new ArrayList<>();
         String[] tab = str.split(":");
-        for (int x=0; x<tab.length; x++) {
-            res.add(tab[x].charAt(0));
+        for (String opt : tab) {
+            res.add(opt.charAt(0));
         }
         assert res.size() > 0 : "empty operators table";
         return res;
@@ -346,7 +346,7 @@ public class QuestionPower extends Question implements iDbManager {
      * @throws exceptions.DecodeException
 	 */
 	public static QuestionPower decode(String str) throws DecodeException {
-		QuestionPower res = null;
+		QuestionPower res;
         if (str.substring(0,14).compareTo("#QuestionPower") == 0) {
             res = new QuestionPower();
             int i = 14;

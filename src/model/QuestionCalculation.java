@@ -361,17 +361,17 @@ public class QuestionCalculation extends Question implements iDbManager {
      * @throws EncodeException 
      */
     public String encodeOperands() throws EncodeException {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         if (operands.size() > 0) {
             Iterator<Integer> itopd = operands.iterator();
             while (itopd.hasNext()) {
-                res = res + itopd.next() + ":";
+                res.append(itopd.next()).append(":");
             }
-            res = res.substring(0, res.length() - 1);
+            res.replace(0, res.length()-1, "");
         } else {
             throw new EncodeException("Empty ArrayList");
         }
-        return res;
+        return res.toString();
     }
     
     /**
@@ -380,17 +380,17 @@ public class QuestionCalculation extends Question implements iDbManager {
      * @throws EncodeException 
      */
     public String encodeOperators() throws EncodeException {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         if (operators.size() > 0) {
             Iterator<Character> itopt = operators.iterator();
             while (itopt.hasNext()) {
-                res = res + itopt.next() + ":";
+                res.append(itopt.next()).append(":");
             }
-            res = res.substring(0, res.length() - 1);
+            res.replace(0, res.length()-1, "");
         } else {
             throw new EncodeException("Empty ArrayList");
         }
-        return res;
+        return res.toString();
     }
 
     /**
@@ -401,13 +401,13 @@ public class QuestionCalculation extends Question implements iDbManager {
     @Override
     public String encode() throws EncodeException {
         
-        String res = "#QuestionCalculaion<";
-        res = res + encodeOperands();
-        res = res + "><";
-        res = res + encodeOperators();
-        res = res + "><" + length + ">";
-        res = res + super.encode();
-        return res;
+        StringBuilder res = new StringBuilder("#QuestionCalculaion<");
+        res.append(encodeOperands());
+        res.append("><");
+        res.append(encodeOperators());
+        res.append("><").append(length).append(">");
+        res.append(super.encode());
+        return res.toString();
     }
     
     /**

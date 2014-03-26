@@ -44,7 +44,7 @@ public class BmgPanelImport extends JPanel {
         //Initialisation exercices
         if (fen.bs.testerConnexion()) {
             listeExercices = Exercise.findAll(fen.bs);
-
+            //System.out.println("coucou: "+listeExercices);
         }
         //System.out.println("ex:"+listeExercices);
         //listeExercices = new ArrayList<>();
@@ -63,12 +63,13 @@ public class BmgPanelImport extends JPanel {
             listeExercices = new ArrayList<>();
         }
         final String[] tabExercices = convertToTableau();
-
+        //System.out.println("tab"+tabExercices[0]);
         // Création du menu déroulant
         final JComboBox jcb = new JComboBox(tabExercices);
 
         // Button OK
         JButton bok = new JButton("Sélectionner");
+        JButton bup = new JButton("Actualiser");
 
         // Add Listener
         bok.addActionListener(new ActionListener() {
@@ -77,7 +78,9 @@ public class BmgPanelImport extends JPanel {
             public void actionPerformed(ActionEvent ae) {
                 // Index
                 int index = jcb.getSelectedIndex();
-
+                System.out.println("index:"+index);
+                listeExercices = Exercise.findAll(fen.bs);
+                System.out.println("lex:"+listeExercices);
                 // Récupération de l'exercice
                 Exercise exercise = listeExercices.get(index);
 
@@ -98,14 +101,34 @@ public class BmgPanelImport extends JPanel {
 
             }
         });
+        
+        bup.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                ArrayList<Exercise> list = Exercise.findAll(fen.bs);
+                //System.out.println("list"+list);
+                updateListExercises(jcb,list,tabExercices);
+            }
+        });
 
         // Ajout
         panHaut.add(jcb);
         panHaut.add(bok);
+        panHaut.add(bup);
 
         this.add(panHaut, BorderLayout.NORTH);
     }
 
+    public void updateListExercises(JComboBox j, ArrayList<Exercise> l, String[] t) {
+        j.removeAllItems();
+        this.listeExercices = l;
+        t = convertToTableau();
+        for (String st : t) {
+            j.addItem(st);
+        }
+    }
+    
     private void setPanel() {
         // Génération des autres panels
         this.setPanelHaut();
@@ -147,11 +170,15 @@ public class BmgPanelImport extends JPanel {
 
         // Remplissage
         int it = 0;
+        //System.out.println("koko: "+listeExercices.get(0));
         for (Exercise e : listeExercices) {
+            System.out.println("kaka");
             res[it] = e.getTitle();
             it++;
         }
+        //System.out.println("koko: "+listeExercices.get(0));
 
+        //System.out.println("res :"+res[0]);
         return res;
     }
 

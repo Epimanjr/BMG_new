@@ -332,33 +332,33 @@ public class QuestionFraction extends Question implements iDbManager {
     }
     
     public String encodeNumerators() {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
 		Iterator<Integer> itnum = numerators.iterator();
         while (itnum.hasNext()) {
-			res = res + itnum.next() + ":";
+			res.append(itnum.next()).append(":");
 		}
-		res = res.substring(0, res.length()-1);
-        return res;
+		res.replace(0, res.length()-1, "");
+        return res.toString();
     }
     
     public String encodeDenominators() {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         Iterator<Integer> itdnm = denominators.iterator();
 		while (itdnm.hasNext()) {
-			res = res + itdnm.next() + ":";
+			res.append(itdnm.next()).append(":");
 		}
-		res = res.substring(0, res.length()-1);
-        return res;
+		res.replace(0, res.length()-1, "");
+        return res.toString();
     }
     
     public String encodeOperators() {
-        String res = new String();
+        StringBuilder res = new StringBuilder();
         Iterator<Character> itopt = operators.iterator();
 		while (itopt.hasNext()) {
-			res = res + itopt.next() + ":";
+			res.append(itopt.next()).append(":");
 		}
-		res = res.substring(0, res.length()-1);
-        return res;
+		res.replace(0, res.length()-1, "");
+        return res.toString();
     }
 
     /**
@@ -368,15 +368,15 @@ public class QuestionFraction extends Question implements iDbManager {
 	 */
     @Override
 	public String encode() throws EncodeException {
-		String res = "#QuestionFraction<";
-        res = res + encodeNumerators();
-		res = res + "><";
-		res = res + encodeDenominators();
-		res = res + "><";
-		res = res + encodeOperators();
-		res = res + "><" + length + ">";
-		res = res + super.encode();
-		return res;
+		StringBuilder res = new StringBuilder("#QuestionFraction<");
+        res.append(encodeNumerators());
+		res.append("><");
+		res.append(encodeDenominators());
+		res.append("><");
+		res.append(encodeOperators());
+		res.append("><").append(length).append(">");
+		res.append(super.encode());
+		return res.toString();
 	}
     
     public static ArrayList<Integer> decodeNumerators(String str) {

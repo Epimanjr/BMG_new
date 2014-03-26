@@ -173,10 +173,10 @@ public class Wording implements iDbManager {
     }
 
     public String encode() throws EncodeException {
-		String res = "#Wording<" + id + "><$<" + text + ">$><";
-        res = res + encodeValues();
-		res = res + ">";
-		return res;
+		StringBuilder res = new StringBuilder("#Wording<" + id + "><$<" + text + ">$><");
+        res.append(encodeValues());
+		res.append(">");
+		return res.toString();
 	}
     
     public static Object[] decodeValues(String str) throws DecodeException {

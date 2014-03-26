@@ -1,0 +1,6 @@
+#Exercise<-1><aze><custom><2>
+#Wording<-1><$<zer>$><emp><>
+#QuestionCustom<int><1><-1><$<a>$><0>
+#QuestionCustom<dbl><1.1><-1><$<b>$><0>
+#QuestionCustom<chr><o><-1><$<c>$><0>
+#QuestionCustom<str><blo bli><-1><$<d>$><0>

@@ -63,7 +63,7 @@ public class BmgPanelImport extends JPanel {
             listeExercices = new ArrayList<>();
         }
         final String[] tabExercices = convertToTableau();
-System.out.println("tab"+tabExercices[0]);
+        //System.out.println("tab"+tabExercices[0]);
         // Création du menu déroulant
         final JComboBox jcb = new JComboBox(tabExercices);
 
@@ -79,6 +79,7 @@ System.out.println("tab"+tabExercices[0]);
                 // Index
                 int index = jcb.getSelectedIndex();
                 System.out.println("index:"+index);
+                listeExercices = Exercise.findAll(fen.bs);
                 System.out.println("lex:"+listeExercices);
                 // Récupération de l'exercice
                 Exercise exercise = listeExercices.get(index);
@@ -175,9 +176,9 @@ System.out.println("tab"+tabExercices[0]);
             res[it] = e.getTitle();
             it++;
         }
-        System.out.println("koko: "+listeExercices.get(0));
+        //System.out.println("koko: "+listeExercices.get(0));
 
-        System.out.println("res :"+res[0]);
+        //System.out.println("res :"+res[0]);
         return res;
     }
 

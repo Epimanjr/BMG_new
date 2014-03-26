@@ -3,12 +3,14 @@ package tests;
 import database.BaseSetting;
 import exceptions.EncodeException;
 import java.util.ArrayList;
-import java.util.Collection;
 import model.Exercise;
 import model.Practice;
 import model.Question;
 import model.QuestionCalculation;
+import model.QuestionCustom;
+import model.QuestionEquation;
 import model.QuestionFraction;
+import model.QuestionPower;
 import model.Wording;
 import user.School;
 import user.Screen;
@@ -21,7 +23,7 @@ public class ActiveRecord_Tests
     @SuppressWarnings("null")
     public static void main(String[] args) throws EncodeException
     {
-	boolean b = true;
+	boolean b;
 	
 	BaseSetting bs = new BaseSetting();
         //bs.setInfo();
@@ -226,13 +228,13 @@ public class ActiveRecord_Tests
 	ArrayList<Character> alcqf3 = new ArrayList<>(); alcqf3.add('/'); alcqf3.add('/'); alcqf3.add('*');
         
         QuestionFraction questionFraction_1 = new QuestionFraction("questionFraction_1",2); questionFraction_1.setNumerators(aliqfn1); questionFraction_1.setDenominators(aliqfd1); questionFraction_1.setOperators(alcqf1);
-	b = questionCalculation_1.insert(bs);
+	b = questionFraction_1.insert(bs);
 	System.out.println(""+b+" insertion questionFraction_1");
 	QuestionFraction questionFraction_2 = new QuestionFraction("questionFraction_2",3); questionFraction_2.setNumerators(aliqfn2); questionFraction_2.setDenominators(aliqfd2); questionFraction_2.setOperators(alcqf2);
-	b = questionCalculation_2.insert(bs);
+	b = questionFraction_2.insert(bs);
 	System.out.println(""+b+" insertion questionFraction_2");
 	QuestionFraction questionFraction_3 = new QuestionFraction("questionFraction_3",1); questionFraction_3.setNumerators(aliqfn3); questionFraction_3.setDenominators(aliqfd3); questionFraction_3.setOperators(alcqf3);
-	b = questionCalculation_3.insert(bs);
+	b = questionFraction_3.insert(bs);
 	System.out.println(""+b+" insertion questionFraction_3");
 	
 	QuestionFraction qf;
@@ -252,118 +254,109 @@ public class ActiveRecord_Tests
 	
         /* QUESTION-EQUATION : PAS OK */
         
-//      ArrayList<Integer> aliqfn1 = new ArrayList<>(); aliqfn1.add(6); aliqfn1.add(2); aliqfn1.add(3); aliqfn1.add(7);
-//	ArrayList<Integer> aliqfn2 = new ArrayList<>(); aliqfn2.add(2); aliqfn2.add(8); aliqfn2.add(5); aliqfn2.add(9);
-//	ArrayList<Integer> aliqfn3 = new ArrayList<>(); aliqfn3.add(1); aliqfn3.add(4); aliqfn3.add(8); aliqfn3.add(9);
-//      ArrayList<Integer> aliqfd1 = new ArrayList<>(); aliqfd1.add(1); aliqfd1.add(4); aliqfd1.add(8); aliqfd1.add(9);
-//      ArrayList<Integer> aliqfd2 = new ArrayList<>(); aliqfd2.add(6); aliqfd2.add(2); aliqfd2.add(3); aliqfd2.add(7);
-//	ArrayList<Integer> aliqfd3 = new ArrayList<>(); aliqfd3.add(2); aliqfd3.add(8); aliqfd3.add(5); aliqfd3.add(9);
-//	ArrayList<Character> alcqf1 = new ArrayList<>(); alcqf1.add('+'); alcqf1.add('+'); alcqf1.add('-');
-//	ArrayList<Character> alcqf2 = new ArrayList<>(); alcqf2.add('-'); alcqf2.add('*'); alcqf2.add('/');
-//	ArrayList<Character> alcqf3 = new ArrayList<>(); alcqf3.add('/'); alcqf3.add('/'); alcqf3.add('*');
-//        
-//      QuestionFraction questionFraction_1 = new QuestionFraction("questionFraction_1",2); questionFraction_1.setNumerators(aliqfn1); questionFraction_1.setDenominators(aliqfd1); questionFraction_1.setOperators(alcqf1);
-//	b = questionCalculation_1.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_1");
-//	QuestionFraction questionFraction_2 = new QuestionFraction("questionFraction_2",3); questionFraction_2.setNumerators(aliqfn2); questionFraction_2.setDenominators(aliqfd2); questionFraction_2.setOperators(alcqf2);
-//	b = questionCalculation_2.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_2");
-//	QuestionFraction questionFraction_3 = new QuestionFraction("questionFraction_3",1); questionFraction_3.setNumerators(aliqfn3); questionFraction_3.setDenominators(aliqfd3); questionFraction_3.setOperators(alcqf3);
-//	b = questionCalculation_3.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_3");
-//	
-//	QuestionFraction qf;
-//	qf = QuestionFraction.findById(questionFraction_3.getID(),bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("find QF : pas OK");
-//	
-//	qf.setText("...");
-//	qf.update(bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("update QF : pas OK");
-//	
-//	qf.delete(bs);
-//	qf = QuestionFraction.findById(questionFraction_3.getID(),bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("delete QF : OK");
+        ArrayList<Integer> aliqeo1 = new ArrayList<>(); aliqeo1.add(3); aliqeo1.add(5); aliqeo1.add(3); aliqeo1.add(2);
+	ArrayList<Integer> aliqeo2 = new ArrayList<>(); aliqeo2.add(7); aliqeo2.add(2); aliqeo2.add(6); aliqeo2.add(6);
+	ArrayList<Integer> aliqeo3 = new ArrayList<>(); aliqeo3.add(1); aliqeo3.add(4); aliqeo3.add(4); aliqeo3.add(9);
+        ArrayList<Integer> aliqeu1 = new ArrayList<>(); aliqeu1.add(5); aliqeu1.add(4); aliqeu1.add(4); aliqeu1.add(9);
+        ArrayList<Integer> aliqeu2 = new ArrayList<>(); aliqeu2.add(6); aliqeu2.add(8); aliqeu2.add(2); aliqeu2.add(1);
+	ArrayList<Integer> aliqeu3 = new ArrayList<>(); aliqeu3.add(3); aliqeu3.add(9); aliqeu3.add(5); aliqeu3.add(2);
+	ArrayList<Character> alcqe1 = new ArrayList<>(); alcqe1.add('+'); alcqe1.add('+'); alcqe1.add('-');
+	ArrayList<Character> alcqe2 = new ArrayList<>(); alcqe2.add('-'); alcqe2.add('*'); alcqe2.add('/');
+	ArrayList<Character> alcqe3 = new ArrayList<>(); alcqe3.add('/'); alcqe3.add('/'); alcqe3.add('*');
+        
+        QuestionEquation questionEquation_1 = new QuestionEquation("questionEquation_1",2); questionEquation_1.setOperands(aliqeo1); questionEquation_1.setUnknowns(aliqeu1); questionEquation_1.setOperators(alcqe1);
+	b = questionEquation_1.insert(bs);
+	System.out.println(""+b+" insertion questionEquation_1");
+	QuestionEquation questionEquation_2 = new QuestionEquation("questionEquation_2",3); questionEquation_2.setOperands(aliqeo2); questionEquation_2.setUnknowns(aliqeu2); questionEquation_2.setOperators(alcqe2);
+	b = questionEquation_2.insert(bs);
+	System.out.println(""+b+" insertion questionEquation_2");
+	QuestionEquation questionEquation_3 = new QuestionEquation("questionEquation_3",1); questionEquation_3.setOperands(aliqeo3); questionEquation_3.setUnknowns(aliqeu3); questionEquation_3.setOperators(alcqe3);
+	b = questionEquation_3.insert(bs);
+	System.out.println(""+b+" insertion questionEquation_3");
+	
+	QuestionEquation qe;
+	qe = QuestionEquation.findById(questionEquation_3.getID(),bs);
+	
+	if (qe != null) System.out.println(""+qe.getID()+" | "+qe.getText()+""); else System.out.println("find QE : pas OK");
+	
+	qe.setText("...");
+	qe.update(bs);
+	
+	if (qe != null) System.out.println(""+qe.getID()+" | "+qe.getText()+""); else System.out.println("update QE : pas OK");
+	
+	qe.delete(bs);
+	qe = QuestionEquation.findById(questionEquation_3.getID(),bs);
+	
+	if (qe != null) System.out.println(""+qe.getID()+" | "+qe.getText()+""); else System.out.println("delete QE : OK");
         
         /* QUESTION-POWER : PAS OK */
         
-//      ArrayList<Integer> aliqfn1 = new ArrayList<>(); aliqfn1.add(6); aliqfn1.add(2); aliqfn1.add(3); aliqfn1.add(7);
-//	ArrayList<Integer> aliqfn2 = new ArrayList<>(); aliqfn2.add(2); aliqfn2.add(8); aliqfn2.add(5); aliqfn2.add(9);
-//	ArrayList<Integer> aliqfn3 = new ArrayList<>(); aliqfn3.add(1); aliqfn3.add(4); aliqfn3.add(8); aliqfn3.add(9);
-//      ArrayList<Integer> aliqfd1 = new ArrayList<>(); aliqfd1.add(1); aliqfd1.add(4); aliqfd1.add(8); aliqfd1.add(9);
-//      ArrayList<Integer> aliqfd2 = new ArrayList<>(); aliqfd2.add(6); aliqfd2.add(2); aliqfd2.add(3); aliqfd2.add(7);
-//	ArrayList<Integer> aliqfd3 = new ArrayList<>(); aliqfd3.add(2); aliqfd3.add(8); aliqfd3.add(5); aliqfd3.add(9);
-//	ArrayList<Character> alcqf1 = new ArrayList<>(); alcqf1.add('+'); alcqf1.add('+'); alcqf1.add('-');
-//	ArrayList<Character> alcqf2 = new ArrayList<>(); alcqf2.add('-'); alcqf2.add('*'); alcqf2.add('/');
-//	ArrayList<Character> alcqf3 = new ArrayList<>(); alcqf3.add('/'); alcqf3.add('/'); alcqf3.add('*');
-//        
-//        QuestionFraction questionFraction_1 = new QuestionFraction("questionFraction_1",2); questionFraction_1.setNumerators(aliqfn1); questionFraction_1.setDenominators(aliqfd1); questionFraction_1.setOperators(alcqf1);
-//	b = questionCalculation_1.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_1");
-//	QuestionFraction questionFraction_2 = new QuestionFraction("questionFraction_2",3); questionFraction_2.setNumerators(aliqfn2); questionFraction_2.setDenominators(aliqfd2); questionFraction_2.setOperators(alcqf2);
-//	b = questionCalculation_2.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_2");
-//	QuestionFraction questionFraction_3 = new QuestionFraction("questionFraction_3",1); questionFraction_3.setNumerators(aliqfn3); questionFraction_3.setDenominators(aliqfd3); questionFraction_3.setOperators(alcqf3);
-//	b = questionCalculation_3.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_3");
-//	
-//	QuestionFraction qf;
-//	qf = QuestionFraction.findById(questionFraction_3.getID(),bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("find QF : pas OK");
-//	
-//	qf.setText("...");
-//	qf.update(bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("update QF : pas OK");
-//	
-//	qf.delete(bs);
-//	qf = QuestionFraction.findById(questionFraction_3.getID(),bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("delete QF : OK");
+	ArrayList<Character> alcqpo1 = new ArrayList<>(); alcqpo1.add('+'); alcqpo1.add('+'); alcqpo1.add('-');
+	ArrayList<Character> alcqpo2 = new ArrayList<>(); alcqpo2.add('-'); alcqpo2.add('*'); alcqpo2.add('/');
+	ArrayList<Character> alcqpo3 = new ArrayList<>(); alcqpo3.add('/'); alcqpo3.add('/'); alcqpo3.add('*');
+        ArrayList<Integer> aliqpp1 = new ArrayList<>(); aliqpp1.add(1); aliqpp1.add(4); aliqpp1.add(8); aliqpp1.add(9);
+        ArrayList<Integer> aliqpp2 = new ArrayList<>(); aliqpp2.add(6); aliqpp2.add(2); aliqpp2.add(3); aliqpp2.add(7);
+	ArrayList<Integer> aliqpp3 = new ArrayList<>(); aliqpp3.add(2); aliqpp3.add(8); aliqpp3.add(5); aliqpp3.add(9);
+        
+        QuestionPower questionPower_1 = new QuestionPower("questionPower_1",2); questionPower_1.setOperators(alcqpo1); questionPower_1.setPowers(aliqpp1);
+	b = questionPower_1.insert(bs);
+	System.out.println(""+b+" insertion questionPower_1");
+	QuestionPower questionPower_2 = new QuestionPower("questionPower_2",3); questionPower_2.setOperators(alcqpo2); questionPower_2.setPowers(aliqpp2);
+	b = questionPower_2.insert(bs);
+	System.out.println(""+b+" insertion questionPower_2");
+	QuestionPower questionPower_3 = new QuestionPower("questionPower_3",1); questionPower_3.setOperators(alcqpo3); questionPower_3.setPowers(aliqpp3);
+	b = questionPower_3.insert(bs);
+	System.out.println(""+b+" insertion questionPower_3");
+	
+	QuestionPower qp;
+	qp = QuestionPower.findById(questionPower_3.getID(),bs);
+	
+	if (qp != null) System.out.println(""+qp.getID()+" | "+qp.getText()+""); else System.out.println("find QP : pas OK");
+	
+	qp.setText("...");
+	qp.update(bs);
+	
+	if (qp != null) System.out.println(""+qp.getID()+" | "+qp.getText()+""); else System.out.println("update QP : pas OK");
+	
+	qp.delete(bs);
+	qp = QuestionPower.findById(questionPower_3.getID(),bs);
+	
+	if (qp != null) System.out.println(""+qp.getID()+" | "+qp.getText()+""); else System.out.println("delete QP : OK");
         
         /* QUESTION-CUSTOM : PAS OK */
         
-//      ArrayList<Integer> aliqfn1 = new ArrayList<>(); aliqfn1.add(6); aliqfn1.add(2); aliqfn1.add(3); aliqfn1.add(7);
-//	ArrayList<Integer> aliqfn2 = new ArrayList<>(); aliqfn2.add(2); aliqfn2.add(8); aliqfn2.add(5); aliqfn2.add(9);
-//	ArrayList<Integer> aliqfn3 = new ArrayList<>(); aliqfn3.add(1); aliqfn3.add(4); aliqfn3.add(8); aliqfn3.add(9);
-//      ArrayList<Integer> aliqfd1 = new ArrayList<>(); aliqfd1.add(1); aliqfd1.add(4); aliqfd1.add(8); aliqfd1.add(9);
-//      ArrayList<Integer> aliqfd2 = new ArrayList<>(); aliqfd2.add(6); aliqfd2.add(2); aliqfd2.add(3); aliqfd2.add(7);
-//	ArrayList<Integer> aliqfd3 = new ArrayList<>(); aliqfd3.add(2); aliqfd3.add(8); aliqfd3.add(5); aliqfd3.add(9);
-//	ArrayList<Character> alcqf1 = new ArrayList<>(); alcqf1.add('+'); alcqf1.add('+'); alcqf1.add('-');
-//	ArrayList<Character> alcqf2 = new ArrayList<>(); alcqf2.add('-'); alcqf2.add('*'); alcqf2.add('/');
-//	ArrayList<Character> alcqf3 = new ArrayList<>(); alcqf3.add('/'); alcqf3.add('/'); alcqf3.add('*');
-//        
-//        QuestionFraction questionFraction_1 = new QuestionFraction("questionFraction_1",2); questionFraction_1.setNumerators(aliqfn1); questionFraction_1.setDenominators(aliqfd1); questionFraction_1.setOperators(alcqf1);
-//	b = questionCalculation_1.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_1");
-//	QuestionFraction questionFraction_2 = new QuestionFraction("questionFraction_2",3); questionFraction_2.setNumerators(aliqfn2); questionFraction_2.setDenominators(aliqfd2); questionFraction_2.setOperators(alcqf2);
-//	b = questionCalculation_2.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_2");
-//	QuestionFraction questionFraction_3 = new QuestionFraction("questionFraction_3",1); questionFraction_3.setNumerators(aliqfn3); questionFraction_3.setDenominators(aliqfd3); questionFraction_3.setOperators(alcqf3);
-//	b = questionCalculation_3.insert(bs);
-//	System.out.println(""+b+" insertion questionFraction_3");
-//	
-//	QuestionFraction qf;
-//	qf = QuestionFraction.findById(questionFraction_3.getID(),bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("find QF : pas OK");
-//	
-//	qf.setText("...");
-//	qf.update(bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("update QF : pas OK");
-//	
-//	qf.delete(bs);
-//	qf = QuestionFraction.findById(questionFraction_3.getID(),bs);
-//	
-//	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("delete QF : OK");
+        Object[] o1 = new Object[0];
+        Object[] o2 = new Object[0];
+        Object[] o3 = new Object[0];
         
-	ArrayList<Question> alq1 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
-	ArrayList<Question> alq2 = new ArrayList<Question>(); alq1.add(questionCalculation_1);  alq1.add(questionFraction_2);
-	ArrayList<Question> alq3 = new ArrayList<Question>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
+        QuestionCustom questionCustom_1 = new QuestionCustom("questionCustom_1",2); questionCustom_1.setSolution(o1);
+	b = questionCustom_1.insert(bs);
+	System.out.println(""+b+" insertion questionFraction_1");
+	QuestionCustom questionCustom_2 = new QuestionCustom("questionCustom_2",3); questionCustom_2.setSolution(o2);
+	b = questionCustom_2.insert(bs);
+	System.out.println(""+b+" insertion questionFraction_2");
+	QuestionCustom questionCustom_3 = new QuestionCustom("questionCustom_3",1); questionCustom_3.setSolution(o3);
+	b = questionCustom_3.insert(bs);
+	System.out.println(""+b+" insertion questionFraction_3");
+	
+	QuestionCustom qcust;
+	qcust = QuestionCustom.findById(questionCustom_3.getID(),bs);
+	
+	if (qcust != null) System.out.println(""+qcust.getID()+" | "+qcust.getText()+""); else System.out.println("find QCT : pas OK");
+	
+	qcust.setText("...");
+	qcust.update(bs);
+	
+	if (qcust != null) System.out.println(""+qcust.getID()+" | "+qcust.getText()+""); else System.out.println("update QCT : pas OK");
+	
+	qcust.delete(bs);
+	qcust = QuestionCustom.findById(questionCustom_3.getID(),bs);
+	
+	if (qcust != null) System.out.println(""+qcust.getID()+" | "+qcust.getText()+""); else System.out.println("delete QCT : OK");
+        
+	ArrayList<Question> alq1 = new ArrayList<>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
+	ArrayList<Question> alq2 = new ArrayList<>(); alq1.add(questionCalculation_1);  alq1.add(questionFraction_2);
+	ArrayList<Question> alq3 = new ArrayList<>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
 	
 	Exercise exercise_1 = new Exercise("Exercise1",wording_1,alq1,"type",0,false);
 	b = exercise_1.insert(bs);

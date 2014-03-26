@@ -506,15 +506,17 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         
         //tips.setSolution(decodeSolution);
         
-        tips = QuestionCustom.findById(this.id, bs);
+        //tips = QuestionCustom.findById(this.id, bs);
         
-        tips.setSolution(decodeSolution);
+        //tips.setSolution(decodeSolution);
         
         //System.out.println(tips);
         
         //return tips;
         
-        return tips.getSolution();
+        //return tips.getSolution();
+        
+        return decodeSolution;
     }
     
     // ATTENTION AU FINDBYID (avant = static | maintenant != static)

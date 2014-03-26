@@ -163,6 +163,11 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         this.solution = solution;
     }
     
+    public SolutionType[] getSolution()
+    {
+        return this.solution;
+    }
+    
     public SolutionType[] decodeSolution() throws DecodeException {
         SolutionType[] res =null;
         
@@ -492,7 +497,9 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
 
     /* FINDERS */
     
-    public QuestionCustom getSolutionType(String s, BaseSetting bs) throws DecodeException
+    //public SolutionType[] getSolutionTypeee
+    
+    public Object[] getSolutionType(String s, BaseSetting bs) throws DecodeException
     {
         QuestionCustom tips = new QuestionCustom("");
         
@@ -500,13 +507,15 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
         
         //tips.setSolution(decodeSolution);
         
-        tips = QuestionCustom.findById(id, bs);
+        tips = QuestionCustom.findById(this.id, bs);
         
         tips.setSolution(decodeSolution);
         
-        System.out.println(tips);
+        //System.out.println(tips);
         
-        return tips;
+        //return tips;
+        
+        return tips.getSolution();
     }
     
     // ATTENTION AU FINDBYID (avant = static | maintenant != static)
@@ -531,19 +540,19 @@ public class QuestionCustom<SolutionType> extends Question implements iDbManager
                 int diffqcustom = rs.getInt("diff_qcustom");
                 String soltextqcustom = rs.getString("sol_qcustom");
                 
-                //SolutionType[] solqcustom = QuestionCustom.decodeSolution(soltextqcustom);
+                questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);
                 
-                questionCustom = new QuestionCustom(idqcustom,textqcustom,diffqcustom);//,solqcustom);
+                questionCustom.getSolutionType(soltextqcustom,bs);
             }
         }
         catch (SQLException sqle)
         {
             sqle.printStackTrace();
         }
-//        catch (DecodeException de) 
-//        {
-//            de.printStackTrace();
-//        }
+        catch (DecodeException de) 
+        {
+            de.printStackTrace();
+        }
         
         return questionCustom;
     }

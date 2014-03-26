@@ -325,19 +325,19 @@ public class ActiveRecord_Tests
         
         /* QUESTION-CUSTOM : PAS OK */
         
-        Object[] o1 = new Object[0];
-        Object[] o2 = new Object[0];
-        Object[] o3 = new Object[0];
+        Object[] o1 = new Object[]{(int) 5 ,(int) 2 ,(int) 4};
+        Object[] o2 = new Object[]{(double) 3.2 , (double) 9.6};
+        Object[] o3 = new Object[]{(String) "abc" , (String) "xyz"};
         
         QuestionCustom questionCustom_1 = new QuestionCustom("questionCustom_1",2); questionCustom_1.setSolution(o1);
 	b = questionCustom_1.insert(bs);
-	System.out.println(""+b+" insertion questionFraction_1");
+	System.out.println(""+b+" insertion questionCustom_1");
 	QuestionCustom questionCustom_2 = new QuestionCustom("questionCustom_2",3); questionCustom_2.setSolution(o2);
 	b = questionCustom_2.insert(bs);
-	System.out.println(""+b+" insertion questionFraction_2");
+	System.out.println(""+b+" insertion questionCustom_2");
 	QuestionCustom questionCustom_3 = new QuestionCustom("questionCustom_3",1); questionCustom_3.setSolution(o3);
 	b = questionCustom_3.insert(bs);
-	System.out.println(""+b+" insertion questionFraction_3");
+	System.out.println(""+b+" insertion questionCustom_3");
 	
 	QuestionCustom qcust;
 	qcust = QuestionCustom.findById(questionCustom_3.getID(),bs);

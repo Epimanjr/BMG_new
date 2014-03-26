@@ -143,7 +143,7 @@ public class QuestionEquation extends Question implements iDbManager {
                 order0 = false;
             } else {
                 if (Math.random() < 0.45) {
-                    ukn = (int) (Math.random() * (1 + 1));
+                    ukn = (int) (Math.random() * (2 + 1));
                     order0 = false;
                 } else {
                     ukn = 0;

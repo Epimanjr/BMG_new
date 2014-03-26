@@ -809,7 +809,7 @@ public class BmgCreatePanel {
         JPanel pan = new JPanel();
 
         String s = "<span style=\"color: #E43B01;\">À propos de B.M.G. : </span><br/><br/>";
-        s += "Ce programme a été conçu puis réalisé par 4 étudiants de l'I.U.T. Nancy-Charlemagne de l'Université de Lorraine.<br/>";
+        s += "Ce programme a été conçu puis réalisé par 4 étudiants de l'I.U.T. Nancy-Charlemagne.<br/>";
         s += "Ces étudiants sont Maxime Blaise, Joseph Dzimbalka, Antoine Nosal et Julien Rische.<br/>";
         s += "Ce projet a été encadré par Mme Irina Illina.<br/>";
 

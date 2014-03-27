@@ -385,21 +385,24 @@ public class ActiveRecord_Tests
         
         ArrayList<Integer> wa = new ArrayList();
         wa.add(1);
-        wa.add(2);
+        wa.add(3);
+        ArrayList<Integer> ra = new ArrayList();
+        ra.add(2);
+        ra.add(4);
         
-        Practice practice_1 = new Practice(user_1.getId_u(),exercise_2); practice_1.setWrongAnswers(wa);
+        Practice practice_1 = new Practice(user_1.getId_u(),exercise_2); practice_1.setWrongAnswers(wa); practice_1.setRightAnswers(ra);
         b = practice_1.insert(bs);
         System.out.println(""+b+" insertion practice_1");
-        Practice practice_2 = new Practice(user_1.getId_u(),exercise_1); practice_2.setWrongAnswers(wa);
+        Practice practice_2 = new Practice(user_1.getId_u(),exercise_1); practice_2.setWrongAnswers(wa); practice_2.setRightAnswers(ra);
         b = practice_2.insert(bs);
         System.out.println(""+b+" insertion practice_2");
-        Practice practice_3 = new Practice(user_1.getId_u(),exercise_1); practice_3.setWrongAnswers(wa);
+        Practice practice_3 = new Practice(user_1.getId_u(),exercise_1); practice_3.setWrongAnswers(wa); practice_3.setRightAnswers(ra);
         b = practice_3.insert(bs);
         System.out.println(""+b+" insertion practice_3");
-        Practice practice_4 = new Practice(user_1.getId_u(),exercise_2); practice_4.setWrongAnswers(wa);
+        Practice practice_4 = new Practice(user_1.getId_u(),exercise_2); practice_4.setWrongAnswers(wa); practice_4.setRightAnswers(ra);
         b = practice_4.insert(bs);
         System.out.println(""+b+" insertion practice_4");
-        Practice practice_5 = new Practice(user_1.getId_u(),exercise_2); practice_5.setWrongAnswers(wa);
+        Practice practice_5 = new Practice(user_1.getId_u(),exercise_2); practice_5.setWrongAnswers(wa); practice_5.setRightAnswers(ra);
         b = practice_5.insert(bs);
         System.out.println(""+b+" insertion practice_5");
         

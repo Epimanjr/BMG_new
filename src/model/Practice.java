@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.ArrayList;
@@ -212,6 +213,11 @@ public class Practice {
         wrong_answers = wa;
     }
     
+    public void setRightAnswers(ArrayList<Integer> ra)
+    {
+        right_answers = ra;
+    }
+    
     public void setExecution_time(int execution_time) {
         this.execution_time = execution_time;
     }
@@ -228,14 +234,15 @@ public class Practice {
         try {
             if (User.findById(this.id_u, bs) != null && Exercise.findById(id_e, bs) != null) {
 
-                String query = "INSERT INTO PracticeAn (id_u,id_e,execution_date,execution_time,success,wrong_answers) VALUES (?,?,?,?,?,?)";
+                String query = "INSERT INTO PracticeAn (id_u,id_e,execution_date,execution_time,success,wrong_answers,right_answers) VALUES (?,?,?,?,?,?,?)";
                 PreparedStatement p_statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
                 p_statement.setInt(1, this.id_u);
                 p_statement.setInt(2, id_e);
-                p_statement.setString(3, this.getExecution_dateString());
-                p_statement.setString(4, this.execution_time+"");
+                p_statement.setTimestamp(3, new Timestamp(this.getExecution_date().getTime()));
+                p_statement.setInt(4, this.getExecution_time());
                 p_statement.setDouble(5, this.success);
                 p_statement.setString(6, this.encodeWrongAnswers());
+                p_statement.setString(7, this.encodeRightAnswers());
                 p_statement.executeUpdate();
                 ResultSet rs = p_statement.getGeneratedKeys();
 
@@ -261,15 +268,16 @@ public class Practice {
 
         try {
             if (User.findById(this.id_u, bs) != null && Exercise.findById(id_e, bs) != null) {
-                String query = "UPDATE PracticeAn SET (id_u = ? , id_e = ? , execution_date = ? , execution_time = ? , success = ? , wrong_answers = ?) WHERE id_p = ?";
+                String query = "UPDATE PracticeAn SET (id_u = ? , id_e = ? , execution_date = ? , execution_time = ? , success = ? , wrong_answers = ? , right_answers = ?) WHERE id_p = ?";
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1, this.id_u);
                 p_statement.setInt(2, id_e);
-                p_statement.setString(3, this.getExecution_dateString());
-                p_statement.setString(4, this.execution_time+"");
+                p_statement.setTimestamp(3, new Timestamp(this.getExecution_date().getTime()));
+                p_statement.setInt(4, this.getExecution_time());
                 p_statement.setDouble(5, this.success);
                 p_statement.setString(6, this.encodeWrongAnswers());
-                p_statement.setInt(7, this.id_p);
+                p_statement.setString(7, this.encodeRightAnswers());
+                p_statement.setInt(8, this.id_p);
                 p_statement.executeUpdate();
             }
         } catch (SQLException sqle) {
@@ -312,14 +320,18 @@ public class Practice {
                 int idp = rs.getInt("id_p");
                 int idu = rs.getInt("id_u");
                 int ide = rs.getInt("id_e");
-                String execd = rs.getString("execution_date");
-                String exect = rs.getString("execution_time");
+                Date execd = rs.getTimestamp("execution_date");
+                int exect = rs.getInt("execution_time");
                 double s = rs.getDouble("success");
                 String wa = rs.getString("wrong_answers");
+                String ra = rs.getString("right_answers");
 
+                Calendar cal = new GregorianCalendar();
+                cal.setTime(execd);
+                
                 Exercise ex = Exercise.findById(ide, bs);
                 
-                practice = new Practice(idp, idu, Integer.parseInt(exect), null, s, Practice.decodeWrongAnswers(wa), null, ex);
+                practice = new Practice(idp, idu, exect, cal, s, Practice.decodeWrongAnswers(wa), Practice.decodeRightAnswers(ra), ex);
             }
 
         } catch (SQLException sqle) {
@@ -347,14 +359,18 @@ public class Practice {
                 int idp = rs.getInt("id_p");
                 int idu = rs.getInt("id_u");
                 int ide = rs.getInt("id_e");
-                String execd = rs.getString("execution_date");
-                String exect = rs.getString("execution_time");
+                Date execd = rs.getTimestamp("execution_date");
+                int exect = rs.getInt("execution_time");
                 double s = rs.getDouble("success");
                 String wa = rs.getString("wrong_answers");
+                String ra = rs.getString("right_answers");
+                
+                Calendar cal = new GregorianCalendar();
+                cal.setTime(execd);
                 
                 Exercise ex = Exercise.findById(ide, bs);
                 
-                practice = new Practice(idp, idu, Integer.parseInt(exect), null /* DATE */, s, Practice.decodeWrongAnswers(wa), null, ex);
+                practice = new Practice(idp, idu, exect, cal, s, Practice.decodeWrongAnswers(wa), Practice.decodeRightAnswers(ra), ex);
                 
                 al_practice.add(practice);
             }

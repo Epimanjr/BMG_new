@@ -358,13 +358,13 @@ public class ActiveRecord_Tests
 	ArrayList<Question> alq2 = new ArrayList<>(); alq1.add(questionCalculation_1);  alq1.add(questionFraction_2);
 	ArrayList<Question> alq3 = new ArrayList<>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
 	
-	Exercise exercise_1 = new Exercise("Exercise1",wording_1,alq1,"type",0,false);
+	Exercise exercise_1 = new Exercise("exercise1",wording_1,alq1,"type",0,false);
 	b = exercise_1.insert(bs);
 	System.out.println(""+b+" insertion exercise_1");
-	Exercise exercise_2 = new Exercise("Exercise2",wording_1,alq2,"type",0,false);
+	Exercise exercise_2 = new Exercise("exercise2",wording_1,alq2,"type",0,false);
 	b = exercise_2.insert(bs);
 	System.out.println(""+b+" insertion exercise_2");
-	Exercise exercise_3 = new Exercise("Exercise3",wording_1,alq3,"type",0,false);
+	Exercise exercise_3 = new Exercise("exercise3",wording_1,alq3,"type",0,false);
 	b = exercise_3.insert(bs);
 	System.out.println(""+b+" insertion exercise_3");
 	

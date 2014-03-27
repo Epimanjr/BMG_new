@@ -207,6 +207,11 @@ public class Practice {
         return practiced_exercise;
     }
 
+    public void setWrongAnswers(ArrayList<Integer> wa)
+    {
+        wrong_answers = wa;
+    }
+    
     public void setExecution_time(int execution_time) {
         this.execution_time = execution_time;
     }

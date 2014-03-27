@@ -383,19 +383,23 @@ public class ActiveRecord_Tests
 	
 	if (e != null) System.out.println(""+e.getId()+" | "+e.getTitle()+""); else System.out.println("delete E : OK");
         
-        Practice practice_1 = new Practice(user_1.getId_u(),exercise_2);
+        ArrayList<Integer> wa = new ArrayList();
+        wa.add(1);
+        wa.add(2);
+        
+        Practice practice_1 = new Practice(user_1.getId_u(),exercise_2); practice_1.setWrongAnswers(wa);
         b = practice_1.insert(bs);
         System.out.println(""+b+" insertion practice_1");
-        Practice practice_2 = new Practice(user_1.getId_u(),exercise_1);
+        Practice practice_2 = new Practice(user_1.getId_u(),exercise_1); practice_2.setWrongAnswers(wa);
         b = practice_2.insert(bs);
         System.out.println(""+b+" insertion practice_2");
-        Practice practice_3 = new Practice(user_1.getId_u(),exercise_1);
+        Practice practice_3 = new Practice(user_1.getId_u(),exercise_1); practice_3.setWrongAnswers(wa);
         b = practice_3.insert(bs);
         System.out.println(""+b+" insertion practice_3");
-        Practice practice_4 = new Practice(user_1.getId_u(),exercise_2);
+        Practice practice_4 = new Practice(user_1.getId_u(),exercise_2); practice_4.setWrongAnswers(wa);
         b = practice_4.insert(bs);
         System.out.println(""+b+" insertion practice_4");
-        Practice practice_5 = new Practice(user_1.getId_u(),exercise_2);
+        Practice practice_5 = new Practice(user_1.getId_u(),exercise_2); practice_5.setWrongAnswers(wa);
         b = practice_5.insert(bs);
         System.out.println(""+b+" insertion practice_5");
         

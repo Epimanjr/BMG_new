@@ -119,7 +119,7 @@ public class BmgPanelSolve extends JPanel {
         this.add(panChoose);
 
         JPanel panSouth = new JPanel();
-        panSouth.setPreferredSize(new Dimension(fen.width, 500));
+        panSouth.setPreferredSize(new Dimension(fen.width, 400));
 
         panSouth.add(labelRes);
 
@@ -144,10 +144,14 @@ public class BmgPanelSolve extends JPanel {
             }
         });
         
+        JPanel panSouth2 = new JPanel();
+        panSouth.setPreferredSize(new Dimension(fen.width, 250));
+        
         //panSouth.add(buttonOk);
-        panSouth.add(boutonExportPDF);
+        panSouth2.add(boutonExportPDF);
 
         this.add(panSouth);
+        this.add(panSouth2);
 
     }
     

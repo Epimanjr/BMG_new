@@ -225,7 +225,7 @@ public class BmgMenuBar extends JMenuBar {
         final JDialog dialog = new JDialog();
 
         JPanel pan = new JPanel();
-        pan.add(new BmgLabel("Disponible prochainement...", "#E43B01"));
+        pan.add(new BmgLabel("Les exercices sont enregistrés dans le dossier où se situe le programme, au format \".bmg\"", "#E43B01"));
 
         //Close button
         JButton fermer = new JButton("Fermer");
@@ -244,7 +244,7 @@ public class BmgMenuBar extends JMenuBar {
         dialog.setContentPane(pan);
         dialog.setTitle("Aide");
         dialog.setLocation(300, 300);
-        dialog.setPreferredSize(new Dimension(400, 300));
+        dialog.setPreferredSize(new Dimension(800, 100));
         dialog.pack();
         dialog.setVisible(true);
 

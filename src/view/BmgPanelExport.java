@@ -43,7 +43,7 @@ public class BmgPanelExport extends JPanel {
         //Label at first
         JPanel panFirst = new JPanel();
         panFirst.setPreferredSize(new Dimension(fen.width, fen.height / nb));
-        final BmgLabel label = new BmgLabel("Exporter vos exercices en ligne ou basculer vers une utilisation papier en les exportant au format PDF pour impression.", color);
+        final BmgLabel label = new BmgLabel("Exporter en ligne ou basculer vers une utilisation papier en exportant au format PDF.", color);
         panFirst.add(label);
 
         //Button choose file
@@ -100,7 +100,7 @@ public class BmgPanelExport extends JPanel {
                     //Label with summary
                    labelRes.setText("<html><p style=\"color: #E43B01;font-size: 15px;\">Résumé de l'exercice : " + trueFileName + "<br/><br/></p>"
                             + "<p><span " + style + ">Titre : </span>" + exercise.getTitle() + "<br/></p>"
-                            + "<p><span " + style + ">Type : </span>" + exercise.getType() + "<br/></p>"
+                            + "<p><span " + style + ">Type : </span>" + exercise.getTypeFrench()+ "<br/></p>"
                             + "<p><span " + style + ">Difficulté : </span>" + exercise.getDifficulty() + "<br/></p>"
                             + "<p><span " + style + ">Nombre de questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                             + "</html>");
@@ -118,7 +118,7 @@ public class BmgPanelExport extends JPanel {
         this.add(panChoose);
 
         JPanel panSouth = new JPanel();
-        panSouth.setPreferredSize(new Dimension(fen.width, 500));
+        panSouth.setPreferredSize(new Dimension(fen.width, 400));
 
         panSouth.add(labelRes);
 
@@ -143,10 +143,14 @@ public class BmgPanelExport extends JPanel {
             }
         });
         
-        panSouth.add(buttonOk);
-        panSouth.add(boutonExportPDF);
+        JPanel panSouth2 = new JPanel();
+        panSouth.setPreferredSize(new Dimension(fen.width, 250));
+        
+        panSouth2.add(buttonOk);
+        panSouth2.add(boutonExportPDF);
 
         this.add(panSouth);
+        this.add(panSouth2);
 
     }
     

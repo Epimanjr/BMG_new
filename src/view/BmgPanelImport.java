@@ -26,6 +26,7 @@ public class BmgPanelImport extends JPanel {
 
     public JPanel panHaut;
     public JPanel panCenter;
+    public JPanel panSouth;
 
     public JLabel labelRes;
 
@@ -104,7 +105,7 @@ public class BmgPanelImport extends JPanel {
                 //labelRes = new JLabel("");
                 labelRes.setText("<html><p style=\"color: rgb(45,45,45);font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
                         + "<p><span " + style + ">Titre : </span>" + exercise.getTitle() + "<br/></p>"
-                        + "<p><span " + style + ">Type : </span>" + exercise.getType() + "<br/></p>"
+                        + "<p><span " + style + ">Type : </span>" + exercise.getTypeFrench()+ "<br/></p>"
                         + "<p><span " + style + ">Difficulté : </span>" + exercise.getDifficulty() + "<br/></p>"
                         + "<p><span " + style + ">Nombre de questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                         + "</html>");
@@ -156,7 +157,7 @@ public class BmgPanelImport extends JPanel {
 
         // résumé
         labelRes = new JLabel("");
-        labelRes.setPreferredSize(new Dimension(400, 300));
+        labelRes.setPreferredSize(new Dimension(250, 250));
 
         // Button import
         JButton bimport = new JButton("Importer l'exercice");
@@ -167,15 +168,19 @@ public class BmgPanelImport extends JPanel {
             @Override
             public void actionPerformed(ActionEvent ae) {
                 String style = "style=\"color: #E43B01;font-size: 15px\"";
-                labelRes.setText("<html><p " + style + ">OK</p></html>");
+                labelRes.setText("<html><p " + style + ">Exercice importé</p></html>");
             }
         });
 
         // Ajout
         panCenter.add(labelRes);
-        panCenter.add(bimport);
+        
+        panSouth = new JPanel();
+        
+        panSouth.add(bimport);
 
         this.add(panCenter, BorderLayout.CENTER);
+        this.add(panSouth, BorderLayout.SOUTH);
     }
 
     private String[] convertToTableau() {

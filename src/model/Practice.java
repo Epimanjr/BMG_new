@@ -157,7 +157,7 @@ public class Practice {
 
     public String getExecution_dateString() {
         Date currentDate = this.execution_date.getTime();
-        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy à hh:mm");
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy à HH:mm");
         return format.format(currentDate);
         //return "" + this.execution_date.get(Calendar.DAY_OF_MONTH) + " " + this.execution_date.get(Calendar.MONTH) + " " + this.execution_date.get(Calendar.YEAR);
     }

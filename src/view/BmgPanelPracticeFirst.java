@@ -97,7 +97,7 @@ public class BmgPanelPracticeFirst extends JPanel {
                     //Label with summary
                     labelRes.setText("<html><p style=\"color: #E43B01;font-size: 15px;\">Résumé de : " + trueFileName + "<br/><br/></p>"
                             + "<p><span " + style + ">Titre : </span>" + exercise.getTitle() + "<br/></p>"
-                            + "<p><span " + style + ">Type : </span>" + exercise.getType() + "<br/></p>"
+                            + "<p><span " + style + ">Type : </span>" + exercise.getTypeFrench()+ "<br/></p>"
                             + "<p><span " + style + ">Difficulté : </span>" + exercise.getDifficulty() + "<br/></p>"
                             + "<p><span " + style + ">Nombre de questions : </span>" + exercise.getNumberOfQuestions() + "<br/></p>"
                             + "</html>");
@@ -115,7 +115,7 @@ public class BmgPanelPracticeFirst extends JPanel {
         this.add(panChoose);
 
         JPanel panSouth = new JPanel();
-        panSouth.setPreferredSize(new Dimension(fen.width, 500));
+        panSouth.setPreferredSize(new Dimension(fen.width, 400));
 
         panSouth.add(labelRes);
 
@@ -129,9 +129,16 @@ public class BmgPanelPracticeFirst extends JPanel {
                 BmgPanelPractice bmgPanelPractice = new BmgPanelPractice(fen, ex);
             }
         });
-        panSouth.add(buttonOk);
+        
+        JPanel panSouth2 = new JPanel();
+        panSouth.setPreferredSize(new Dimension(fen.width, 250));
+        
+        //buttonOk.setAlignmentX(CENTER_ALIGNMENT);
+        
+        panSouth2.add(buttonOk);
 
         this.add(panSouth);
+        this.add(panSouth2);
 
     }
 

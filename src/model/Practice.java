@@ -262,7 +262,7 @@ public class Practice {
 
         try {
             if (Practice.findById(this.getId_p(), bs) != null) {
-                String query = "DELETE FROM Practice WHERE id_p = ?";
+                String query = "DELETE FROM PracticeAn WHERE id_p = ?";
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1, this.id_p);
                 p_statement.executeUpdate();

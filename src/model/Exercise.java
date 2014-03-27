@@ -1068,7 +1068,7 @@ public class Exercise implements iDbManager {
 //                if (QuestionCustom.findById(idq, bs) != null)
 //                    alq.add(QuestionCustom.findById(idq, bs));
                 
-                String tpq = rs.getString("tp_q");
+                String tpq = rs.getString("type_q");
                 
                 if (tpq.compareToIgnoreCase("CLC") == 0)
                     alq.add(QuestionCalculation.findById(idq, bs));

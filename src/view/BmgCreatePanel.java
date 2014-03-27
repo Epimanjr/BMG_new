@@ -473,12 +473,13 @@ public class BmgCreatePanel {
         //Create panel
         JPanel pan = new JPanel();
 
-        JLabel label = new JLabel("");
-        label.setPreferredSize(new Dimension(width - 100, (height - 100) / (nb * 2)));
+        //JLabel label = new JLabel("");
+        BmgLabel label = new BmgLabel("Configurer une base de données en renseignant les informations suivantes.", "#E43B01");
+        label.setPreferredSize(new Dimension(700,100));
 
         //Center Panel
         JPanel panCenter = new JPanel();
-        panCenter.setPreferredSize(new Dimension(width - 100, (height - 100) / nb));
+        panCenter.setPreferredSize(new Dimension(width - 50, (height - 50) / nb));
 
         //TextFields
         final JTextField[] jtfs = {

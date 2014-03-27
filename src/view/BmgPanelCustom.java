@@ -45,9 +45,9 @@ public class BmgPanelCustom extends JPanel {
         JLabel label2 = new JLabel("|  Difficulté : ");
         JLabel label3 = new JLabel("|  Énoncé : ");
 
-        label1.setPreferredSize(new Dimension(200, 50));
-        label2.setPreferredSize(new Dimension(200, 50));
-        label3.setPreferredSize(new Dimension(200, 50));
+        label1.setPreferredSize(new Dimension(100, 50));
+        label2.setPreferredSize(new Dimension(100, 50));
+        label3.setPreferredSize(new Dimension(100, 50));
 
         final JTextField saisieNom = new JTextField(20);
         final JTextField saisieEnonce = new JTextField(20);
@@ -82,11 +82,11 @@ public class BmgPanelCustom extends JPanel {
         this.add(panHaut, BorderLayout.NORTH);
 
         JPanel panCenter = new JPanel();
-        panCenter.setLayout(new GridLayout(5, 3));
+        panCenter.setLayout(new GridLayout(7, 3));
 
-        final JTextField[] tabQuestions = new JTextField[5];
-        final JTextField[] tabSolutions = new JTextField[5];
-        final JComboBox[] tabTypes = new JComboBox[5];
+        final JTextField[] tabQuestions = new JTextField[8];
+        final JTextField[] tabSolutions = new JTextField[8];
+        final JComboBox[] tabTypes = new JComboBox[8];
 
         final String[] types = {"entier", "réel", "caractère", "phrase"};
 
@@ -94,7 +94,7 @@ public class BmgPanelCustom extends JPanel {
         panCenter.add(new BmgLabel("Type de la réponse", "#E43B01"));
         panCenter.add(new BmgLabel("Réponse", "#E43B01"));
 
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 7; i++) {
             tabQuestions[i] = new JTextField(12);
             panCenter.add(tabQuestions[i]);
             tabTypes[i] = new JComboBox(types);
@@ -109,7 +109,7 @@ public class BmgPanelCustom extends JPanel {
         panSouth.setLayout(new BoxLayout(panSouth, BoxLayout.PAGE_AXIS));
 
         JButton createEx = new JButton("Créer l'exercice");
-        createEx.setPreferredSize(new Dimension(fen.height, 100));
+        //createEx.setPreferredSize(new Dimension(100, 100));
         createEx.addActionListener(new ActionListener() {
 
             @Override
@@ -125,7 +125,7 @@ public class BmgPanelCustom extends JPanel {
 
                 boolean ready = true;
 
-                for (int i = 1; i < 5; i++) {
+                for (int i = 1; i < 7; i++) {
                     String q = tabQuestions[i].getText();
                     if (q.equals("")) ready = false;
                     String t = types[tabTypes[i].getSelectedIndex()];
@@ -171,8 +171,10 @@ public class BmgPanelCustom extends JPanel {
         );
 
         JLabel labelSouth = new JLabel("");
-        labelSouth.setPreferredSize(new Dimension(800, 100));
+        //labelSouth.setPreferredSize(new Dimension(300, 100));
 
+        createEx.setAlignmentX(CENTER_ALIGNMENT);
+        
         panSouth.add(labelSouth);
         panSouth.add(createEx);
 

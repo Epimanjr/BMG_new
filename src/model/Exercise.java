@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Exercise object containing all it components
@@ -914,10 +916,27 @@ public class Exercise implements iDbManager {
 //                }
                 q.insert(bs);
 
-                String query_2 = "INSERT INTO Contains (id_e,id_q) VALUES (?,?)";
+                String tp = "";
+                
+                if (q instanceof QuestionCalculation)
+                    tp = "CLC";
+                if (q instanceof QuestionFraction)
+                    tp = "FRC";
+                if (q instanceof QuestionEquation)
+                    tp = "EQU";
+                if (q instanceof QuestionPower)
+                    tp = "PWR";
+                if (q instanceof QuestionCustom)
+                    tp = "CST";
+                
+                if (tp.compareTo("") == 0)
+                    throw new Exception("type of question unknown");
+                
+                String query_2 = "INSERT INTO Contains (id_e,id_q,type_q) VALUES (?,?,?)";
                 PreparedStatement p_statement_2 = connection.prepareStatement(query_2);
                 p_statement_2.setInt(1, this.getId());
                 p_statement_2.setInt(2, q.getID());
+                p_statement_2.setString(3, tp);
                 p_statement_2.executeUpdate();
                 p_statement_2.close();
             }
@@ -925,6 +944,10 @@ public class Exercise implements iDbManager {
         } catch (SQLException sqle) {
 
             sqle.printStackTrace();
+        } 
+        catch (Exception e) 
+        {
+            e.printStackTrace();
         }
 
         //Insertions des questions
@@ -1034,12 +1057,29 @@ public class Exercise implements iDbManager {
             while (rs.next()) {
                 int idq = rs.getInt("id_q");
 
-                if (QuestionCalculation.findById(idq, bs) != null)
+//                if (QuestionCalculation.findById(idq, bs) != null)
+//                    alq.add(QuestionCalculation.findById(idq, bs));
+//                if (QuestionFraction.findById(idq, bs) != null)
+//                    alq.add(QuestionFraction.findById(idq, bs));
+//                if (QuestionEquation.findById(idq, bs) != null)
+//                    alq.add(QuestionEquation.findById(idq, bs));
+//                if (QuestionPower.findById(idq, bs) != null)
+//                    alq.add(QuestionPower.findById(idq, bs));
+//                if (QuestionCustom.findById(idq, bs) != null)
+//                    alq.add(QuestionCustom.findById(idq, bs));
+                
+                String tpq = rs.getString("type_q");
+                
+                if (tpq.compareToIgnoreCase("CLC") == 0)
                     alq.add(QuestionCalculation.findById(idq, bs));
-                if (QuestionFraction.findById(idq, bs) != null)
+                if (tpq.compareToIgnoreCase("FRC") == 0)
                     alq.add(QuestionFraction.findById(idq, bs));
-                if (QuestionEquation.findById(idq, bs) != null)
+                if (tpq.compareToIgnoreCase("EQU") == 0)
                     alq.add(QuestionEquation.findById(idq, bs));
+                if (tpq.compareToIgnoreCase("PWR") == 0)
+                    alq.add(QuestionPower.findById(idq, bs));
+                if (tpq.compareToIgnoreCase("CST") == 0)
+                    alq.add(QuestionCustom.findById(idq, bs));
             }
 
         } catch (SQLException sqle) {

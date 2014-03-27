@@ -405,6 +405,7 @@ public class ActiveRecord_Tests
         if (pr != null) System.out.println(""+pr.getId_p()+" | "+pr.getExecution_time()+""); else System.out.println("find PR : pas OK");
         
         pr.setExecution_time(30);
+        //pr.setSuccess(100.0);
         pr.update(bs);
         
         if (pr != null) System.out.println(""+pr.getId_p()+" | "+pr.getExecution_time()+""); else System.out.println("update PR : pas OK");

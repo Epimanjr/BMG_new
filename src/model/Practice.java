@@ -71,11 +71,27 @@ public class Practice {
         this.right_answers = new ArrayList<>();
         this.practiced_exercise = e;
     }
+    
+    public Practice(int idp, int idu, int extm, Calendar c, double suc, ArrayList<Integer> al1, ArrayList<Integer> al2, Exercise e) {
+        this.id_p = idp;
+        this.id_u = idu;
+        this.execution_time = extm;
+        this.execution_date = c;
+        this.success = suc;
+        this.wrong_answers = al1;
+        this.right_answers = al2;
+        this.practiced_exercise = e;
+    }
 
     public Practice() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+//    public void setSuccess(double d)
+//    {
+//        success = d;
+//    }
+    
     public void addRight(int r) {
         this.right_answers.add(r);
     }
@@ -211,8 +227,8 @@ public class Practice {
                 PreparedStatement p_statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
                 p_statement.setInt(1, this.id_u);
                 p_statement.setInt(2, id_e);
-                p_statement.setString(3, ""+this.execution_date.getTime());
-                p_statement.setString(4, ""+this.execution_time);
+                p_statement.setString(3, this.getExecution_dateString());
+                p_statement.setString(4, this.execution_time+"");
                 p_statement.setDouble(5, this.success);
                 p_statement.setString(6, this.encodeWrongAnswers());
                 p_statement.executeUpdate();
@@ -236,6 +252,7 @@ public class Practice {
         Connection connection = bs.getConnection();
 
         int id_e = practiced_exercise.getId();
+        System.out.println(id_e);
 
         try {
             if (User.findById(this.id_u, bs) != null && Exercise.findById(id_e, bs) != null) {
@@ -243,8 +260,8 @@ public class Practice {
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1, this.id_u);
                 p_statement.setInt(2, id_e);
-                p_statement.setString(3, ""+this.execution_date.getTime());
-                p_statement.setString(4, ""+this.execution_time);
+                p_statement.setString(3, this.getExecution_dateString());
+                p_statement.setString(4, this.execution_time+"");
                 p_statement.setDouble(5, this.success);
                 p_statement.setString(6, this.encodeWrongAnswers());
                 p_statement.setInt(7, this.id_p);
@@ -296,7 +313,8 @@ public class Practice {
                 String wa = rs.getString("wrong_answers");
 
                 Exercise ex = Exercise.findById(ide, bs);
-                practice = new Practice(idu, ex);
+                
+                practice = new Practice(idp, idu, Integer.parseInt(exect), null, s, Practice.decodeWrongAnswers(wa), null, ex);
             }
 
         } catch (SQLException sqle) {
@@ -327,10 +345,12 @@ public class Practice {
                 String execd = rs.getString("execution_date");
                 String exect = rs.getString("execution_time");
                 double s = rs.getDouble("success");
-                String wa = rs.getString("wrrong_answers");
-
+                String wa = rs.getString("wrong_answers");
+                
                 Exercise ex = Exercise.findById(ide, bs);
-                practice = new Practice(idu, ex);
+                
+                practice = new Practice(idp, idu, Integer.parseInt(exect), null /* DATE */, s, Practice.decodeWrongAnswers(wa), null, ex);
+                
                 al_practice.add(practice);
             }
 

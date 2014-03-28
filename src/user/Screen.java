@@ -112,6 +112,8 @@ public class Screen implements iDbManager, Serializable
             
             if (rs.next()) this.id_s = rs.getInt(1);
             
+            return true;
+            
         }
         catch (SQLException sqle)
         {
@@ -124,7 +126,7 @@ public class Screen implements iDbManager, Serializable
             ioe.printStackTrace();        
         }
         
-        return true; 
+        return false; 
     }
     
     @Override
@@ -145,6 +147,8 @@ public class Screen implements iDbManager, Serializable
 		p_statement.setInt(2,this.id_s);
                 //p_statement.setInt(3,this.id_s);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	}  
 	catch (SQLException sqle) 
@@ -153,7 +157,7 @@ public class Screen implements iDbManager, Serializable
 	    sqle.printStackTrace();
 	}
 	
-	return true;
+	return false;
     }
 
     @Override
@@ -169,6 +173,8 @@ public class Screen implements iDbManager, Serializable
 		PreparedStatement p_statement = connection.prepareStatement(query);
 		p_statement.setInt(1,this.id_s);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	}  
 	catch (SQLException sqle) 
@@ -177,7 +183,7 @@ public class Screen implements iDbManager, Serializable
 	    sqle.printStackTrace();
 	}
 	
-	return true;
+	return false;
     }
 
     /* FINDERS */

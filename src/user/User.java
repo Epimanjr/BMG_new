@@ -212,6 +212,8 @@ public class User implements iDbManager
                 p_statement.setInt(7, this.connected_u);
                 p_statement.setInt(8, this.id_u);
                 p_statement.executeUpdate();
+                
+                return true;
             }
         }  
 	catch (SQLException sqle) 
@@ -220,7 +222,7 @@ public class User implements iDbManager
 	    sqle.printStackTrace();
 	}
 
-        return true;
+        return false;
     }
 
     @Override
@@ -234,6 +236,8 @@ public class User implements iDbManager
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1, this.id_u);
                 p_statement.executeUpdate();
+                
+                return true;
             }
         } 
 	catch (SQLException sqle) 
@@ -242,7 +246,7 @@ public class User implements iDbManager
 	    sqle.printStackTrace();
 	}
 
-        return true;
+        return false;
     }
 
     /* FINDERS */

@@ -939,6 +939,8 @@ public class Exercise implements iDbManager {
                 p_statement_2.setString(3, tp);
                 p_statement_2.executeUpdate();
                 p_statement_2.close();
+                
+                return true;
             }
 
         } catch (SQLException sqle) {
@@ -955,7 +957,7 @@ public class Exercise implements iDbManager {
         //On insert la question
         //On insert dans 'Contains' le couple (this.getID(),question.getID()) !
         //Fin
-        return true;
+        return false;
     }
 
     @Override
@@ -980,12 +982,14 @@ public class Exercise implements iDbManager {
                 p_statement.setBoolean(5, this.ready);
                 p_statement.setInt(6, this.id);
                 p_statement.executeUpdate();
+                
+                return true;
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
 
-        return true;
+        return false;
     }
 
     @Override
@@ -998,12 +1002,14 @@ public class Exercise implements iDbManager {
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1, this.id);
                 p_statement.executeUpdate();
+                
+                return true;
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
 
-        return true;
+        return false;
     }
 
     /* FINDERS */

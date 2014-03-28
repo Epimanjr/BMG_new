@@ -363,6 +363,8 @@ public class Wording implements iDbManager {
 	    ResultSet rs = p_statement.getGeneratedKeys();
 	    
 	    if (rs.next()) {this.id = rs.getInt(1); System.out.println(""+this.id);}
+            
+            return true;
 		    
 	}  
 	catch (SQLException sqle) 
@@ -373,7 +375,7 @@ public class Wording implements iDbManager {
             Logger.getLogger(Wording.class.getName()).log(Level.SEVERE, null, ex);
         }
 	
-	return true;
+	return false;
     }
 
     @Override
@@ -391,6 +393,8 @@ public class Wording implements iDbManager {
 		p_statement.setString(2,this.encodeValues());
 		p_statement.setInt(3,this.id);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	}  
 	catch (SQLException sqle) 
@@ -401,7 +405,7 @@ public class Wording implements iDbManager {
             Logger.getLogger(Wording.class.getName()).log(Level.SEVERE, null, ex);
         }
 	
-	return true;
+	return false;
     }
 
     @Override
@@ -417,6 +421,8 @@ public class Wording implements iDbManager {
 		PreparedStatement p_statement = connection.prepareStatement(query);
 		p_statement.setInt(1,this.id);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	}  
 	catch (SQLException sqle) 
@@ -425,7 +431,7 @@ public class Wording implements iDbManager {
 	    sqle.printStackTrace();
 	}
 	
-	return true;
+	return false;
     }
 
     /* FINDERS */

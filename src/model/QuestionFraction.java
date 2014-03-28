@@ -505,6 +505,8 @@ public class QuestionFraction extends Question implements iDbManager {
             ResultSet rs = p_statement.getGeneratedKeys();
             
             if (rs.next()) this.id = rs.getInt(1);
+            
+            return true;
         }
         catch (SQLException sqle)
         {
@@ -533,6 +535,8 @@ public class QuestionFraction extends Question implements iDbManager {
                 p_statement.setInt(6, this.length);
                 p_statement.setInt(7, this.id);
                 p_statement.executeUpdate();
+                
+                return true;
             }
         }
         catch (SQLException sqle)
@@ -556,6 +560,8 @@ public class QuestionFraction extends Question implements iDbManager {
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1,id);
                 p_statement.executeUpdate();
+                
+                return true;
             }
         }
         catch (SQLException sqle)

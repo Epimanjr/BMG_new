@@ -69,6 +69,8 @@ public class Workgroup implements iDbManager
 	    ResultSet rs = p_statement.getGeneratedKeys();
 	    
 	    if (rs.next()) this.id_wg = rs.getInt(1);
+            
+            return true;
 		    
 	}  
 	catch (SQLException sqle) 
@@ -77,7 +79,7 @@ public class Workgroup implements iDbManager
 	    sqle.printStackTrace();
 	}
 	
-	return true;
+	return false;
     }
     
     @Override
@@ -94,6 +96,8 @@ public class Workgroup implements iDbManager
 		p_statement.setString(1,this.name_wg);
 		p_statement.setInt(2,this.id_wg);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	}  
 	catch (SQLException sqle) 
@@ -102,7 +106,7 @@ public class Workgroup implements iDbManager
 	    sqle.printStackTrace();
 	}
 	
-	return true;
+	return false;
     }
 
     @Override
@@ -118,6 +122,8 @@ public class Workgroup implements iDbManager
 		PreparedStatement p_statement = connection.prepareStatement(query);
 		p_statement.setInt(1,this.id_wg);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	} 
 	catch (SQLException sqle) 
@@ -126,7 +132,7 @@ public class Workgroup implements iDbManager
 	    sqle.printStackTrace();
 	}
 	
-	return true;
+	return false;
     }
 
     /* FINDERS */

@@ -521,7 +521,9 @@ public class QuestionCalculation extends Question implements iDbManager {
 	    p_statement.executeUpdate();
 	    ResultSet rs = p_statement.getGeneratedKeys();
 			
-	    if (rs.next()) this.id = rs.getInt(1);		
+	    if (rs.next()) this.id = rs.getInt(1);
+            
+            return true;
 	}  
 	catch (SQLException sqle) 
 	{
@@ -532,7 +534,7 @@ public class QuestionCalculation extends Question implements iDbManager {
         ee.printStackTrace();
     }
 	
-	return true;
+	return false;
     }
 
     @Override
@@ -553,6 +555,8 @@ public class QuestionCalculation extends Question implements iDbManager {
 		p_statement.setInt(5,this.length);
 		p_statement.setInt(6,this.id);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	}  
 	catch (SQLException sqle) 
@@ -564,7 +568,7 @@ public class QuestionCalculation extends Question implements iDbManager {
         ee.printStackTrace();
     }
 	
-	return true;
+	return false;
     }
 
     @Override
@@ -580,6 +584,8 @@ public class QuestionCalculation extends Question implements iDbManager {
 		PreparedStatement p_statement = connection.prepareStatement(query);
 		p_statement.setInt(1,this.id);
 		p_statement.executeUpdate();
+                
+                return true;
 	    }
 	}  
 	catch (SQLException sqle) 
@@ -587,7 +593,7 @@ public class QuestionCalculation extends Question implements iDbManager {
 	    sqle.printStackTrace();
 	}
 	
-	return true;
+	return false;
     }
 
     /* FINDERS */

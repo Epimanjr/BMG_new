@@ -267,18 +267,23 @@ public class Practice {
         System.out.println(id_e);
 
         try {
-            if (User.findById(this.id_u, bs) != null && Exercise.findById(id_e, bs) != null) {
-                String query = "UPDATE PracticeAn SET (id_u = ? , id_e = ? , execution_date = ? , execution_time = ? , success = ? , wrong_answers = ? , right_answers = ?) WHERE id_p = ?";
-                PreparedStatement p_statement = connection.prepareStatement(query);
-                p_statement.setInt(1, this.id_u);
-                p_statement.setInt(2, id_e);
-                p_statement.setTimestamp(3, new Timestamp(this.getExecution_date().getTime()));
-                p_statement.setInt(4, this.getExecution_time());
-                p_statement.setDouble(5, this.success);
-                p_statement.setString(6, this.encodeWrongAnswers());
-                p_statement.setString(7, this.encodeRightAnswers());
-                p_statement.setInt(8, this.id_p);
-                p_statement.executeUpdate();
+            if (this.id_p < 0)
+            {
+                if (User.findById(this.id_u, bs) != null && Exercise.findById(id_e, bs) != null) {
+                    String query = "UPDATE PracticeAn SET (id_u = ? , id_e = ? , execution_date = ? , execution_time = ? , success = ? , wrong_answers = ? , right_answers = ?) WHERE id_p = ?";
+                    PreparedStatement p_statement = connection.prepareStatement(query);
+                    p_statement.setInt(1, this.id_u);
+                    p_statement.setInt(2, id_e);
+                    p_statement.setTimestamp(3, new Timestamp(this.getExecution_date().getTime()));
+                    p_statement.setInt(4, this.getExecution_time());
+                    p_statement.setDouble(5, this.success);
+                    p_statement.setString(6, this.encodeWrongAnswers());
+                    p_statement.setString(7, this.encodeRightAnswers());
+                    p_statement.setInt(8, this.id_p);
+                    p_statement.executeUpdate();
+                    
+                    return true;
+                }
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();
@@ -296,6 +301,8 @@ public class Practice {
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1, this.id_p);
                 p_statement.executeUpdate();
+                
+                return true;
             }
         } catch (SQLException sqle) {
             sqle.printStackTrace();

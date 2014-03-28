@@ -391,7 +391,9 @@ public class ActiveRecord_Tests
         ra.add(4);
         
         Practice practice_1 = new Practice(user_1.getId_u(),exercise_2); practice_1.setWrongAnswers(wa); practice_1.setRightAnswers(ra);
+        //System.out.println("ID avant insertion : "+practice_1.getId_p());
         b = practice_1.insert(bs);
+        //System.out.println("ID apres insertion : "+practice_1.getId_p());
         System.out.println(""+b+" insertion practice_1");
         Practice practice_2 = new Practice(user_1.getId_u(),exercise_1); practice_2.setWrongAnswers(wa); practice_2.setRightAnswers(ra);
         b = practice_2.insert(bs);

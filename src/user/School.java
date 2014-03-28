@@ -108,6 +108,8 @@ public class School implements iDbManager
                 p_statement.setString(5,this.postalCode_sch);
                 p_statement.setInt(6,this.id_sch);
                 p_statement.executeUpdate();
+                
+                return true;
             }
 	}
 	catch (SQLException sqle)
@@ -130,6 +132,8 @@ public class School implements iDbManager
 	    PreparedStatement p_statement = connection.prepareStatement(query);
 	    p_statement.setInt(1,this.id_sch);
 	    p_statement.executeUpdate();
+            
+            return true;
 	}
 	catch (SQLException sqle)
 	{

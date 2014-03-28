@@ -181,7 +181,7 @@ public class ActiveRecord_Tests
 	
 	if (w != null) System.out.println(""+w.getId()+" | "+w.getText()+""); else System.out.println("delete W : OK");
 	
-        /* QUESTION-CALCULATION : OK */
+        /* QUESTION-CALCULATION */
         
 	ArrayList<Integer> aliqc1 = new ArrayList<>(); aliqc1.add(6); aliqc1.add(2); aliqc1.add(3); aliqc1.add(7);
 	ArrayList<Integer> aliqc2 = new ArrayList<>(); aliqc2.add(2); aliqc2.add(8); aliqc2.add(5); aliqc2.add(9);
@@ -215,7 +215,7 @@ public class ActiveRecord_Tests
 	
 	if (qc != null) System.out.println(""+qc.getID()+" | "+qc.getText()+""); else System.out.println("delete QC : OK");
 	
-        /* QUESTION-FRACTION : PAS OK */
+        /* QUESTION-FRACTION */
         
         ArrayList<Integer> aliqfn1 = new ArrayList<>(); aliqfn1.add(6); aliqfn1.add(2); aliqfn1.add(3); aliqfn1.add(7);
 	ArrayList<Integer> aliqfn2 = new ArrayList<>(); aliqfn2.add(2); aliqfn2.add(8); aliqfn2.add(5); aliqfn2.add(9);
@@ -252,7 +252,7 @@ public class ActiveRecord_Tests
 	
 	if (qf != null) System.out.println(""+qf.getID()+" | "+qf.getText()+""); else System.out.println("delete QF : OK");
 	
-        /* QUESTION-EQUATION : PAS OK */
+        /* QUESTION-EQUATION */
         
         ArrayList<Integer> aliqeo1 = new ArrayList<>(); aliqeo1.add(3); aliqeo1.add(5); aliqeo1.add(3); aliqeo1.add(2);
 	ArrayList<Integer> aliqeo2 = new ArrayList<>(); aliqeo2.add(7); aliqeo2.add(2); aliqeo2.add(6); aliqeo2.add(6);
@@ -289,7 +289,7 @@ public class ActiveRecord_Tests
 	
 	if (qe != null) System.out.println(""+qe.getID()+" | "+qe.getText()+""); else System.out.println("delete QE : OK");
         
-        /* QUESTION-POWER : PAS OK */
+        /* QUESTION-POWER */
         
 	ArrayList<Character> alcqpo1 = new ArrayList<>(); alcqpo1.add('+'); alcqpo1.add('+'); alcqpo1.add('-');
 	ArrayList<Character> alcqpo2 = new ArrayList<>(); alcqpo2.add('-'); alcqpo2.add('*'); alcqpo2.add('/');
@@ -323,7 +323,7 @@ public class ActiveRecord_Tests
 	
 	if (qp != null) System.out.println(""+qp.getID()+" | "+qp.getText()+""); else System.out.println("delete QP : OK");
         
-        /* QUESTION-CUSTOM : PAS OK */
+        /* QUESTION-CUSTOM */
         
         Object[] o1 = new Object[]{(int) 5 ,(int) 2 ,(int) 4};
         Object[] o2 = new Object[]{(double) 3.2 , (double) 9.6};
@@ -354,9 +354,22 @@ public class ActiveRecord_Tests
 	
 	if (qcust != null) System.out.println(""+qcust.getID()+" | "+qcust.getText()+""); else System.out.println("delete QCT : OK");
         
-	ArrayList<Question> alq1 = new ArrayList<>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
-	ArrayList<Question> alq2 = new ArrayList<>(); alq1.add(questionCalculation_1);  alq1.add(questionFraction_2);
-	ArrayList<Question> alq3 = new ArrayList<>(); alq1.add(questionCalculation_2);  alq1.add(questionFraction_1);
+        QuestionCalculation qc1ex1 = questionCalculation_2;
+        qc1ex1.setText("InsertByAnExercise");
+        QuestionFraction qc2ex1 = questionFraction_1;
+        qc2ex1.setText("InsertByAnExercise");
+        QuestionCalculation qc1ex2 = questionCalculation_1;
+        qc1ex2.setText("InsertByAnExercise");
+        QuestionFraction qc2ex2 = questionFraction_2;
+        qc2ex2.setText("InsertByAnExercise");
+        QuestionCalculation qc1ex3 = questionCalculation_2;
+        qc1ex3.setText("InsertByAnExercise");
+        QuestionFraction qc2ex3 = questionFraction_2;
+        qc2ex3.setText("InsertByAnExercise");
+        
+	ArrayList<Question> alq1 = new ArrayList<>(); alq1.add(qc1ex1); alq1.add(qc2ex1);
+	ArrayList<Question> alq2 = new ArrayList<>(); alq1.add(qc1ex2); alq1.add(qc2ex2);
+	ArrayList<Question> alq3 = new ArrayList<>(); alq1.add(qc1ex3); alq1.add(qc2ex3);
 	
 	Exercise exercise_1 = new Exercise("exercise1",wording_1,alq1,"type",0,false);
 	b = exercise_1.insert(bs);

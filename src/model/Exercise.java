@@ -930,7 +930,10 @@ public class Exercise implements iDbManager {
                     tp = "CST";
                 
                 if (tp.compareTo("") == 0)
+                {
+                    System.out.println("ERROR");
                     throw new Exception("type of question unknown");
+                }
                 
                 String query_2 = "INSERT INTO Contains (id_e,id_q,type_q) VALUES (?,?,?)";
                 PreparedStatement p_statement_2 = connection.prepareStatement(query_2);

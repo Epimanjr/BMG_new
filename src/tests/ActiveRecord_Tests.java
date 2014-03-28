@@ -376,7 +376,7 @@ public class ActiveRecord_Tests
         qc2ex2.setText("InsertByAnExercise");
         QuestionCalculation qc1ex3 = questionCalculation_2;
         qc1ex3.setText("InsertByAnExercise");
-        QuestionFraction qc2ex3 = questionFraction_2;
+        QuestionCalculation qc2ex3 = questionCalculation_1;
         qc2ex3.setText("InsertByAnExercise");
         
 	ArrayList<Question> alq1 = new ArrayList<>(); alq1.add(qc1ex1); alq1.add(qc2ex1);

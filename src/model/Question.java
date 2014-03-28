@@ -123,6 +123,10 @@ public abstract class Question {
     
     public abstract boolean insert(BaseSetting bs);
     
+    public abstract boolean update(BaseSetting bs);
+    
+    public abstract boolean delete(BaseSetting bs);
+    
     /**
      * Recreate a Question from an encoded string
      * @param decodedQuestion Question object in which place decoded Question

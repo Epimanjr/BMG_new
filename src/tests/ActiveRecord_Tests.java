@@ -28,6 +28,8 @@ public class ActiveRecord_Tests
 	BaseSetting bs = new BaseSetting();
         //bs.setInfo();
 	
+        /* SCHOOL */
+        
 	School school_1 = new School("Ecole1","Type1","Rue1","Ville1","CPostal1");
 	b = school_1.insert(bs);
 	System.out.println(""+b+" insertion school 1");
@@ -53,6 +55,8 @@ public class ActiveRecord_Tests
 	
 	if (sch != null) System.out.println(""+sch.getId_sch()+""+sch.getName_sch()+""); else System.out.println("delete SCH : OK");
 	
+        /* USER & USERTYPE */
+        
 	UserType userType_1 = new UserType("Groupe1");
 	b = userType_1.insert(bs);
 	System.out.println(""+b+" insertion userType 1");
@@ -109,6 +113,8 @@ public class ActiveRecord_Tests
 	
 	if (ut != null) System.out.println(""+ut.getId_ut()+" | "+ut.getName_ut()+""); else System.out.println("delete UT : OK");
 	
+        /* SCREEN */
+        
 	Screen screen_1 = new Screen("Ecran1");
 	b = screen_1.insert(bs);
 	System.out.println(""+b+" insertion screen 1");
@@ -134,6 +140,8 @@ public class ActiveRecord_Tests
 	
 	if (sc != null) System.out.println(""+sc.getId_s()+" | "+sc.getName_s()+""); else System.out.println("delete S : OK");
 	
+        /* WORKGROUP */
+        
 	Workgroup workgroup_1 = new Workgroup("GroupeDeTravail1");
 	b = workgroup_1.insert(bs);
 	System.out.println(""+b+" insertion workgroup 1");
@@ -156,6 +164,8 @@ public class ActiveRecord_Tests
 	
 	if (wg != null) System.out.println(""+wg.getId_wg()+" | "+wg.getName_wg()+""); else System.out.println("delete WG : OK");
 
+        /* WORDING */
+        
 	Object[] t_obj_1 = new Object[3]; t_obj_1[0] = 666; t_obj_1[1] = "hell"; t_obj_1[2] = 3.50;
 	Object[] t_obj_2 = new Object[3]; t_obj_2[0] = '!'; t_obj_2[1] = "hell"; t_obj_2[2] = 666;
 	
@@ -354,6 +364,8 @@ public class ActiveRecord_Tests
 	
 	if (qcust != null) System.out.println(""+qcust.getID()+" | "+qcust.getText()+""); else System.out.println("delete QCT : OK");
         
+        /* EXERCISE */
+        
         QuestionCalculation qc1ex1 = questionCalculation_2;
         qc1ex1.setText("InsertByAnExercise");
         QuestionFraction qc2ex1 = questionFraction_1;
@@ -368,8 +380,8 @@ public class ActiveRecord_Tests
         qc2ex3.setText("InsertByAnExercise");
         
 	ArrayList<Question> alq1 = new ArrayList<>(); alq1.add(qc1ex1); alq1.add(qc2ex1);
-	ArrayList<Question> alq2 = new ArrayList<>(); alq1.add(qc1ex2); alq1.add(qc2ex2);
-	ArrayList<Question> alq3 = new ArrayList<>(); alq1.add(qc1ex3); alq1.add(qc2ex3);
+	ArrayList<Question> alq2 = new ArrayList<>(); alq2.add(qc1ex2); alq2.add(qc2ex2);
+	ArrayList<Question> alq3 = new ArrayList<>(); alq3.add(qc1ex3); alq3.add(qc2ex3);
 	
 	Exercise exercise_1 = new Exercise("exercise1",wording_1,alq1,"type",0,false);
 	b = exercise_1.insert(bs);
@@ -395,6 +407,8 @@ public class ActiveRecord_Tests
 	e = Exercise.findById(exercise_3.getId(),bs);
 	
 	if (e != null) System.out.println(""+e.getId()+" | "+e.getTitle()+""); else System.out.println("delete E : OK");
+        
+        /* PRACTICE */
         
         ArrayList<Integer> wa = new ArrayList();
         wa.add(1);

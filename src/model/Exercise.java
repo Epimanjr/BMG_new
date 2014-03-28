@@ -935,6 +935,7 @@ public class Exercise implements iDbManager {
                     throw new Exception("type of question unknown");
                 }
                 
+                System.out.println("GOOD");
                 String query_2 = "INSERT INTO Contains (id_e,id_q,type_q) VALUES (?,?,?)";
                 PreparedStatement p_statement_2 = connection.prepareStatement(query_2);
                 p_statement_2.setInt(1, this.getId());

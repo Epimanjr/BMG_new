@@ -1004,7 +1004,7 @@ public class Exercise implements iDbManager {
             if (Exercise.findById(this.getId(), bs) != null) {
                 ArrayList<Question> alq = Exercise.findById_AllQuestions(this.id, bs);
                 
-                String littleQuery = "DELETE FROM Contain WHERE id_e = ?";
+                String littleQuery = "DELETE FROM Contains WHERE id_e = ?";
                 PreparedStatement little_p_statement = connection.prepareStatement(littleQuery);
                 little_p_statement.setInt(1, this.id);
                 little_p_statement.executeUpdate();

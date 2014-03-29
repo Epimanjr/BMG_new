@@ -165,7 +165,7 @@ public class QuestionPower extends Question implements iDbManager {
         for (int i = 0; i < this.length; i++) {
             this.powers.add((int) (Math.random() * 20) + 1);
             if (i < this.length - 1) {
-                this.operators.add(possible_operators[(int) (Math.random() * QPoperators.size())]);
+                this.operators.add(possible_operators[((int) (Math.random() * QPoperators.size()))]);
             }
         }
     }

@@ -1,9 +1,12 @@
-#Exercise<-1><><custom><2>
-#Wording<-1><$<>$><emp><>
-#QuestionCustom<int><1><-1><$<a>$><0>
-#QuestionCustom<chr><a><-1><$<b>$><0>
-#QuestionCustom<str><acb><-1><$<c>$><0>
-#QuestionCustom<dbl><1.5><-1><$<d>$><0>
-#QuestionCustom<int><1><-1><$<e>$><0>
-#QuestionCustom<int><1><-1><$<f>$><0>
-#QuestionCustom<int><1><-1><$<g>$><0>
+#Exercise<-1><><power><0>
+#Wording<-1><$<Répondre aux questions suivantes.>$><emp><>
+#QuestionPower<13><4:12><*><2><-1><$<Calculer.>$><0>
+#QuestionPower<6><2:4></><2><-1><$<Calculer.>$><0>
+#QuestionPower<4><11:16:2:2:11:19:4:5:6:20><*:/:*:*:*:*:*:/:*><10><-1><$<Calculer.>$><0>
+#QuestionPower<8><10:5:15:2:12></:/:/:*><5><-1><$<Calculer.>$><0>
+#QuestionPower<18><6:4:16:6:6:13:19:18:5:11:9><*:*:/:*:*:/:*:*:*:*><11><-1><$<Calculer.>$><0>
+#QuestionPower<19><14:11:6></:*><3><-1><$<Calculer.>$><0>
+#QuestionPower<10><15:16:5:6><*:*:*><4><-1><$<Calculer.>$><0>
+#QuestionPower<2><2:8:7:20:20:13:19:14><*:*:/:*:/:*:/><8><-1><$<Calculer.>$><0>
+#QuestionPower<17><15:7:16><*:/><3><-1><$<Calculer.>$><0>
+#QuestionPower<4><8:17><*><2><-1><$<Calculer.>$><0>

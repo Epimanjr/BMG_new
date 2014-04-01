@@ -166,7 +166,7 @@ public class User implements iDbManager
         Connection connection = bs.getConnection();
 
         try {
-            String query = "INSERT INTO User (id_ut,fname_u,lname_u,school_u,email_u,pass_u,connected_u) VALUES (?,?,?,?,?,sha(?),?)";
+            String query = "INSERT INTO User (id_ut,fname_u,lname_u,school_u,email_u,pass_u,connected_u) VALUES (?,?,?,?,?,sha2(concat(sha2(concat(sha1(?),'$@l7_1'),256),'$@l7_2'),512),?)";
             PreparedStatement p_statement = connection.prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             p_statement.setInt(1, this.id_ut);
             p_statement.setString(2, this.fname_u);
@@ -201,7 +201,7 @@ public class User implements iDbManager
 
         try {
             if (this.id_u < 0) {
-                String query = "UPDATE User SET (id_ut = ? , id_sch = ? , fname_u = ? , lname_u = ? , email_u = ? , pass_u = sha(?) , connected_u = ?) WHERE id_u = ?";
+                String query = "UPDATE User SET (id_ut = ? , id_sch = ? , fname_u = ? , lname_u = ? , email_u = ? , pass_u = sha2(concat(sha2(concat(sha1(?),'$@l7_1'),256),'$@l7_2'),512) , connected_u = ?) WHERE id_u = ?";
                 PreparedStatement p_statement = connection.prepareStatement(query);
                 p_statement.setInt(1, this.id_ut);
                 p_statement.setInt(2, this.id_sch);
@@ -333,7 +333,7 @@ public class User implements iDbManager
 	    PreparedStatement p_statement;
 	    ResultSet rs;
 	    
-	    query = "SELECT sha(?)";
+	    query = "SELECT sha2(concat(sha2(concat(sha1(?),'$@l7_1'),256),'$@l7_2'),512)";
             p_statement = connection.prepareStatement(query);
 	    p_statement.setString(1, pswd);
 	    

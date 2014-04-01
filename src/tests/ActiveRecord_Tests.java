@@ -385,7 +385,7 @@ public class ActiveRecord_Tests
             Exercise exercise_2 = new Exercise("exercise2",wording_1,alq2,"type",0,false);
             b = exercise_2.insert(bs);
             System.out.println(""+b+" insertion exercise_2");
-            System.in.read();
+            //System.in.read();
             Exercise exercise_3 = new Exercise("exercise3",wording_1,alq3,"type",0,false);
             b = exercise_3.insert(bs);
             System.out.println(""+b+" insertion exercise_3");

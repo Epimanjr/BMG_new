@@ -935,7 +935,8 @@ public class Exercise implements iDbManager {
                     throw new Exception("type of question unknown");
                 }
                 
-                System.out.println("GOOD");
+                System.out.println("questions.indexOf(q) : "+questions.indexOf(q));
+                System.out.println("questions.size() : "+questions.size());
                 String query_2 = "INSERT INTO Contains (id_e,id_q,type_q) VALUES (?,?,?)";
                 PreparedStatement p_statement_2 = connection.prepareStatement(query_2);
                 p_statement_2.setInt(1, this.getId());
@@ -943,9 +944,9 @@ public class Exercise implements iDbManager {
                 p_statement_2.setString(3, tp);
                 p_statement_2.executeUpdate();
                 p_statement_2.close();
-                
-                return true;
             }
+            
+            return true;
 
         } catch (SQLException sqle) {
 

@@ -368,8 +368,8 @@ public class ActiveRecord_Tests
 
             /* EXERCISE */
 
-            QuestionCalculation qc1ex1 = new QuestionCalculation("InsertBy1stExercise",3); qc1ex1.setOperands(aliqc2); qc1ex1.setOperators(alcqc2);
-            QuestionFraction qc2ex1 = new QuestionFraction("InsertBy1stExercise",2); qc2ex1.setNumerators(aliqfn1); qc2ex1.setDenominators(aliqfd1); qc2ex1.setOperators(alcqf1);
+            QuestionFraction qc1ex1 = new QuestionFraction("InsertBy1stExercise",2); qc1ex1.setNumerators(aliqfn1); qc1ex1.setDenominators(aliqfd1); qc1ex1.setOperators(alcqf1);
+            QuestionCalculation qc2ex1 = new QuestionCalculation("InsertBy1stExercise",3); qc2ex1.setOperands(aliqc2); qc2ex1.setOperators(alcqc2);
             QuestionCalculation qc1ex2 = new QuestionCalculation("InsertBy2ndExercise",2); qc1ex2.setOperands(aliqc1); qc1ex2.setOperators(alcqc1);
             QuestionFraction qc2ex2 = new QuestionFraction("InsertBy2ndExercise",3); qc2ex2.setNumerators(aliqfn2); qc2ex2.setDenominators(aliqfd2); qc2ex2.setOperators(alcqf2);
             QuestionCalculation qc1ex3 = new QuestionCalculation("InsertBy3rdExercise",3); qc1ex3.setOperands(aliqc2); qc1ex3.setOperators(alcqc2);
